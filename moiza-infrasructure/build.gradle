@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // database
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    // mapstruct
+    implementation 'org.mapstruct:mapstruct:1.5.1.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.1.Final'
+
+    // validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation(project(":moiza-domain"))
+
+}
+
+jar {
+    enabled = false
+}
+
+bootJar {
+    enabled = false
+}

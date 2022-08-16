@@ -1,0 +1,5 @@
+rootProject.name = 'MOIZA-Spring-Boot-Server'
+
+include 'moiza-domain'
+include 'moiza-infrasructure'
+
