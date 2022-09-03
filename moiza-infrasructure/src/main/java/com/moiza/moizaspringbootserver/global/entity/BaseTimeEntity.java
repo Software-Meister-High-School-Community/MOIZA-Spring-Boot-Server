@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.global;
+package com.moiza.moizaspringbootserver.global.entity;
 
 import lombok.Getter;
 
