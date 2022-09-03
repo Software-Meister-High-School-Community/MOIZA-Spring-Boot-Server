@@ -27,8 +27,10 @@ dependencies {
     // validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    implementation(project(":moiza-domain"))
+    // uuid time
+    implementation 'com.fasterxml.uuid:java-uuid-generator:3.1.4'
 
+    implementation(project(":moiza-domain"))
 }
 
 jar {
