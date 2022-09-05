@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.7.2'
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
+    id "org.sonarqube" version "3.4.0.2513"
 }
 
 group = 'com.moiza'
@@ -49,4 +50,12 @@ tasks.named('test') {
 
 jar {
     enabled = false
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "Software-Meister-High-School-Community_MOIZA-Spring-Boot-Server"
+        property "sonar.organization", "software-meister-high-school-community"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
