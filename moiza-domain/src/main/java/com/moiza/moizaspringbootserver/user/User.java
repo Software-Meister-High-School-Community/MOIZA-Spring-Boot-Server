@@ -7,11 +7,14 @@ import com.moiza.moizaspringbootserver.user.enums.UserType;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Aggregate
 @Getter
 @Builder
 public class User {
 
+    private final UUID id;
     private final String email;
     private final String accountId;
     private final String password;
