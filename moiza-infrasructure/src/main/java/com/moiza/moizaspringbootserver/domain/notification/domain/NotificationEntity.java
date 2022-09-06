@@ -3,22 +3,20 @@ package com.moiza.moizaspringbootserver.domain.notification.domain;
 import com.moiza.moizaspringbootserver.notification.type.Type;
 import com.moiza.moizaspringbootserver.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
 
 @Getter
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_notification")
 public class NotificationEntity extends BaseTimeEntity {
-
-    private UUID id;
 
     @NotNull
     @Length(max = 30)
@@ -36,13 +34,4 @@ public class NotificationEntity extends BaseTimeEntity {
     @Column(length = 9)
     @Enumerated(EnumType.STRING)
     private Type type;
-
-    @Builder
-    public NotificationEntity(String title, String content, String data, Type type) {
-        this.id = super.getId();
-        this.title = title;
-        this.content = content;
-        this.data = data;
-        this.type = type;
-    }
 }
