@@ -10,12 +10,15 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_notification")
 public class NotificationEntity extends BaseTimeEntity {
+
+    private UUID id;
 
     @NotNull
     @Length(max = 30)
@@ -36,6 +39,7 @@ public class NotificationEntity extends BaseTimeEntity {
 
     @Builder
     public NotificationEntity(String title, String content, String data, Type type) {
+        this.id = super.getId();
         this.title = title;
         this.content = content;
         this.data = data;
