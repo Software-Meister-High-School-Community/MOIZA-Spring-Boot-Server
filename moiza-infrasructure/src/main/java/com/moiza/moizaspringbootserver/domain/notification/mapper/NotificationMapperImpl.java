@@ -10,6 +10,7 @@ public class NotificationMapperImpl implements NotificationMapper {
     @Override
     public NotificationEntity notificationDomainToEntity(Notification notification) {
         return NotificationEntity.builder()
+                .id(notification.getId())
                 .title(notification.getTitle())
                 .content(notification.getContent())
                 .data(notification.getData())
