@@ -1,6 +1,6 @@
-package com.moiza.moizaspringbootserver.domain.notification.entity.repository;
+package com.moiza.moizaspringbootserver.domain.notification.domain.repository;
 
-import com.moiza.moizaspringbootserver.domain.notification.entity.NotificationEntity;
+import com.moiza.moizaspringbootserver.domain.notification.domain.NotificationEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

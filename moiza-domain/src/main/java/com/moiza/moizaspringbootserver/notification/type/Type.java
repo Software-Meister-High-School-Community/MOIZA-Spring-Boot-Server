@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.notification.entity.type;
+package com.moiza.moizaspringbootserver.notification.type;
 
 public enum Type {
     NOTICE,

@@ -1,6 +1,6 @@
-package com.moiza.moizaspringbootserver.domain.notification.entity;
+package com.moiza.moizaspringbootserver.domain.notification.domain;
 
-import com.moiza.moizaspringbootserver.domain.notification.entity.type.Type;
+import com.moiza.moizaspringbootserver.notification.type.Type;
 import com.moiza.moizaspringbootserver.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,10 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -33,7 +30,7 @@ public class NotificationEntity extends BaseTimeEntity {
     private String data;
 
     @NotNull
-    @Length(max = 9)
+    @Column(length = 9)
     @Enumerated(EnumType.STRING)
     private Type type;
 
