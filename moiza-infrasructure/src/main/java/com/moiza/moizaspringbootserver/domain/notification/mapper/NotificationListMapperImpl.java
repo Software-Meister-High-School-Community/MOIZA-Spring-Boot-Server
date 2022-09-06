@@ -22,10 +22,10 @@ public class NotificationListMapperImpl implements NotificationListMapper {
     @Override
     public NotificationListEntity notificationListDomainToEntity(NotificationList notificationList) {
         return new NotificationListEntity(
-                new NotificationListId(
-                        findByNotificationId(notificationList.getNotificationId()),
-                        findByUserId(notificationList.getUserId())
-                )
+                NotificationListId.builder()
+                        .notificationEntity(findByNotificationId(notificationList.getNotificationId()))
+                        .userEntity(findByUserId(notificationList.getUserId()))
+                        .build()
         );
     }
 
