@@ -1,5 +1,6 @@
 name: CI & Lint
 
+on:
   push:
     branches:
       - main
