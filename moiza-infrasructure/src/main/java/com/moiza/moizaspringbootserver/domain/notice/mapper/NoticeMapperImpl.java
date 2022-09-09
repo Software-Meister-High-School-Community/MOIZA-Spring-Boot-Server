@@ -13,7 +13,6 @@ public class NoticeMapperImpl implements NoticeMapper{
                 .id(notice.getId())
                 .title(notice.getTitle())
                 .content(notice.getContent())
-                .createdAt(notice.getCreatedAt())
                 .updatedAt(notice.getUpdatedAt())
                 .isPinned(notice.isPinned())
                 .build();
@@ -25,7 +24,6 @@ public class NoticeMapperImpl implements NoticeMapper{
                 .id(noticeEntity.getId())
                 .title(noticeEntity.getTitle())
                 .content(noticeEntity.getContent())
-                .createdAt(noticeEntity.getCreatedAt())
                 .updatedAt(noticeEntity.getUpdatedAt())
                 .isPinned(noticeEntity.isPinned())
                 .build();
