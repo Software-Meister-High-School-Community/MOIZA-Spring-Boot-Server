@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "tbl_user")
+@Table(name = "tbl_user_introduce_link")
 public class UserIntroduceLinkEntity extends BaseUUIDEntity {
 
 	@Column(nullable = false)
