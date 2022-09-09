@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table
+@Table(name = "tbl_category")
 public class CategoryEntity extends BaseUUIDEntity {
 
     @NotNull
