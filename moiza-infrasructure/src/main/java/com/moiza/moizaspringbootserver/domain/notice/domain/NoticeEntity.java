@@ -29,9 +29,6 @@ public class NoticeEntity extends BaseTimeEntity {
     @Length(max = 500)
     private String content;
 
-    @NotNull
-    private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 
     @NotNull
