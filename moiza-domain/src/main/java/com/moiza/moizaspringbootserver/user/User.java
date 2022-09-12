@@ -9,9 +9,9 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-@Aggregate
 @Getter
 @Builder
+@Aggregate
 public class User {
 
     private final UUID id;
@@ -26,6 +26,4 @@ public class User {
     private final String introduce;
     private final UserType userType;
     private final School school;
-
-
 }

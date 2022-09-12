@@ -5,10 +5,8 @@ import com.moiza.moizaspringbootserver.user.enums.DefaultImage;
 import com.moiza.moizaspringbootserver.user.enums.School;
 import com.moiza.moizaspringbootserver.user.enums.Sex;
 import com.moiza.moizaspringbootserver.user.enums.UserType;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.validator.constraints.Length;
@@ -17,6 +15,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @Entity
@@ -67,18 +66,4 @@ public class UserEntity extends BaseUUIDEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private School school;
-
-    @Builder
-    public UserEntity(String email, String accountId, String password, String name,
-                      Sex sex, Long birthDay, String introduce, UserType userType, School school) {
-        this.email = email;
-        this.accountId = accountId;
-        this.password = password;
-        this.name = name;
-        this.sex = sex;
-        this.birthDay = birthDay;
-        this.introduce = introduce;
-        this.userType = userType;
-        this.school = school;
-    }
 }
