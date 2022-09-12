@@ -10,11 +10,13 @@ import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SuperBuilder
 @Entity
-@Table(name = "tbl_user")
+@Table(name = "tbl_user_introduce_link")
 public class UserIntroduceLinkEntity extends BaseUUIDEntity {
 
 	@Column(nullable = false)
