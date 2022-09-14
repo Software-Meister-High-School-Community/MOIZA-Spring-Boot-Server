@@ -24,7 +24,7 @@ public class PublicFeedMapperImpl implements PublicFeedMapper {
                 .feedId(publicFeedEntity.getId())
                 .title(publicFeedEntity.getTitle())
                 .content(publicFeedEntity.getContent())
-                .createdAt(publicFeedEntity.getCreatedAt().toLocalDateTime())
+                .createdAt(publicFeedEntity.getCreatedAt())
                 .updatedAt(publicFeedEntity.getUpdatedAt())
                 .likeCount(publicFeedEntity.getLikeCount())
                 .viewCount(publicFeedEntity.getViewCount())
