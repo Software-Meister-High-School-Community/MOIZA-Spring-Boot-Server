@@ -16,12 +16,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Getter
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
 @Entity
 @Table(name = "tbl_comment")
 public class CommentEntity extends BaseTimeEntity {

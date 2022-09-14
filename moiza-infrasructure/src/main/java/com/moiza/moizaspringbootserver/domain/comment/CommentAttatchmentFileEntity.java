@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "tbl_comment_attatchment_file")
 public class CommentAttatchmentFileEntity extends BaseUUIDEntity {
 
+	@NotNull
 	private String attatchmentFileUrl;
 
 	@ManyToOne(fetch = FetchType.LAZY)
