@@ -1,12 +1,13 @@
 package com.moiza.moizaspringbootserver.global.entity;
 
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import org.springframework.data.annotation.CreatedDate;
 
 @Getter
 @SuperBuilder
@@ -15,5 +16,6 @@ import java.time.ZonedDateTime;
 public abstract class BaseTimeEntity extends BaseUUIDEntity {
 
     @NotNull
-    private final ZonedDateTime createdAt = ZonedDateTime.now();
+    @CreatedDate
+    private final LocalDateTime createdAt = LocalDateTime.now();
 }

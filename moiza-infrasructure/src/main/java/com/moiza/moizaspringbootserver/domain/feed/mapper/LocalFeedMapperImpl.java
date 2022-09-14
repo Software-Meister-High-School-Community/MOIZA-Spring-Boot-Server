@@ -12,7 +12,7 @@ public class LocalFeedMapperImpl implements LocalFeedMapper {
                 .feedId(localFeedEntity.getId())
                 .title(localFeedEntity.getTitle())
                 .content(localFeedEntity.getContent())
-                .createdAt(localFeedEntity.getCreatedAt().toLocalDateTime())
+                .createdAt(localFeedEntity.getCreatedAt())
                 .build();
     }
 
