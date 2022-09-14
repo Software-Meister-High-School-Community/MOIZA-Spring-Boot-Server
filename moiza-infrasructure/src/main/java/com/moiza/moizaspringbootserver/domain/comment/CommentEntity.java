@@ -3,7 +3,7 @@ package com.moiza.moizaspringbootserver.domain.comment;
 import com.moiza.moizaspringbootserver.domain.feed.domain.FeedEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.global.entity.BaseTimeEntity;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,7 +37,7 @@ public class CommentEntity extends BaseTimeEntity {
 	private boolean isPinned;
 
 	@LastModifiedDate
-	private ZonedDateTime updatedAt;
+	private LocalDateTime updatedAt;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
