@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Getter
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DynamicInsert
 @Entity
 @Table(name = "tbl_search_history")
 public class SearchHistoryEntity extends BaseTimeEntity {
