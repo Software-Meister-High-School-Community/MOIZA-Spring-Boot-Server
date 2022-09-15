@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.user.mapper;
+package com.moiza.moizaspringbootserver.domain.user.mapper.userintroducelink;
 
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserIntroduceLinkEntity;

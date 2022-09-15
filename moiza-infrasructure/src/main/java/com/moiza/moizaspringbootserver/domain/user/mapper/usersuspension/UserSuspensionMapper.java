@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.user.mapper;
+package com.moiza.moizaspringbootserver.domain.user.mapper.usersuspension;
 
 import com.moiza.moizaspringbootserver.domain.user.domain.UserSuspensionEntity;
 import com.moiza.moizaspringbootserver.user.UserSuspension;
