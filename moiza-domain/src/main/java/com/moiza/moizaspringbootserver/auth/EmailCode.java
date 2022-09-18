@@ -10,7 +10,7 @@ import lombok.Getter;
 @Aggregate
 public class EmailCode {
 
-    private String email;
-    private String authCode;
-    private Type type;
+    private final String email;
+    private final String authCode;
+    private final Type type;
 }
