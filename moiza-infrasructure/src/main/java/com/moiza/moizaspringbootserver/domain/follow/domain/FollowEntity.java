@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity
 @Table(name = "tbl_follow")
 public class FollowEntity extends BaseTimeEntity {
@@ -31,9 +32,4 @@ public class FollowEntity extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "target_user_id", nullable = false)
     private UserEntity targetUser;
-
-    @Builder
-    public FollowEntity(FollowId id) {
-        this.followId = id;
-    }
 }
