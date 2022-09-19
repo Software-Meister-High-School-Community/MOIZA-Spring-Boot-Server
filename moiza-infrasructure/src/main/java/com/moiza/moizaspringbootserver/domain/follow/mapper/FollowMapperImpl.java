@@ -32,14 +32,12 @@ public class FollowMapperImpl implements FollowMapper{
                         .targetUser(followEntity.getTargetUser().getId())
                         .build()
         );
-
-
     }
 
     @Override
     public Follow followEntityToDomain(FollowEntity followEntity) {
         return Follow.builder()
-                .userId(followEntity.getFollowId().getUser())
+                .userId(followEntity.getUserEntity().getId())
                 .createdAt(followEntity.getCreatedAt())
                 .targetUserId(followEntity.getTargetUser().getId())
                 .build();
