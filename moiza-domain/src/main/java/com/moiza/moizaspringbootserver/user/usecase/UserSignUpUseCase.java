@@ -4,7 +4,7 @@ import com.moiza.moizaspringbootserver.annotation.UseCase;
 import com.moiza.moizaspringbootserver.auth.exception.EmailCodeNotVerifiedException;
 import com.moiza.moizaspringbootserver.user.User;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
-import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpApiRequest;
+import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.exception.UserAlreadyExistsException;
 import com.moiza.moizaspringbootserver.user.spi.CommandUserPort;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserPort;
@@ -20,7 +20,7 @@ public class UserSignUpUseCase implements UserSignUpApi {
 	private final CommandUserPort commandUserPort;
 
 	@Override
-	public void execute(DomainUserSignUpApiRequest request) {
+	public void execute(DomainUserSignUpRequest request) {
 
 		if (queryUserPort.existsUserByAccountId(request.getAccountId()) || queryUserPort.existsUserByEmail(request.getEmail())) {
 			throw UserAlreadyExistsException.EXCEPTION;

@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class DomainUserSignUpApiRequest {
+public class DomainUserSignUpRequest {
 	private final String accountId;
 	private final String password;
 	private final String email;
