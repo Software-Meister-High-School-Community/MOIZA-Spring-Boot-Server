@@ -4,7 +4,6 @@ import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainIdValidationRe
 import com.moiza.moizaspringbootserver.user.exception.UserAlredayExistException;
 import com.moiza.moizaspringbootserver.auth.spi.IdValidationSpi;
 import com.moiza.moizaspringbootserver.auth.usecase.IdValidationUseCase;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,13 +22,10 @@ class IdValidationUseCaseTest {
     @InjectMocks
     IdValidationUseCase idValidationUseCase;
 
-    @DisplayName("중복된 아이디 제공")
     @Test
-    void whenDuplicatedServed() {
+    void 중복_아이디() {
         String userId = "userid";
-        DomainIdValidationRequest request = DomainIdValidationRequest.builder()
-                .accountId(userId)
-                .build();
+        DomainIdValidationRequest request = new DomainIdValidationRequest(userId);
 
         given(idValidationSpi.isUserExists(userId))
                 .willReturn(true);
@@ -37,13 +33,10 @@ class IdValidationUseCaseTest {
         assertThrows(UserAlredayExistException.class, () -> idValidationUseCase.execute(request));
     }
 
-    @DisplayName("중복되지 아니한 아이디 제공")
     @Test
-    void whenValidServed() {
+    void 사용가능_아이디() {
         String userId = "userid";
-        DomainIdValidationRequest request = DomainIdValidationRequest.builder()
-                .accountId(userId)
-                .build();
+        DomainIdValidationRequest request = new DomainIdValidationRequest(userId);
 
         given(idValidationSpi.isUserExists(userId))
                 .willReturn(false);

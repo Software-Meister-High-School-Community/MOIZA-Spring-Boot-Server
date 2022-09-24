@@ -1,10 +1,10 @@
 package com.moiza.moizaspringbootserver.auth.api.dto.request;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@Builder
+@AllArgsConstructor
 public class DomainIdValidationRequest {
     private String accountId;
 }
