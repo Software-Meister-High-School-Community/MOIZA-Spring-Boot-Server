@@ -6,27 +6,27 @@ import com.moiza.moizaspringbootserver.user.User;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.exception.UserAlreadyExistsException;
-import com.moiza.moizaspringbootserver.user.spi.CommandUserPort;
-import com.moiza.moizaspringbootserver.user.spi.QueryUserPort;
-import com.moiza.moizaspringbootserver.user.spi.UserQueryEmailCodePort;
+import com.moiza.moizaspringbootserver.user.spi.CommandUserSpi;
+import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
+import com.moiza.moizaspringbootserver.user.spi.UserQueryEmailCodeSpi;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @UseCase
 public class UserSignUpUseCase implements UserSignUpApi {
 
-	private final QueryUserPort queryUserPort;
-	private final UserQueryEmailCodePort userQueryEmailCodePort;
-	private final CommandUserPort commandUserPort;
+	private final QueryUserSpi queryUserSpi;
+	private final UserQueryEmailCodeSpi userQueryEmailCodeSpi;
+	private final CommandUserSpi commandUserSpi;
 
 	@Override
 	public void execute(DomainUserSignUpRequest request) {
 
-		if (queryUserPort.existsUserByAccountId(request.getAccountId()) || queryUserPort.existsUserByEmail(request.getEmail())) {
+		if (queryUserSpi.existsUserByAccountId(request.getAccountId()) || queryUserSpi.existsUserByEmail(request.getEmail())) {
 			throw UserAlreadyExistsException.EXCEPTION;
 		}
 
-		if (!userQueryEmailCodePort.queryEmailCodeById(request.getEmail()).isVerify()) {
+		if (!userQueryEmailCodeSpi.queryEmailCodeById(request.getEmail()).isVerify()) {
 			throw EmailCodeNotVerifiedException.EXCEPTION;
 		}
 
@@ -41,6 +41,6 @@ public class UserSignUpUseCase implements UserSignUpApi {
 			.school(request.getSchool())
 			.build();
 
-		commandUserPort.saveUser(user);
+		commandUserSpi.saveUser(user);
 	}
 }
