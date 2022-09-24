@@ -13,6 +13,8 @@ public class EmailCodeMapperImpl implements EmailCodeMapper {
                 .email(emailCode.getEmail())
                 .authCode(emailCode.getAuthCode())
                 .type(emailCode.getType())
+                .isVerify(emailCode.isVerify())
+                .timeToLive(emailCode.getTimeToLIve())
                 .build();
     }
 
@@ -22,6 +24,8 @@ public class EmailCodeMapperImpl implements EmailCodeMapper {
                 .email(emailCodeEntity.getEmail())
                 .authCode(emailCodeEntity.getAuthCode())
                 .type(emailCodeEntity.getType())
+                .isVerify(emailCodeEntity.isVerify())
+                .timeToLIve(emailCodeEntity.getTimeToLive())
                 .build();
     }
 }
