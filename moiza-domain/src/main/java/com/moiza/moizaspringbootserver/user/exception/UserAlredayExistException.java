@@ -1,11 +1,11 @@
-package com.moiza.moizaspringbootserver.auth.exception;
+package com.moiza.moizaspringbootserver.user.exception;
 
-import com.moiza.moizaspringbootserver.auth.error.AuthErrorCode;
 import com.moiza.moizaspringbootserver.error.MoizaException;
+import com.moiza.moizaspringbootserver.user.error.UserErrorCode;
 
 public class UserAlredayExistException extends MoizaException {
     private UserAlredayExistException() {
-        super(AuthErrorCode.USER_ALREADY_EXISTS);
+        super(UserErrorCode.USER_ALREADY_EXISTS);
     }
 
     public static final UserAlredayExistException EXCEPTION = new UserAlredayExistException();

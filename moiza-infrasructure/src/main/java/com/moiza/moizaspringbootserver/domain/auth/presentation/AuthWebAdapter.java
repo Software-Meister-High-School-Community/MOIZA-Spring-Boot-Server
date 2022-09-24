@@ -16,9 +16,9 @@ public class AuthWebAdapter {
     private final IdValidationApi idValidationApi;
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/", method = RequestMethod.HEAD)
+    @RequestMapping(value = "/id-validations", method = RequestMethod.HEAD)
     public void validId(@RequestBody @Valid WebIdValidationRequest request) {
-        idValidationApi.validId(DomainIdValidationRequest.builder()
+        idValidationApi.execute(DomainIdValidationRequest.builder()
                 .accountId(request.getAccountId())
                 .build());
     }

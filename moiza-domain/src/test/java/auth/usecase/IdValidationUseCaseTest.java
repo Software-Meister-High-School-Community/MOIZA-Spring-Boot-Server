@@ -1,7 +1,7 @@
 package auth.usecase;
 
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainIdValidationRequest;
-import com.moiza.moizaspringbootserver.auth.exception.UserAlredayExistException;
+import com.moiza.moizaspringbootserver.user.exception.UserAlredayExistException;
 import com.moiza.moizaspringbootserver.auth.spi.IdValidationSpi;
 import com.moiza.moizaspringbootserver.auth.usecase.IdValidationUseCase;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +34,7 @@ class IdValidationUseCaseTest {
         given(idValidationSpi.isUserExists(userId))
                 .willReturn(true);
 
-        assertThrows(UserAlredayExistException.class, () -> idValidationUseCase.validId(request));
+        assertThrows(UserAlredayExistException.class, () -> idValidationUseCase.execute(request));
     }
 
     @DisplayName("중복되지 아니한 아이디 제공")
@@ -48,7 +48,7 @@ class IdValidationUseCaseTest {
         given(idValidationSpi.isUserExists(userId))
                 .willReturn(false);
 
-        idValidationUseCase.validId(request);
+        idValidationUseCase.execute(request);
     }
 
 
