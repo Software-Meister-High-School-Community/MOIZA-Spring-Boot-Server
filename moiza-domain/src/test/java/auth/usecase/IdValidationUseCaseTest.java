@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-public class IdValidationUseCaseTest {
+class IdValidationUseCaseTest {
 
     @Mock
     IdValidationSpi idValidationSpi;

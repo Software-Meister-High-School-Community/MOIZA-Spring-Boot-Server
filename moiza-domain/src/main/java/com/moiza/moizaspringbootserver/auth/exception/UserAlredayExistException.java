@@ -8,5 +8,5 @@ public class UserAlredayExistException extends MoizaException {
         super(AuthErrorCode.USER_ALREADY_EXISTS);
     }
 
-    public static UserAlredayExistException EXCEPTION = new UserAlredayExistException();
+    public static final UserAlredayExistException EXCEPTION = new UserAlredayExistException();
 }
