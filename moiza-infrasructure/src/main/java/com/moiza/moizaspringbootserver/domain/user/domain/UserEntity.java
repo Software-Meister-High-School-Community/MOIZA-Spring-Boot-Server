@@ -1,10 +1,10 @@
 package com.moiza.moizaspringbootserver.domain.user.domain;
 
 import com.moiza.moizaspringbootserver.global.entity.BaseUUIDEntity;
-import com.moiza.moizaspringbootserver.user.enums.DefaultImage;
-import com.moiza.moizaspringbootserver.user.enums.School;
-import com.moiza.moizaspringbootserver.user.enums.Sex;
-import com.moiza.moizaspringbootserver.user.enums.UserType;
+import com.moiza.moizaspringbootserver.user.domain.enums.DefaultImage;
+import com.moiza.moizaspringbootserver.user.domain.enums.School;
+import com.moiza.moizaspringbootserver.user.domain.enums.Sex;
+import com.moiza.moizaspringbootserver.user.domain.enums.UserType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
