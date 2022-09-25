@@ -8,5 +8,5 @@ public class InvalidTokenException extends MoizaException {
         super(GlobalErrorCode.INVALID_TOKEN);
     }
 
-    public static InvalidTokenException EXCEPTION = new InvalidTokenException();
+    public static final InvalidTokenException EXCEPTION = new InvalidTokenException();
 }
