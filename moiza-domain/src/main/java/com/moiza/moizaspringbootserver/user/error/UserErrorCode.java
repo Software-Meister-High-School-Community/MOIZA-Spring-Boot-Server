@@ -11,7 +11,7 @@ public enum UserErrorCode implements ErrorProperty {
 
 	USER_NOT_FOUND(404, "user is not found"),
 
-	USER_AlREADY_EXISTS(409, "user is already exists");
+	USER_ALREADY_EXISTS(409, "user is already exists");
 
 	private final int status;
 	private final String message;

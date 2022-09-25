@@ -1,9 +1,9 @@
 package auth.usecase;
 
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainIdValidationRequest;
-import com.moiza.moizaspringbootserver.user.exception.UserAlredayExistException;
-import com.moiza.moizaspringbootserver.auth.spi.IdValidationSpi;
 import com.moiza.moizaspringbootserver.auth.usecase.IdValidationUseCase;
+import com.moiza.moizaspringbootserver.user.exception.UserAlreadyExistsException;
+import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,7 +17,7 @@ import static org.mockito.BDDMockito.given;
 class IdValidationUseCaseTest {
 
     @Mock
-    IdValidationSpi idValidationSpi;
+    QueryUserSpi queryUserSpi;
 
     @InjectMocks
     IdValidationUseCase idValidationUseCase;
@@ -27,10 +27,10 @@ class IdValidationUseCaseTest {
         String userId = "userid";
         DomainIdValidationRequest request = new DomainIdValidationRequest(userId);
 
-        given(idValidationSpi.isUserExists(userId))
+        given(queryUserSpi.existsUserByAccountId(userId))
                 .willReturn(true);
 
-        assertThrows(UserAlredayExistException.class, () -> idValidationUseCase.execute(request));
+        assertThrows(UserAlreadyExistsException.class, () -> idValidationUseCase.execute(request));
     }
 
     @Test
@@ -38,7 +38,7 @@ class IdValidationUseCaseTest {
         String userId = "userid";
         DomainIdValidationRequest request = new DomainIdValidationRequest(userId);
 
-        given(idValidationSpi.isUserExists(userId))
+        given(queryUserSpi.existsUserByAccountId(userId))
                 .willReturn(false);
 
         idValidationUseCase.execute(request);
