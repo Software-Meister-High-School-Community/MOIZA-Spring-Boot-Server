@@ -2,6 +2,7 @@ package com.moiza.moizaspringbootserver.domain.auth.domain;
 
 import com.moiza.moizaspringbootserver.auth.type.Type;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @RedisHash
 public class EmailCodeEntity {
 
@@ -29,13 +32,4 @@ public class EmailCodeEntity {
     private Long timeToLive;
 
     private boolean isVerify;
-
-    @Builder
-    public EmailCodeEntity(String email, String authCode, Type type) {
-        this.email = email;
-        this.authCode = authCode;
-        this.type = type;
-        this.timeToLive = 180000L;
-        this.isVerify = false;
-    }
 }

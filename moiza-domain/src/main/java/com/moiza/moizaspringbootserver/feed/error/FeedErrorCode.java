@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum FeedErrorCode implements ErrorProperty {
 
-	FEED_NOT_FOUND(404, "피드를 찾을 수 없음");
+	FEED_NOT_FOUND(404, "feed is not found");
 
 	private final int status;
 	private final String message;

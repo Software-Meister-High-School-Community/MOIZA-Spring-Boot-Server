@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum CommentErrorCode implements ErrorProperty {
 
-	COMMENT_NOT_FOUND(404, "코멘트를 찾을 수 없음");
+	COMMENT_NOT_FOUND(404, "comment is not found");
 
 	private final int status;
 	private final String message;
