@@ -6,7 +6,7 @@ import com.moiza.moizaspringbootserver.user.error.UserErrorCode;
 public class UserAlreadyExistsException extends MoizaException {
 
 	private UserAlreadyExistsException() {
-		super(UserErrorCode.USER_AlREADY_EXISTS);
+		super(UserErrorCode.USER_ALREADY_EXISTS);
 	}
 
 	public static final MoizaException EXCEPTION = new UserAlreadyExistsException();
