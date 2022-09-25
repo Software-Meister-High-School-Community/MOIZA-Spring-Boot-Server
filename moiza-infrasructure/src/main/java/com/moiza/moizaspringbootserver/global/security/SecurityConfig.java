@@ -42,7 +42,10 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
                 // auth
-                .antMatchers(HttpMethod.HEAD, "").permitAll()
+                .antMatchers(HttpMethod.HEAD, "/auth/id-validations").permitAll()
+
+                //user
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
 
                 // Deny other requests
                 .anyRequest().denyAll()
