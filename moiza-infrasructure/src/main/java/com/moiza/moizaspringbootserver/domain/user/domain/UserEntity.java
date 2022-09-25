@@ -54,7 +54,8 @@ public class UserEntity extends BaseUUIDEntity {
     private Sex sex;
 
     @NotNull
-    private Long birthDay;
+    @Length(max = 8)
+    private String birthDay;
 
     @Length(max = 8)
     private String introduce;
