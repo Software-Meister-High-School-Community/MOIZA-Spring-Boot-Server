@@ -1,5 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.user.persistence;
 
+import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.domain.user.mapper.UserMapper;
 import com.moiza.moizaspringbootserver.user.User;
