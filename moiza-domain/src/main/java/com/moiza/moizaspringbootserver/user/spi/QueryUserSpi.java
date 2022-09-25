@@ -3,5 +3,7 @@ package com.moiza.moizaspringbootserver.user.spi;
 import com.moiza.moizaspringbootserver.user.User;
 
 public interface QueryUserSpi {
-    User getUserByEmail(String email);
+	boolean existsUserByAccountId(String accountId);
+	boolean existsUserByEmail(String email);
+	User getUserByEmail(String email);
 }

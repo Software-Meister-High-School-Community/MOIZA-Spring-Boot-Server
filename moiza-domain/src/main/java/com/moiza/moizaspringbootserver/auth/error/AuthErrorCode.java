@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.user.error;
+package com.moiza.moizaspringbootserver.auth.error;
 
 import com.moiza.moizaspringbootserver.error.ErrorProperty;
 import lombok.AccessLevel;
@@ -7,11 +7,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum UserErrorCode implements ErrorProperty {
+public enum AuthErrorCode implements ErrorProperty {
 
-	USER_NOT_FOUND(404, "user is not found"),
+	EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
 
-	USER_ALREADY_EXISTS(409, "user is already exists");
+	EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified");
 
 	private final int status;
 	private final String message;
