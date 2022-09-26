@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.user.enums;
+package com.moiza.moizaspringbootserver.user.domain.enums;
 
 public enum School {
     DSM,

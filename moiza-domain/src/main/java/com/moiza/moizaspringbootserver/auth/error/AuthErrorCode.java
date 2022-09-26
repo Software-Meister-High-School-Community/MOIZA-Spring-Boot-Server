@@ -9,7 +9,10 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum AuthErrorCode implements ErrorProperty {
 
-	EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
+    EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
+    EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
+    AUTH_CODE_ALREADY_VERIFIED(409, "Auth Code Already Verified")
+    ;
 
 	EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
 

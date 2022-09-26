@@ -37,6 +37,12 @@ dependencies {
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
     annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
 
+    // ses
+    implementation 'com.amazonaws:aws-java-sdk-ses:1.12.307'
+
+    //random util
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
     // configuration
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 

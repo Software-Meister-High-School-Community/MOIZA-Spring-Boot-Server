@@ -1,7 +1,7 @@
 package com.moiza.moizaspringbootserver.domain.user.mapper.usersuspension;
 
 import com.moiza.moizaspringbootserver.domain.user.domain.UserSuspensionEntity;
-import com.moiza.moizaspringbootserver.user.UserSuspension;
+import com.moiza.moizaspringbootserver.user.domain.UserSuspension;
 import org.springframework.stereotype.Component;
 
 @Component
