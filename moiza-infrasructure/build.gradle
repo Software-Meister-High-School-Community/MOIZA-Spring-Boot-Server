@@ -37,6 +37,9 @@ dependencies {
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
     annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
 
+    // configuration
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
     implementation(project(":moiza-domain"))
 }
 
