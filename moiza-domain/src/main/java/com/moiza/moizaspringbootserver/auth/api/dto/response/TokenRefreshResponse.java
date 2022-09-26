@@ -1,10 +1,10 @@
 package com.moiza.moizaspringbootserver.auth.api.dto.response;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@Builder
 public class TokenRefreshResponse {
     private final String accessToken;
     private final Long expiredAt;

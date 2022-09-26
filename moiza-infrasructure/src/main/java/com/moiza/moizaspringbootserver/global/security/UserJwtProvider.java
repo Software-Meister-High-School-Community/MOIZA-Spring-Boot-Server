@@ -33,22 +33,22 @@ public class UserJwtProvider implements UserJwtSpi {
     private final RefreshTokenRepository refreshTokenRepository;
 
     @Override
-    public SpiTokenResponse getToken(String id) {
-        return new SpiTokenResponse(
-                generateAccessToken(id),
-                jwtProperties.getRefreshExp(),
-                generateRefreshToken(id)
-        );
+    public SpiTokenResponse getToken(String email) {
+        return SpiTokenResponse.builder()
+                .accessToken(generateAccessToken(email))
+                .refreshExp(jwtProperties.getRefreshExp())
+                .refreshToken(generateRefreshToken(email))
+                .build();
     }
 
-    public String generateAccessToken(String id) {
-        return generateToken(id, ACCESS_KEY, jwtProperties.getAccessExp());
+    public String generateAccessToken(String email) {
+        return generateToken(email, ACCESS_KEY, jwtProperties.getAccessExp());
     }
 
-    public String generateRefreshToken(String id) {
-        String refreshToken = generateToken(id, REFRESH_KEY, jwtProperties.getRefreshExp());
+    public String generateRefreshToken(String email) {
+        String refreshToken = generateToken(email, REFRESH_KEY, jwtProperties.getRefreshExp());
         refreshTokenRepository.save(RefreshTokenEntity.builder()
-                .email(id)
+                .email(email)
                 .refreshToken(refreshToken)
                 .build());
         return refreshToken;
@@ -88,10 +88,10 @@ public class UserJwtProvider implements UserJwtSpi {
         return getTokenBody(token).getSubject();
     }
 
-    private String generateToken(String id, String type, Long exp) {
+    private String generateToken(String email, String type, Long exp) {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
-                .setSubject(id)
+                .setSubject(email)
                 .claim("type", type)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))

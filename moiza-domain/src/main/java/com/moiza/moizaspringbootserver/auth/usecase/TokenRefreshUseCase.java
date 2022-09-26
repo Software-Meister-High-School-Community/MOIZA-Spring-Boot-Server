@@ -27,10 +27,11 @@ public class TokenRefreshUseCase implements TokenRefreshApi {
                 refreshToken.update(tokenResponse.getRefreshToken(), tokenResponse.getRefreshExp())
         );
 
-        return new TokenRefreshResponse(
-                tokenResponse.getAccessToken(),
-                tokenResponse.getRefreshExp(),
-                tokenResponse.getRefreshToken()
-        );
+        return TokenRefreshResponse.builder()
+                .accessToken(refreshToken.getRefreshToken())
+                .expiredAt(refreshToken.getTimeToLive())
+                .refreshToken(refreshToken.getRefreshToken())
+                .build();
+
     }
 }
