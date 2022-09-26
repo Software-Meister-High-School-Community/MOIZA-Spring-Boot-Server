@@ -11,11 +11,7 @@ public enum AuthErrorCode implements ErrorProperty {
 
     EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
-    AUTH_CODE_ALREADY_VERIFIED(409, "Auth Code Already Verified")
-    ;
-
-	EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
-
+    AUTH_CODE_ALREADY_VERIFIED(409, "Auth Code Already Verified"),
 	REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found");
 
 	private final int status;
