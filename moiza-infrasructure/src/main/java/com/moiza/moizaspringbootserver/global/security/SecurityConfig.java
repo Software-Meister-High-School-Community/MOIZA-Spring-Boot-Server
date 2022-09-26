@@ -19,7 +19,7 @@ import org.springframework.web.cors.CorsUtils;
 @Configuration
 public class SecurityConfig {
 
-    private final JwtProvider jwtProvider;
+    private final UserJwtProvider jwtProvider;
 
     @Bean
     public PasswordEncoder passwordEncoder() {

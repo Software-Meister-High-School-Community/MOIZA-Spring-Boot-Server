@@ -6,7 +6,7 @@ import com.moiza.moizaspringbootserver.auth.api.TokenRefreshApi;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.TokenRefreshResponse;
 import com.moiza.moizaspringbootserver.auth.spi.CommandRefreshTokenSpi;
 import com.moiza.moizaspringbootserver.auth.spi.QueryTokenRefreshSpi;
-import com.moiza.moizaspringbootserver.user.spi.JwtSpi;
+import com.moiza.moizaspringbootserver.user.spi.UserJwtSpi;
 import com.moiza.moizaspringbootserver.user.spi.dto.response.SpiTokenResponse;
 import lombok.RequiredArgsConstructor;
 
@@ -16,12 +16,12 @@ public class TokenRefreshUseCase implements TokenRefreshApi {
 
     private final QueryTokenRefreshSpi queryTokenRefreshSpi;
     private final CommandRefreshTokenSpi commandRefreshTokenSpi;
-    private final JwtSpi jwtSpi;
+    private final UserJwtSpi userJwtSpi;
 
     @Override
     public TokenRefreshResponse execute(String token) {
         RefreshToken refreshToken = queryTokenRefreshSpi.queryRefreshTokenByToken(token);
-        SpiTokenResponse tokenResponse = jwtSpi.getToken(token);
+        SpiTokenResponse tokenResponse = userJwtSpi.getToken(token);
 
         commandRefreshTokenSpi.saveRefreshToken(
                 refreshToken.update(tokenResponse.getRefreshToken(), tokenResponse.getRefreshExp())
