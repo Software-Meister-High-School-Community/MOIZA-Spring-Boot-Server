@@ -11,4 +11,14 @@ public class RefreshToken {
 
     private final String email;
     private final String refreshToken;
+    private final Long timeToLive;
+
+    public RefreshToken update(String email, Long timeToLive) {
+        return RefreshToken.builder()
+                .email(email)
+                .refreshToken(refreshToken)
+                .timeToLive(timeToLive)
+                .build();
+    }
+
 }
