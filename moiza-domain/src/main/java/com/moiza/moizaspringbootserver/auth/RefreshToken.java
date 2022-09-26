@@ -11,4 +11,5 @@ public class RefreshToken {
 
     private final String email;
     private final String refreshToken;
+    private final Long timeToLive;
 }

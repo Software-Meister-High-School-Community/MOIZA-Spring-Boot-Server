@@ -23,9 +23,9 @@ public class RefreshTokenEntity {
     private Long timeToLive;
 
     @Builder
-    public RefreshTokenEntity(String email, String refreshToken) {
+    public RefreshTokenEntity(String email, String refreshToken, Long timeToLive) {
         this.email = email;
         this.refreshToken = refreshToken;
-        this.timeToLive = 3600L * 2;
+        this.timeToLive = timeToLive;
     }
 }

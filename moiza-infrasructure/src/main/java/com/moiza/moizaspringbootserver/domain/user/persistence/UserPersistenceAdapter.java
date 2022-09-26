@@ -31,6 +31,14 @@ public class UserPersistenceAdapter implements UserSpi {
 	}
 
 	@Override
+	public User queryUserByAccountId(String accountId) {
+		return userMapper.userEntityToDomain(
+			userRepository.findByAccountId(accountId)
+				.orElseThrow(() -> UserNotFoundException.EXCEPTION)
+		);
+	}
+
+	@Override
 	public void saveUser(User user) {
 		userRepository.save(
 			userMapper.userDomainToEntity(user)

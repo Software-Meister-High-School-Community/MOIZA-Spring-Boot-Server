@@ -4,6 +4,7 @@ package com.moiza.moizaspringbootserver.domain.user.presentation;
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class UserWebAdapter {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public void userSignUp(@RequestBody WebUserSignUpRequest request) {
+	public void userSignUp(@RequestBody @Valid WebUserSignUpRequest request) {
 		userSignUpApi.execute(
 			DomainUserSignUpRequest.builder()
 				.accountId(request.getAccountId())
