@@ -43,6 +43,9 @@ dependencies {
     //random util
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
+    // configuration
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
     implementation(project(":moiza-domain"))
 }
 

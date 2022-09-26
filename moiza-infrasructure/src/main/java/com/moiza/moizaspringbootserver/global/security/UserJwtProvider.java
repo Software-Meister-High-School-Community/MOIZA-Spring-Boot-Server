@@ -1,12 +1,12 @@
 package com.moiza.moizaspringbootserver.global.security;
 
-import com.moiza.moizaspringbootserver.auth.spi.UserJwtSpi;
-import com.moiza.moizaspringbootserver.auth.spi.dto.TokenResponse;
 import com.moiza.moizaspringbootserver.domain.auth.domain.RefreshTokenEntity;
 import com.moiza.moizaspringbootserver.domain.auth.domain.repository.RefreshTokenRepository;
 import com.moiza.moizaspringbootserver.global.exception.InvalidTokenException;
 import com.moiza.moizaspringbootserver.global.security.auth.AuthDetailService;
 import com.moiza.moizaspringbootserver.global.security.properties.JwtProperties;
+import com.moiza.moizaspringbootserver.user.spi.UserJwtSpi;
+import com.moiza.moizaspringbootserver.user.spi.dto.response.SpiTokenResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -23,7 +23,7 @@ import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
-public class JwtProvider implements UserJwtSpi {
+public class UserJwtProvider implements UserJwtSpi {
 
     public static final String ACCESS_KEY = "access";
     public static final String REFRESH_KEY = "refresh";
@@ -33,22 +33,22 @@ public class JwtProvider implements UserJwtSpi {
     private final RefreshTokenRepository refreshTokenRepository;
 
     @Override
-    public TokenResponse getToken(String email) {
-        return TokenResponse.builder()
-            .accessToken(generateAccessToken(email))
-            .refreshToken(generateRefreshToken(email))
-            .refreshExp(jwtProperties.getRefreshExp())
-            .build();
+    public SpiTokenResponse getToken(String email) {
+        return SpiTokenResponse.builder()
+                .accessToken(generateAccessToken(email))
+                .refreshExp(jwtProperties.getRefreshExp())
+                .refreshToken(generateRefreshToken(email))
+                .build();
     }
 
-    public String generateAccessToken(String id) {
-        return generateToken(id, ACCESS_KEY, jwtProperties.getAccessExp());
+    public String generateAccessToken(String email) {
+        return generateToken(email, ACCESS_KEY, jwtProperties.getAccessExp());
     }
 
-    public String generateRefreshToken(String id) {
-        String refreshToken = generateToken(id, REFRESH_KEY, jwtProperties.getRefreshExp());
+    public String generateRefreshToken(String email) {
+        String refreshToken = generateToken(email, REFRESH_KEY, jwtProperties.getRefreshExp());
         refreshTokenRepository.save(RefreshTokenEntity.builder()
-                .email(id)
+                .email(email)
                 .refreshToken(refreshToken)
                 .build());
         return refreshToken;
@@ -88,10 +88,10 @@ public class JwtProvider implements UserJwtSpi {
         return getTokenBody(token).getSubject();
     }
 
-    private String generateToken(String id, String type, Long exp) {
+    private String generateToken(String email, String type, Long exp) {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
-                .setSubject(id)
+                .setSubject(email)
                 .claim("type", type)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))

@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.global.filter;
 
-import com.moiza.moizaspringbootserver.global.security.JwtProvider;
+import com.moiza.moizaspringbootserver.global.security.UserJwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
-    private final JwtProvider provider;
+    private final UserJwtProvider provider;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
