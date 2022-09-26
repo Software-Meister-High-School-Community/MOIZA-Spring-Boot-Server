@@ -3,7 +3,7 @@ package com.moiza.moizaspringbootserver.domain.user.mapper.userintroducelink;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserIntroduceLinkEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
-import com.moiza.moizaspringbootserver.user.UserIntroduceLink;
+import com.moiza.moizaspringbootserver.user.domain.UserIntroduceLink;
 import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

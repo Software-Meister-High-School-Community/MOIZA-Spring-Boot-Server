@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.auth.domain;
 
-import com.moiza.moizaspringbootserver.auth.type.Type;
+import com.moiza.moizaspringbootserver.auth.domain.type.Type;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,4 +32,13 @@ public class EmailCodeEntity {
     private Long timeToLive;
 
     private boolean isVerify;
+
+    @Builder
+    public EmailCodeEntity(String email, String authCode, Type type, boolean isVerify) {
+        this.email = email;
+        this.authCode = authCode;
+        this.type = type;
+        this.timeToLive = 180000L;
+        this.isVerify = isVerify;
+    }
 }

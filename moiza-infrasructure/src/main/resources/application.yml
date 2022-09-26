@@ -20,4 +20,12 @@ spring:
 
   jackson:
     property-naming-strategy: SNAKE_CASE
+
+aws:
+  access-token: ${AWS_ACCESS_TOKEN}
+  secret-key: ${AWS_SECRET_KEY}
+  ses-source: ${AWS_SES_SOURCE}
+  region: ${AWS_REGIONS}
+
+
     

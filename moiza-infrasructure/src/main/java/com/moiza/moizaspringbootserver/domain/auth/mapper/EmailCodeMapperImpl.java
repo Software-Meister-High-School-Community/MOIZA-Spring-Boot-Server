@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.auth.mapper;
 
-import com.moiza.moizaspringbootserver.auth.EmailCode;
+import com.moiza.moizaspringbootserver.auth.domain.EmailCode;
 import com.moiza.moizaspringbootserver.domain.auth.domain.EmailCodeEntity;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,6 @@ public class EmailCodeMapperImpl implements EmailCodeMapper {
                 .authCode(emailCode.getAuthCode())
                 .type(emailCode.getType())
                 .isVerify(emailCode.isVerify())
-                .timeToLive(emailCode.getTimeToLIve())
                 .build();
     }
 
@@ -25,7 +24,6 @@ public class EmailCodeMapperImpl implements EmailCodeMapper {
                 .authCode(emailCodeEntity.getAuthCode())
                 .type(emailCodeEntity.getType())
                 .isVerify(emailCodeEntity.isVerify())
-                .timeToLIve(emailCodeEntity.getTimeToLive())
                 .build();
     }
 }

@@ -1,13 +1,14 @@
 package com.moiza.moizaspringbootserver.domain.user.presentation.dto.request;
 
-import com.moiza.moizaspringbootserver.user.enums.School;
-import com.moiza.moizaspringbootserver.user.enums.Sex;
-import com.moiza.moizaspringbootserver.user.enums.UserType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.moiza.moizaspringbootserver.user.domain.enums.School;
+import com.moiza.moizaspringbootserver.user.domain.enums.Sex;
+import com.moiza.moizaspringbootserver.user.domain.enums.UserType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

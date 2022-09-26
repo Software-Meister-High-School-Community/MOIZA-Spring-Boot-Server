@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.auth.mapper;
 
-import com.moiza.moizaspringbootserver.auth.EmailCode;
+import com.moiza.moizaspringbootserver.auth.domain.EmailCode;
 import com.moiza.moizaspringbootserver.domain.auth.domain.EmailCodeEntity;
 
 public interface EmailCodeMapper {

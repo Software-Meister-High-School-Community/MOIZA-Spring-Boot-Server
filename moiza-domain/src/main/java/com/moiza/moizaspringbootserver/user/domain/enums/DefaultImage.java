@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.user.enums;
+package com.moiza.moizaspringbootserver.user.domain.enums;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
