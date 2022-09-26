@@ -12,6 +12,7 @@ public class RefreshTokenMapperImpl implements RefreshTokenMapper {
         return RefreshTokenEntity.builder()
                 .email(refreshToken.getEmail())
                 .refreshToken(refreshToken.getRefreshToken())
+                .timeToLive(refreshToken.getTimeToLive())
                 .build();
     }
 
@@ -20,6 +21,7 @@ public class RefreshTokenMapperImpl implements RefreshTokenMapper {
         return RefreshToken.builder()
                 .email(refreshTokenEntity.getEmail())
                 .refreshToken(refreshTokenEntity.getRefreshToken())
+                .timeToLive(refreshTokenEntity.getTimeToLive())
                 .build();
     }
 }

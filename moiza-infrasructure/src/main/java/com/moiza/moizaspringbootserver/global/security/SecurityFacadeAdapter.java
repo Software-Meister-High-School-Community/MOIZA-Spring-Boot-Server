@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Component
-public class SecurityFacadeAdapter implements AuthSecuritySpi {
+public class SecurityFacadeAdapter implements AuthSecuritySpi, UserSecuritySpi {
 
     private final PasswordEncoder passwordEncoder;
 

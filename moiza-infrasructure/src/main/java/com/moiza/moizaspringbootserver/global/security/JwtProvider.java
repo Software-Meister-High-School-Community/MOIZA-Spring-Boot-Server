@@ -1,5 +1,7 @@
 package com.moiza.moizaspringbootserver.global.security;
 
+import com.moiza.moizaspringbootserver.auth.spi.UserJwtSpi;
+import com.moiza.moizaspringbootserver.auth.spi.dto.TokenResponse;
 import com.moiza.moizaspringbootserver.domain.auth.domain.RefreshTokenEntity;
 import com.moiza.moizaspringbootserver.domain.auth.domain.repository.RefreshTokenRepository;
 import com.moiza.moizaspringbootserver.global.exception.InvalidTokenException;
@@ -21,7 +23,7 @@ import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
-public class JwtProvider {
+public class JwtProvider implements UserJwtSpi {
 
     public static final String ACCESS_KEY = "access";
     public static final String REFRESH_KEY = "refresh";
@@ -29,6 +31,15 @@ public class JwtProvider {
     private final JwtProperties jwtProperties;
     private final AuthDetailService authDetailService;
     private final RefreshTokenRepository refreshTokenRepository;
+
+    @Override
+    public TokenResponse getToken(String email) {
+        return TokenResponse.builder()
+            .accessToken(generateAccessToken(email))
+            .refreshToken(generateRefreshToken(email))
+            .refreshExp(jwtProperties.getRefreshExp())
+            .build();
+    }
 
     public String generateAccessToken(String id) {
         return generateToken(id, ACCESS_KEY, jwtProperties.getAccessExp());

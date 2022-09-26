@@ -12,10 +12,16 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Adapter
+@RequiredArgsConstructor
 public class UserPersistenceAdapter implements UserSpi {
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-	private final UserRepository userRepository;
-	private final UserMapper userMapper;
+    @Override
+    public User getUserByEmail(String email) {
+        return userMapper.userEntityToDomain(userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION));
+    }
 
 	@Override
 	public boolean existsUserByAccountId(String accountId) {
@@ -32,6 +38,12 @@ public class UserPersistenceAdapter implements UserSpi {
 		return userMapper.userEntityToDomain(
 				userRepository.findById(userId)
 						.orElseThrow(() -> UserNotFoundException.EXCEPTION)
+    );
+  }
+	public User queryUserByAccountId(String accountId) {
+		return userMapper.userEntityToDomain(
+			userRepository.findByAccountId(accountId)
+				.orElseThrow(() -> UserNotFoundException.EXCEPTION)
 		);
 	}
 
@@ -41,4 +53,5 @@ public class UserPersistenceAdapter implements UserSpi {
 			userMapper.userDomainToEntity(user)
 		);
 	}
+
 }
