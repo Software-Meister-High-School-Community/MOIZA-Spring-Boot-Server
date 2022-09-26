@@ -27,7 +27,7 @@ public class AuthWebAdapter {
     }
 
     @RequestMapping("/tokens")
-    public SignInResponse userSignIn(@RequestBody WebUserSignInRequest request) {
+    public SignInResponse userSignIn(@RequestBody @Valid WebUserSignInRequest request) {
         return userSignInApi.execute(
             DomainUserSignInRequest.builder()
                 .accountId(request.getAccountId())
