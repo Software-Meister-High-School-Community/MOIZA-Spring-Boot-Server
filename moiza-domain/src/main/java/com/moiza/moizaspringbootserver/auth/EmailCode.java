@@ -1,7 +1,7 @@
 package com.moiza.moizaspringbootserver.auth;
 
 import com.moiza.moizaspringbootserver.annotation.Aggregate;
-import com.moiza.moizaspringbootserver.auth.type.Type;
+import com.moiza.moizaspringbootserver.auth.domain.type.Type;
 import lombok.Builder;
 import lombok.Getter;
 

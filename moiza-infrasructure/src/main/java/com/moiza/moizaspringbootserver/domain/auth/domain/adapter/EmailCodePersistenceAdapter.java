@@ -2,7 +2,7 @@ package com.moiza.moizaspringbootserver.domain.auth.domain.adapter;
 
 import com.moiza.moizaspringbootserver.auth.domain.EmailCode;
 import com.moiza.moizaspringbootserver.auth.domain.type.Type;
-import com.moiza.moizaspringbootserver.auth.exception.EmailCodeNotFoundException;
+import com.moiza.moizaspringbootserver.auth.exception.EmailCodeNotfoundException;
 import com.moiza.moizaspringbootserver.auth.spi.EmailCodeSpi;
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.auth.domain.EmailCodeEntity;
@@ -20,7 +20,7 @@ public class EmailCodePersistenceAdapter implements EmailCodeSpi {
     @Override
     public EmailCode queryEmailCodeByEmailAndType(String email, Type type) {
         EmailCodeEntity emailCodeEntity = emailCodeRepository.findByEmailAndType(email, type)
-                .orElseThrow(() -> EmailCodeNotFoundException.EXCEPTION);
+                .orElseThrow(() -> EmailCodeNotfoundException.EXCEPTION);
 
         return emailCodeMapper.emailCodeEntityToDomain(emailCodeEntity);
     }
@@ -29,6 +29,14 @@ public class EmailCodePersistenceAdapter implements EmailCodeSpi {
     public void saveAuthCode(EmailCode emailCode) {
         emailCodeRepository.save(
                 emailCodeMapper.emailCodeDomainToEntity(emailCode)
+        );
+    }
+
+    @Override
+    public EmailCode queryEmailCodeById(String email) {
+        return emailCodeMapper.emailCodeEntityToDomain(
+                emailCodeRepository.findById(email)
+                        .orElseThrow(() -> EmailCodeNotfoundException.EXCEPTION)
         );
     }
 }

@@ -2,9 +2,9 @@ package com.moiza.moizaspringbootserver.user.usecase;
 
 import com.moiza.moizaspringbootserver.annotation.UseCase;
 import com.moiza.moizaspringbootserver.auth.exception.EmailCodeNotVerifiedException;
-import com.moiza.moizaspringbootserver.user.User;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
+import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.exception.UserAlreadyExistsException;
 import com.moiza.moizaspringbootserver.user.spi.CommandUserSpi;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
