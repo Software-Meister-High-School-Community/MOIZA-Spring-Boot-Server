@@ -13,4 +13,5 @@ public class UserDeviceToken {
 
     private final String appDeviceToken;
     private final String webDeviceToken;
+    private final UUID userId;
 }
