@@ -6,4 +6,5 @@ public interface QueryUserSpi {
 	boolean existsUserByAccountId(String accountId);
 	boolean existsUserByEmail(String email);
 	User queryUserByAccountId(String accountId);
+	User getUserByEmail(String email);
 }
