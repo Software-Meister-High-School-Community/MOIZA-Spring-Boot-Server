@@ -6,7 +6,6 @@ import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainUpdatePassword
 import com.moiza.moizaspringbootserver.auth.exception.InvalidPasswordException;
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
 import com.moiza.moizaspringbootserver.user.User;
-import com.moiza.moizaspringbootserver.user.spi.CommandUserSpi;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +15,6 @@ public class UpdatePasswordUseCase implements UpdatePasswordApi {
 
     private final QueryUserSpi queryUserSpi;
     private final AuthSecuritySpi authSecuritySpi;
-    private final CommandUserSpi commandUserSpi;
 
     @Override
     public void execute(DomainUpdatePasswordRequest request) {
