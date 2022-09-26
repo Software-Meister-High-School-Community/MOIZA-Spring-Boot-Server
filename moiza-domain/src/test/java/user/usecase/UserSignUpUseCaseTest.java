@@ -2,6 +2,7 @@ package user.usecase;
 
 import static org.mockito.BDDMockito.given;
 
+import com.moiza.moizaspringbootserver.auth.domain.EmailCode;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.spi.CommandUserSpi;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
