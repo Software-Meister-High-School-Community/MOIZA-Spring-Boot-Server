@@ -4,8 +4,11 @@ import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.domain.user.mapper.UserMapper;
 import com.moiza.moizaspringbootserver.user.User;
+import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import com.moiza.moizaspringbootserver.user.spi.UserSpi;
 import lombok.RequiredArgsConstructor;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Adapter
@@ -22,6 +25,14 @@ public class UserPersistenceAdapter implements UserSpi {
 	@Override
 	public boolean existsUserByEmail(String email) {
 		return userRepository.findByEmail(email).isPresent();
+	}
+
+	@Override
+	public User queryUserById(UUID userId) {
+		return userMapper.userEntityToDomain(
+				userRepository.findById(userId)
+						.orElseThrow(() -> UserNotFoundException.EXCEPTION)
+		);
 	}
 
 	@Override
