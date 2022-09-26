@@ -27,7 +27,7 @@ public class UpdatePasswordUseCase implements UpdatePasswordApi {
         }
 
 
-        currentUser.setPassword(authSecuritySpi.encodePassword(request.getNewPassword()))
+        currentUser.setPassword(authSecuritySpi.encodePassword(request.getNewPassword()));
 
     }
 }
