@@ -43,6 +43,7 @@ public class SecurityConfig {
 
                 // auth
                 .antMatchers(HttpMethod.HEAD, "/auth/id-validations").permitAll()
+                .antMatchers(HttpMethod.GET, "/auth/**").permitAll()
 
                 //user
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
