@@ -38,4 +38,18 @@ public class UserPersistenceAdapter implements UserSpi {
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION)
                 .getEmail();
     }
+
+    @Override
+    public User queryUserByAccountId(String accountId) {
+        return userMapper.userEntityToDomain(
+                userRepository.findByAccountId(accountId)
+                        .orElseThrow(() -> UserNotFoundException.EXCEPTION)
+        );
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userMapper.userEntityToDomain(userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION));
+    }
 }

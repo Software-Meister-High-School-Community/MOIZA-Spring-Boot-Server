@@ -3,7 +3,7 @@ package com.moiza.moizaspringbootserver.auth.usecase;
 import com.moiza.moizaspringbootserver.annotation.UseCase;
 import com.moiza.moizaspringbootserver.auth.api.IdRecoveryApi;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.IdRecoveryResponse;
-import com.moiza.moizaspringbootserver.user.User;
+import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import lombok.RequiredArgsConstructor;
 

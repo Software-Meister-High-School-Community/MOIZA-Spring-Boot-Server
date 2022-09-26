@@ -1,18 +1,18 @@
 package com.moiza.moizaspringbootserver.auth.usecase;
 
 import com.moiza.moizaspringbootserver.annotation.UseCase;
-import com.moiza.moizaspringbootserver.auth.RefreshToken;
 import com.moiza.moizaspringbootserver.auth.api.UserSignInApi;
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainUserSignInRequest;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.SignInResponse;
+import com.moiza.moizaspringbootserver.auth.domain.RefreshToken;
 import com.moiza.moizaspringbootserver.auth.exception.UserInvalidPasswordException;
 import com.moiza.moizaspringbootserver.auth.spi.CommandRefreshTokenSpi;
 import com.moiza.moizaspringbootserver.auth.spi.CommandUserDeviceTokenSpi;
 import com.moiza.moizaspringbootserver.auth.spi.UserJwtSpi;
 import com.moiza.moizaspringbootserver.auth.spi.UserSecuritySpi;
 import com.moiza.moizaspringbootserver.auth.spi.dto.TokenResponse;
-import com.moiza.moizaspringbootserver.user.User;
-import com.moiza.moizaspringbootserver.user.UserDeviceToken;
+import com.moiza.moizaspringbootserver.user.domain.User;
+import com.moiza.moizaspringbootserver.user.domain.UserDeviceToken;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
