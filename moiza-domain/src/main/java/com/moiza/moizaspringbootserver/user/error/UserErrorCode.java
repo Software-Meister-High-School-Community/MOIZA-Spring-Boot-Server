@@ -9,7 +9,9 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum UserErrorCode implements ErrorProperty {
 
-	USER_NOT_FOUND(404, "유저를 찾을 수 없음");
+	USER_NOT_FOUND(404, "user is not found"),
+
+	USER_ALREADY_EXISTS(409, "user is already exists");
 
 	private final int status;
 	private final String message;

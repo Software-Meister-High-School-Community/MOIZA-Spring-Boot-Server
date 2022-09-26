@@ -1,4 +1,5 @@
 package com.moiza.moizaspringbootserver.user.spi;
 
-public interface UserSpi extends QueryUserSpi{
+public interface UserSpi extends QueryUserSpi, CommandUserSpi {
+
 }

@@ -14,6 +14,9 @@ dependencies {
     // security
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
     // jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
@@ -28,6 +31,11 @@ dependencies {
 
     // uuid time
     implementation 'com.fasterxml.uuid:java-uuid-generator:3.1.4'
+
+    //querydsl
+    implementation 'com.querydsl:querydsl-jpa'
+    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
 
     // ses
     implementation 'com.amazonaws:aws-java-sdk-ses:1.12.300'

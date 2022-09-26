@@ -2,6 +2,7 @@ package com.moiza.moizaspringbootserver.domain.auth.domain;
 
 import com.moiza.moizaspringbootserver.auth.domain.type.Type;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @RedisHash
 public class EmailCodeEntity {
 

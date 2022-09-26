@@ -22,7 +22,7 @@ public class User {
     private final String profileImageUrl;
     private final String profileBackgroundColor;
     private final Sex sex;
-    private final Long birthDay;
+    private final String birthDay;
     private final String introduce;
     private final UserType userType;
     private final School school;
