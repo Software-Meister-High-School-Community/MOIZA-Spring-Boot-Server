@@ -2,7 +2,7 @@ package auth.usecase;
 
 import com.moiza.moizaspringbootserver.auth.api.dto.response.IdRecoveryResponse;
 import com.moiza.moizaspringbootserver.auth.usecase.IdRecoveryUseCase;
-import com.moiza.moizaspringbootserver.user.User;
+import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.user.persistence;
 
-import com.moiza.moizaspringbootserver.auth.RefreshToken;
+import com.moiza.moizaspringbootserver.auth.domain.RefreshToken;
 import com.moiza.moizaspringbootserver.auth.spi.RefreshTokenSpi;
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.auth.domain.repository.RefreshTokenRepository;

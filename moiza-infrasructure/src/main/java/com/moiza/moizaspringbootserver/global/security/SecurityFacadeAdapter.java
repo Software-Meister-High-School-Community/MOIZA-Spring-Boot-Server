@@ -1,6 +1,7 @@
 package com.moiza.moizaspringbootserver.global.security;
 
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
+import com.moiza.moizaspringbootserver.auth.spi.UserSecuritySpi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;

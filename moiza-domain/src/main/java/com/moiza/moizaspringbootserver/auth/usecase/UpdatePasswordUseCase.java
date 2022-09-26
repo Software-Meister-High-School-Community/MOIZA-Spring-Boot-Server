@@ -5,7 +5,7 @@ import com.moiza.moizaspringbootserver.auth.api.UpdatePasswordApi;
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainUpdatePasswordRequest;
 import com.moiza.moizaspringbootserver.auth.exception.InvalidPasswordException;
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
-import com.moiza.moizaspringbootserver.user.User;
+import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import lombok.RequiredArgsConstructor;
 

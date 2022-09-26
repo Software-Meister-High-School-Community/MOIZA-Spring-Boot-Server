@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.auth.mapper;
 
-import com.moiza.moizaspringbootserver.auth.RefreshToken;
+import com.moiza.moizaspringbootserver.auth.domain.RefreshToken;
 import com.moiza.moizaspringbootserver.domain.auth.domain.RefreshTokenEntity;
 import org.springframework.stereotype.Component;
 

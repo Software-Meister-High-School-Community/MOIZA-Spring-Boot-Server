@@ -1,9 +1,9 @@
-package com.moiza.moizaspringbootserver.user;
+package com.moiza.moizaspringbootserver.user.domain;
 
 import com.moiza.moizaspringbootserver.annotation.Aggregate;
-import com.moiza.moizaspringbootserver.user.enums.School;
-import com.moiza.moizaspringbootserver.user.enums.Sex;
-import com.moiza.moizaspringbootserver.user.enums.UserType;
+import com.moiza.moizaspringbootserver.user.domain.enums.School;
+import com.moiza.moizaspringbootserver.user.domain.enums.Sex;
+import com.moiza.moizaspringbootserver.user.domain.enums.UserType;
 import lombok.Builder;
 import lombok.Getter;
 

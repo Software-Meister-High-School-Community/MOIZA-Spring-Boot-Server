@@ -1,8 +1,8 @@
 package com.moiza.moizaspringbootserver.user.api.dto.request;
 
-import com.moiza.moizaspringbootserver.user.enums.School;
-import com.moiza.moizaspringbootserver.user.enums.Sex;
-import com.moiza.moizaspringbootserver.user.enums.UserType;
+import com.moiza.moizaspringbootserver.user.domain.enums.School;
+import com.moiza.moizaspringbootserver.user.domain.enums.Sex;
+import com.moiza.moizaspringbootserver.user.domain.enums.UserType;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -7,7 +7,6 @@ import com.moiza.moizaspringbootserver.user.exception.UserAlreadyExistsException
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import lombok.RequiredArgsConstructor;
 
-@UseCase
 @RequiredArgsConstructor
 @UseCase
 public class IdValidationUseCase implements IdValidationApi {
