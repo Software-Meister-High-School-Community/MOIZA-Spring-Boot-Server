@@ -9,6 +9,8 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum UserErrorCode implements ErrorProperty {
 
+	USER_INVALID_PASSWORD(401, "invaliud pasword."),
+
 	USER_NOT_FOUND(404, "user is not found"),
 
 	USER_ALREADY_EXISTS(409, "user is already exists");

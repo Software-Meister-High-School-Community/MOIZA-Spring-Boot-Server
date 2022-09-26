@@ -1,5 +1,19 @@
 package com.moiza.moizaspringbootserver.domain.auth.presentation;
 
+import com.moiza.moizaspringbootserver.auth.api.IdRecoveryApi;
+import com.moiza.moizaspringbootserver.auth.api.dto.response.IdRecoveryResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.moiza.moizaspringbootserver.auth.api.IdValidationApi;
+import com.moiza.moizaspringbootserver.auth.api.UserSignInApi;
+import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainIdValidationRequest;
+import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainUserSignInRequest;
+import com.moiza.moizaspringbootserver.auth.api.dto.response.SignInResponse;
+import com.moiza.moizaspringbootserver.domain.auth.presentation.dto.request.WebIdValidationRequest;
+import com.moiza.moizaspringbootserver.domain.auth.presentation.dto.request.WebUserSignInRequest;
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainSendAuthCodeRequest;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.SendEmailAuthCodeResponse;
 import com.moiza.moizaspringbootserver.auth.domain.type.Type;
@@ -17,6 +31,9 @@ import javax.validation.constraints.NotBlank;
 @RequestMapping("/auth")
 @RestController
 public class AuthWebAdapter {
+    private final IdValidationApi idValidationApi;
+    private final UserSignInApi userSignInApi;
+    private final IdRecoveryApi idRecoveryApi;
 
     private final SendEmailAuthCodeUseCase sendEmailAuthCodeUseCase;
     private final VerifyEmailAuthCodeUseCase verifyEmailAuthCodeUseCase;
@@ -31,6 +48,23 @@ public class AuthWebAdapter {
                 .build();
 
         return sendEmailAuthCodeUseCase.execute(domainSendAuthCodeRequest);
+    }
+    
+    @RequestMapping("/tokens")
+    public SignInResponse userSignIn(@RequestBody @Valid WebUserSignInRequest request) {
+        return userSignInApi.execute(
+            DomainUserSignInRequest.builder()
+                .accountId(request.getAccountId())
+                .password(request.getPassword())
+                .appDeviceToken(request.getAppDeviceToken())
+                .webDeviceToken(request.getWebDeviceToken())
+            .build()
+        );
+    }
+
+    @GetMapping("/{user-email}")
+    public IdRecoveryResponse recoveryId(@PathVariable("user-email") String email) {
+        return idRecoveryApi.execute(email);
     }
 
     @RequestMapping(value = "/email-verifications", method = RequestMethod.HEAD)
