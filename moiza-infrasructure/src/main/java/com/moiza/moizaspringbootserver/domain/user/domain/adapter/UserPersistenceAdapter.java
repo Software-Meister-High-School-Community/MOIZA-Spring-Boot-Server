@@ -8,6 +8,8 @@ import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import com.moiza.moizaspringbootserver.user.spi.UserSpi;
 import lombok.RequiredArgsConstructor;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Adapter
 public class UserPersistenceAdapter implements UserSpi {
@@ -15,6 +17,20 @@ public class UserPersistenceAdapter implements UserSpi {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userMapper.userEntityToDomain(userRepository.findByEmail(email)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION));
+    }
+
+    @Override
+    public User queryUserById(UUID userId) {
+        return userMapper.userEntityToDomain(
+                userRepository.findById(userId)
+                        .orElseThrow(() -> UserNotFoundException.EXCEPTION)
+        );
+    }
 
     @Override
     public boolean existsUserByAccountId(String accountId) {
@@ -26,12 +42,6 @@ public class UserPersistenceAdapter implements UserSpi {
         return userRepository.findByEmail(email).isPresent();
     }
 
-    @Override
-    public void saveUser(User user) {
-        userRepository.save(
-                userMapper.userDomainToEntity(user)
-        );
-    }
     @Override
     public String queryGetEmailByAccountId(String accountId) {
         return userRepository.findByAccountId(accountId)
@@ -48,8 +58,9 @@ public class UserPersistenceAdapter implements UserSpi {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userMapper.userEntityToDomain(userRepository.findByEmail(email)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION));
+    public void saveUser(User user) {
+        userRepository.save(
+                userMapper.userDomainToEntity(user)
+        );
     }
 }

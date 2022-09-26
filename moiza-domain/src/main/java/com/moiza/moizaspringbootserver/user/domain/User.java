@@ -26,4 +26,10 @@ public class User {
     private final String introduce;
     private final UserType userType;
     private final School school;
+
+    public void setPassword(String encodePassword) {
+        User.builder()
+                .password(encodePassword)
+                .build();
+    }
 }
