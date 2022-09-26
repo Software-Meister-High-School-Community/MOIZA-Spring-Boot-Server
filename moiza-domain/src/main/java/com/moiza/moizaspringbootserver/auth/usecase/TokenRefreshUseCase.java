@@ -1,9 +1,9 @@
 package com.moiza.moizaspringbootserver.auth.usecase;
 
 import com.moiza.moizaspringbootserver.annotation.UseCase;
-import com.moiza.moizaspringbootserver.auth.RefreshToken;
 import com.moiza.moizaspringbootserver.auth.api.TokenRefreshApi;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.TokenRefreshResponse;
+import com.moiza.moizaspringbootserver.auth.domain.RefreshToken;
 import com.moiza.moizaspringbootserver.auth.spi.CommandRefreshTokenSpi;
 import com.moiza.moizaspringbootserver.auth.spi.QueryTokenRefreshSpi;
 import com.moiza.moizaspringbootserver.user.spi.UserJwtSpi;

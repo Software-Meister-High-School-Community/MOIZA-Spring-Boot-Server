@@ -33,7 +33,7 @@ import javax.validation.constraints.NotBlank;
 @RequestMapping("/auth")
 @RestController
 public class AuthWebAdapter {
-    private final IdValidationApi idValidationApi;
+    private final UserSignInApi userSignInApi;
     private final TokenRefreshApi tokenRefreshApi;
     private final IdRecoveryApi idRecoveryApi;
 

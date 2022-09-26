@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.auth.persistence;
 
-import com.moiza.moizaspringbootserver.auth.RefreshToken;
+import com.moiza.moizaspringbootserver.auth.domain.RefreshToken;
 import com.moiza.moizaspringbootserver.auth.exception.RefreshTokenNotFoundException;
 import com.moiza.moizaspringbootserver.auth.spi.TokenRefreshSpi;
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
@@ -16,16 +16,16 @@ public class RefreshTokenPersistenceAdapter implements TokenRefreshSpi {
     private final RefreshTokenMapper refreshTokenMapper;
 
     @Override
-    public void saveRefreshToken(RefreshToken refreshToken) {
-        refreshTokenRepository.save(
-                refreshTokenMapper.refreshTokenDomainToEntity(refreshToken)
-        );
-    }
-
-    @Override
     public RefreshToken queryRefreshTokenByToken(String token) {
         return refreshTokenMapper
                 .refreshTokenEntityToDomain(refreshTokenRepository.findByRefreshToken(token)
                         .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION));
+    }
+
+    @Override
+    public void saveRefreshToken(com.moiza.moizaspringbootserver.auth.domain.RefreshToken refreshToken) {
+        refreshTokenRepository.save(
+                refreshTokenMapper.refreshTokenDomainToEntity(refreshToken)
+        );
     }
 }
