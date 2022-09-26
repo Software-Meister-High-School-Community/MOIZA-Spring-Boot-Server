@@ -1,7 +1,5 @@
 package auth.usecase;
 
-import static org.mockito.BDDMockito.given;
-
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainUserSignInRequest;
 import com.moiza.moizaspringbootserver.auth.spi.CommandRefreshTokenSpi;
 import com.moiza.moizaspringbootserver.auth.spi.CommandUserDeviceTokenSpi;
@@ -9,14 +7,15 @@ import com.moiza.moizaspringbootserver.auth.spi.UserJwtSpi;
 import com.moiza.moizaspringbootserver.auth.spi.UserSecuritySpi;
 import com.moiza.moizaspringbootserver.auth.spi.dto.TokenResponse;
 import com.moiza.moizaspringbootserver.auth.usecase.UserSignInUseCase;
-import com.moiza.moizaspringbootserver.user.User;
+import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
-import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 public class UserSignInUseCaseTest {
