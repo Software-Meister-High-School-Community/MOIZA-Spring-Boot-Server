@@ -48,6 +48,7 @@ public class SecurityConfig {
 
                 //user
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/users").authenticated()
 
                 // Deny other requests
                 .anyRequest().denyAll()

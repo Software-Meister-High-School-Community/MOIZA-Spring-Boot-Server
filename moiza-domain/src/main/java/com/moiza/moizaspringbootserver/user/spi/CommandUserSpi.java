@@ -4,4 +4,6 @@ import com.moiza.moizaspringbootserver.user.domain.User;
 
 public interface CommandUserSpi {
 	void saveUser(User user);
+
+	void deleteUser(User user);
 }

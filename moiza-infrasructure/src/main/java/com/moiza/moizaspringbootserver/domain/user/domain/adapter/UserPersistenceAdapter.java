@@ -5,8 +5,11 @@ import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserReposit
 import com.moiza.moizaspringbootserver.domain.user.mapper.UserMapper;
 import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
+import com.moiza.moizaspringbootserver.user.exception.UserQueryFailedException;
 import com.moiza.moizaspringbootserver.user.spi.UserSpi;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.UUID;
 
@@ -30,6 +33,16 @@ public class UserPersistenceAdapter implements UserSpi {
                 userRepository.findById(userId)
                         .orElseThrow(() -> UserNotFoundException.EXCEPTION)
         );
+    }
+
+    @Override
+    public User queryCurrentUser() {
+        try {
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return getUserByEmail(userDetails.getUsername());
+        } catch (NullPointerException exception) {
+            throw UserQueryFailedException.EXCEPTION;
+        }
     }
 
     @Override
@@ -62,5 +75,10 @@ public class UserPersistenceAdapter implements UserSpi {
         userRepository.save(
                 userMapper.userDomainToEntity(user)
         );
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userRepository.deleteById(user.getId());
     }
 }
