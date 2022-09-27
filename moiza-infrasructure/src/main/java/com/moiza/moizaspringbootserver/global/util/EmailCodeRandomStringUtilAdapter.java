@@ -3,6 +3,7 @@ package com.moiza.moizaspringbootserver.global.util;
 import com.moiza.moizaspringbootserver.auth.spi.EmailCodeRandomStringSpi;
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class EmailCodeRandomStringUtilAdapter implements EmailCodeRandomStringSp
     public String getEmailAuthCode() {
         List<Character> codeList = new ArrayList<>();
         List<String> authCodeList = new ArrayList<>();
+        SecureRandom random = new SecureRandom();
 
         codeList.add('1');
         codeList.add('2');
@@ -26,7 +28,7 @@ public class EmailCodeRandomStringUtilAdapter implements EmailCodeRandomStringSp
         codeList.add('0');
 
         for (int i = 0; i < 6; i++) {
-            authCodeList.add(i, codeList.get((int) (Math.random() * (9 + 1) - 0)).toString());
+            authCodeList.add(i, codeList.get(random.nextInt(10)).toString());
         }
 
         return authCodeList.toString().replaceAll("[^0-9]","");
