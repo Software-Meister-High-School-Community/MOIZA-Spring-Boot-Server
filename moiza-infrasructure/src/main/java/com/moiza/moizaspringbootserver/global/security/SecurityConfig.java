@@ -1,6 +1,7 @@
 package com.moiza.moizaspringbootserver.global.security;
 
-import com.moiza.moizaspringbootserver.global.filter.JwtTokenFilter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.moiza.moizaspringbootserver.global.config.FilterConfig;
 import com.moiza.moizaspringbootserver.user.domain.enums.UserType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,14 +13,15 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsUtils;
+
 
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
+    private final ObjectMapper objectMapper;
     private final UserJwtProvider jwtProvider;
 
     @Bean
@@ -129,7 +131,7 @@ public class SecurityConfig {
                 .anyRequest().denyAll()
 
                 .and()
-                .addFilterBefore(new JwtTokenFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class);
+                .apply(new FilterConfig(objectMapper, jwtProvider));
 
         return http.build();
     }
