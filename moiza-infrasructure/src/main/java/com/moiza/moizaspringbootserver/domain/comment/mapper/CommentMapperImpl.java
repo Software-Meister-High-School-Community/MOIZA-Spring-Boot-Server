@@ -36,7 +36,7 @@ public class CommentMapperImpl implements CommentMapper{
 			.isPinned(comment.isPinned())
 			.userEntity(userEntity)
 			.feedEntity(feedEntity)
-			.commentEntity(commentEntity)
+			.parentCommentEntity(commentEntity)
 			.build();
 	}
 
@@ -50,7 +50,7 @@ public class CommentMapperImpl implements CommentMapper{
 			.updatedAt(commentEntity.getUpdatedAt())
 			.userId(commentEntity.getUserEntity().getId())
 			.feedId(commentEntity.getFeedEntity().getId())
-			.parentCommentId(commentEntity.getCommentEntity().getId())
+			.parentCommentId(commentEntity.getParentCommentEntity().getId())
 			.build();
 	}
 }
