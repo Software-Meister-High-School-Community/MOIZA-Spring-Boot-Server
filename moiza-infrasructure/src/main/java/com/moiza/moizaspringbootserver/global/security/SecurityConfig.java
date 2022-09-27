@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.HEAD, "/auth/id-validations").permitAll()
                 .antMatchers(HttpMethod.GET,  "/auth/{user-email}").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/auth/password").permitAll()
-                
+
                 // follow
                 .antMatchers(HttpMethod.GET, "/following/{user-id}").authenticated()
                 .antMatchers(HttpMethod.GET, "/follower/{user-id}").authenticated()
@@ -97,8 +97,8 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.DELETE, "/comments/{comment-id}").authenticated()
                 .antMatchers(HttpMethod.PATCH, "/comments/{comment-id}").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
                 .antMatchers(HttpMethod.POST, "/comments/{reports").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
-                .antMatchers(HttpMethod.PATCH, "/{comment-id}/pin").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
-                .antMatchers(HttpMethod.PATCH, "/{comment-id}/pin/cancel").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
+                .antMatchers(HttpMethod.PATCH, "/comments/{comment-id}/pin").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
+                .antMatchers(HttpMethod.PATCH, "/comments/{comment-id}/pin/cancel").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
 
 
                 // notice
