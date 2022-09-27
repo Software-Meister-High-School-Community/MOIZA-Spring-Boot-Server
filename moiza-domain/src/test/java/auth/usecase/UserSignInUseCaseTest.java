@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-public class UserSignInUseCaseTest {
+class UserSignInUseCaseTest {
 
 	@Mock
 	QueryUserSpi queryUserSpi;
