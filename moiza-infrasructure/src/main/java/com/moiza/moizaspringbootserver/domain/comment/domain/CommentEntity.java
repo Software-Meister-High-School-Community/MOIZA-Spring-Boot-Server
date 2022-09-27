@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.comment;
+package com.moiza.moizaspringbootserver.domain.comment.domain;
 
 import com.moiza.moizaspringbootserver.domain.feed.domain.FeedEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;

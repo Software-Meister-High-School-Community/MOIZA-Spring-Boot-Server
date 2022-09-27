@@ -1,7 +1,7 @@
 package com.moiza.moizaspringbootserver.domain.comment.mapper;
 
 import com.moiza.moizaspringbootserver.comment.CommentAttatchmentFile;
-import com.moiza.moizaspringbootserver.domain.comment.CommentAttatchmentFileEntity;
+import com.moiza.moizaspringbootserver.domain.comment.domain.CommentAttatchmentFileEntity;
 
 public interface CommentAttatchmentFileMapper {
 

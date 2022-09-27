@@ -2,8 +2,8 @@ package com.moiza.moizaspringbootserver.domain.comment.mapper;
 
 import com.moiza.moizaspringbootserver.comment.Comment;
 import com.moiza.moizaspringbootserver.comment.exception.CommentNotFoundException;
-import com.moiza.moizaspringbootserver.domain.comment.CommentEntity;
-import com.moiza.moizaspringbootserver.domain.comment.repository.CommentRepository;
+import com.moiza.moizaspringbootserver.domain.comment.domain.CommentEntity;
+import com.moiza.moizaspringbootserver.domain.comment.domain.repository.CommentRepository;
 import com.moiza.moizaspringbootserver.domain.feed.domain.FeedEntity;
 import com.moiza.moizaspringbootserver.domain.feed.domain.repository.FeedRepository;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;

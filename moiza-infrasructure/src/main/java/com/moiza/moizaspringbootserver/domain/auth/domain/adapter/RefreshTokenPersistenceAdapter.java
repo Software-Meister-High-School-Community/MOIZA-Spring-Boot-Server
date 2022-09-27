@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.auth.persistence;
+package com.moiza.moizaspringbootserver.domain.auth.domain.adapter;
 
 import com.moiza.moizaspringbootserver.auth.domain.RefreshToken;
 import com.moiza.moizaspringbootserver.auth.exception.RefreshTokenNotFoundException;
