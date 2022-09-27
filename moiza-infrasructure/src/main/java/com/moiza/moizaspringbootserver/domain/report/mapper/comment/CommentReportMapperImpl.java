@@ -1,7 +1,7 @@
 package com.moiza.moizaspringbootserver.domain.report.mapper.comment;
 
-import com.moiza.moizaspringbootserver.domain.comment.CommentEntity;
-import com.moiza.moizaspringbootserver.domain.comment.repository.CommentRepository;
+import com.moiza.moizaspringbootserver.domain.comment.domain.CommentEntity;
+import com.moiza.moizaspringbootserver.domain.comment.domain.repository.CommentRepository;
 import com.moiza.moizaspringbootserver.domain.report.domain.ReportEntity;
 import com.moiza.moizaspringbootserver.domain.report.domain.ReportRepository;
 import com.moiza.moizaspringbootserver.domain.report.domain.comment.CommentReportEntity;

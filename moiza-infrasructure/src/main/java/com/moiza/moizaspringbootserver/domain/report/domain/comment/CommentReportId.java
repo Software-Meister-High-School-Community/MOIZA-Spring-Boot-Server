@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.report.domain.comment;
 
-import com.moiza.moizaspringbootserver.domain.comment.CommentEntity;
+import com.moiza.moizaspringbootserver.domain.comment.domain.CommentEntity;
 import com.moiza.moizaspringbootserver.domain.report.domain.ReportEntity;
 import lombok.*;
 

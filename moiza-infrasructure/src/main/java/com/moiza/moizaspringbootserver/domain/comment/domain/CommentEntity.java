@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.comment;
+package com.moiza.moizaspringbootserver.domain.comment.domain;
 
 import com.moiza.moizaspringbootserver.domain.feed.domain.FeedEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
@@ -49,5 +49,5 @@ public class CommentEntity extends BaseTimeEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_comment_id")
-	private CommentEntity commentEntity;
+	private CommentEntity parentCommentEntity;
 }

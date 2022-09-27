@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.comment;
+package com.moiza.moizaspringbootserver.domain.comment.domain;
 
 import com.moiza.moizaspringbootserver.global.entity.BaseUUIDEntity;
 import javax.persistence.Entity;

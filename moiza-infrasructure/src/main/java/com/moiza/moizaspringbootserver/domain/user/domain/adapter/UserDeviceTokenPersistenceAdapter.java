@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.user.persistence;
+package com.moiza.moizaspringbootserver.domain.user.domain.adapter;
 
 import com.moiza.moizaspringbootserver.auth.spi.UserDeviceTokenSpi;
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;

@@ -2,9 +2,9 @@ package com.moiza.moizaspringbootserver.domain.comment.mapper;
 
 import com.moiza.moizaspringbootserver.comment.CommentAttatchmentFile;
 import com.moiza.moizaspringbootserver.comment.exception.CommentNotFoundException;
-import com.moiza.moizaspringbootserver.domain.comment.CommentAttatchmentFileEntity;
-import com.moiza.moizaspringbootserver.domain.comment.CommentEntity;
-import com.moiza.moizaspringbootserver.domain.comment.repository.CommentRepository;
+import com.moiza.moizaspringbootserver.domain.comment.domain.CommentAttatchmentFileEntity;
+import com.moiza.moizaspringbootserver.domain.comment.domain.CommentEntity;
+import com.moiza.moizaspringbootserver.domain.comment.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
