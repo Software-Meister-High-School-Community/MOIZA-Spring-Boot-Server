@@ -48,8 +48,7 @@ public class UserWebAdapter {
 	@PostMapping("/graduate-verifications")
 	public void graduateVerification(@RequestBody @Valid WebGraduateVerificationRequest request) {
 		graduateVerificationApi.execute(
-				DomainGraduateVerificationRequest.builder()
-						.verifyingFileUrl(request.getVerifyingFileUrl())
-						.build());
+				new DomainGraduateVerificationRequest(request.getVerifyingFileUrl())
+		);
 	}
 }
