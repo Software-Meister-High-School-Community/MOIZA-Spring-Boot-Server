@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.moiza.moizaspringbootserver.auth.api.IdValidationApi;
 import com.moiza.moizaspringbootserver.auth.api.UpdatePasswordApi;
-import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainIdValidationRequest;
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainUpdatePasswordRequest;
-import com.moiza.moizaspringbootserver.domain.auth.presentation.dto.request.WebIdValidationRequest;
 import com.moiza.moizaspringbootserver.domain.auth.presentation.dto.request.WebUpdatePasswordRequest;
 import com.moiza.moizaspringbootserver.auth.api.TokenRefreshApi;
 import com.moiza.moizaspringbootserver.auth.api.UserSignInApi;
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainSendAuthCodeRequest;
 import com.moiza.moizaspringbootserver.auth.api.dto.request.DomainUserSignInRequest;
-import com.moiza.moizaspringbootserver.auth.api.dto.response.IdRecoveryResponse;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.SendEmailAuthCodeResponse;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.SignInResponse;
 import com.moiza.moizaspringbootserver.auth.api.dto.response.TokenRefreshResponse;
@@ -26,7 +23,6 @@ import com.moiza.moizaspringbootserver.auth.usecase.SendEmailAuthCodeUseCase;
 import com.moiza.moizaspringbootserver.auth.usecase.VerifyEmailAuthCodeUseCase;
 import com.moiza.moizaspringbootserver.domain.auth.presentation.dto.request.WebSendEmailAuthCodeRequest;
 import com.moiza.moizaspringbootserver.domain.auth.presentation.dto.request.WebUserSignInRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +33,6 @@ import javax.validation.constraints.NotBlank;
 @RequestMapping("/auth")
 @RestController
 public class AuthWebAdapter {
-    private final IdValidationApi idValidationApi;
     private final UpdatePasswordApi updatePasswordApi;
     private final UserSignInApi userSignInApi;
     private final TokenRefreshApi tokenRefreshApi;

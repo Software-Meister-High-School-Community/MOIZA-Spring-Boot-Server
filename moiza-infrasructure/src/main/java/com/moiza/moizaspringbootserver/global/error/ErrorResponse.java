@@ -1,16 +1,16 @@
 package com.moiza.moizaspringbootserver.global.error;
 
 import com.moiza.moizaspringbootserver.error.ErrorProperty;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
-public enum GlobalErrorCode implements ErrorProperty {
-    INVALID_TOKEN(401, "Invalid token"),
-
-    INTERNAL_SERVER_ERROR(500, "Internal Server Error");
+public class ErrorResponse {
 
     private final int status;
     private final String message;
+
+    public ErrorResponse(ErrorProperty errorProperty) {
+        this.status = errorProperty.getStatus();
+        this.message = errorProperty.getMessage();
+    }
 }
