@@ -1,8 +1,9 @@
 package com.moiza.moizaspringbootserver.domain.user.domain.repository.custom;
 
-import com.moiza.moizaspringbootserver.domain.user.domain.repository.vo.QuerySearchAllUsersVO;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.vo.QQuerySearchAllUsersVO;
+import com.moiza.moizaspringbootserver.domain.user.domain.repository.vo.QuerySearchAllUsersVO;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse.UserList;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -38,8 +39,8 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
         Integer totalPage = query.size();
 
-        List<SearchAllUsersResponse.UserList> resultUsers = query.stream().map(
-                it -> SearchAllUsersResponse.UserList.builder()
+        List<UserList> resultUsers = query.stream().map(
+                it -> UserList.builder()
                         .userId(it.getUserId())
                         .name(it.getName())
                         .profileImageUrl(it.getProfileImageUrl())
