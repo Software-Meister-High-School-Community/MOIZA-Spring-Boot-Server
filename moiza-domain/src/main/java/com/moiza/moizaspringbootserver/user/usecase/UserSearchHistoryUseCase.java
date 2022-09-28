@@ -4,6 +4,7 @@ import com.moiza.moizaspringbootserver.annotation.UseCase;
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
 import com.moiza.moizaspringbootserver.user.api.UserSearchHistoryApi;
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse.Keywords;
 import com.moiza.moizaspringbootserver.user.domain.SearchHistory;
 import com.moiza.moizaspringbootserver.user.spi.QuerySearchHistorySpi;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +24,9 @@ public class UserSearchHistoryUseCase implements UserSearchHistoryApi {
     public UserSearchHistoryResponse execute() {
         UUID userId = authSecuritySpi.getCurrentUserId();
         List<SearchHistory> searchHistories = querySearchHistorySpi.querySearchHistoryAllByUserId(userId);
-        List<UserSearchHistoryResponse.Keywords> keywords = searchHistories
+        List<Keywords> keywords = searchHistories
                 .stream()
-                .map(it -> UserSearchHistoryResponse.Keywords.builder()
+                .map(it -> Keywords.builder()
                         .historyId(it.getId())
                         .keyword(it.getKeyword())
                         .build()
