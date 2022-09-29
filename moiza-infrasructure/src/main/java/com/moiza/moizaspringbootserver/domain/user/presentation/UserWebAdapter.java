@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserWebAdapter {
 
 	private final UserSignUpApi userSignUpApi;
+	private final SearchAllUsersApi searchAllUserApi;
 	private final UserDeleteApi userDeleteApi;
 
 	@ResponseStatus(HttpStatus.CREATED)
@@ -33,6 +35,14 @@ public class UserWebAdapter {
 				.school(request.getSchool())
 				.build()
 		);
+	}
+
+	@GetMapping("/searching")
+	public SearchAllUsersResponse searchAllUsers(
+			@RequestParam String name,
+			@RequestParam Integer page
+	) {
+		return searchAllUserApi.execute(name, page);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
