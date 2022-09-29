@@ -8,5 +8,5 @@ public class UserAuthQueryFailedException extends MoizaException {
         super(AuthErrorCode.USER_QUERY_FAILED);
     }
 
-    public static final UserAuthQueryFailedException EXCEPTION = new UserAuthQueryFailedException();
+    public static final MoizaException EXCEPTION = new UserAuthQueryFailedException();
 }
