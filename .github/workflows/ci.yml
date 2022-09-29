@@ -26,11 +26,14 @@ jobs:
         with:
           arguments: build
 
-      - name: Gradle Test
-        run: ./gradlew build jacocoRootReport
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: codecov gradle
+        run: ./gradlew test jacocoRootReport
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
+          files: ./build/reports/jacoco/test/jacocoTestReport.xml
