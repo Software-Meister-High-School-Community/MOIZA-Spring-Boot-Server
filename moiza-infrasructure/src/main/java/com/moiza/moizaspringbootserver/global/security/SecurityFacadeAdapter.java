@@ -2,6 +2,7 @@ package com.moiza.moizaspringbootserver.global.security;
 
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
 import com.moiza.moizaspringbootserver.auth.spi.UserSecuritySpi;
+import com.moiza.moizaspringbootserver.auth.exception.UserAuthQueryFailedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +28,10 @@ public class SecurityFacadeAdapter implements AuthSecuritySpi, UserSecuritySpi {
 
     @Override
     public UUID getCurrentUserId() {
-        return UUID.fromString(SecurityContextHolder.getContext().getAuthentication().getName());
+        try {
+            return UUID.fromString(SecurityContextHolder.getContext().getAuthentication().getName());
+        } catch (NullPointerException exception) {
+            throw UserAuthQueryFailedException.EXCEPTION;
+        }
     }
 }

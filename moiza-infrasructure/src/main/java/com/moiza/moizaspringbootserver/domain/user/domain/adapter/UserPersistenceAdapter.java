@@ -3,6 +3,7 @@ package com.moiza.moizaspringbootserver.domain.user.domain.adapter;
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.domain.user.mapper.UserMapper;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import com.moiza.moizaspringbootserver.user.spi.UserSpi;
@@ -30,6 +31,11 @@ public class UserPersistenceAdapter implements UserSpi {
                 userRepository.findById(userId)
                         .orElseThrow(() -> UserNotFoundException.EXCEPTION)
         );
+    }
+
+    @Override
+    public SearchAllUsersResponse querySearchAllUsers(String name, Integer page) {
+        return userRepository.querySearchAllUsers(name, page);
     }
 
     @Override
@@ -61,6 +67,15 @@ public class UserPersistenceAdapter implements UserSpi {
     public void saveUser(User user) {
         userRepository.save(
                 userMapper.userDomainToEntity(user)
+        );
+    }
+
+    @Override
+    public void deleteUserById(UUID uuid) {
+        userRepository.deleteById(
+                userRepository.findById(uuid)
+                        .orElseThrow(() -> UserNotFoundException.EXCEPTION)
+                        .getId()
         );
     }
 }
