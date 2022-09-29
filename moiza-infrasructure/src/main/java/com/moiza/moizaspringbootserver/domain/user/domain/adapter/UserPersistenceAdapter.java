@@ -72,6 +72,10 @@ public class UserPersistenceAdapter implements UserSpi {
 
     @Override
     public void deleteUserById(UUID uuid) {
-        userRepository.deleteById(uuid);
+        userRepository.deleteById(
+                userRepository.findById(uuid)
+                        .orElseThrow(() -> UserNotFoundException.EXCEPTION)
+                        .getId()
+        );
     }
 }
