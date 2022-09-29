@@ -2,16 +2,19 @@ package com.moiza.moizaspringbootserver.domain.user.presentation;
 
 
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
+import com.moiza.moizaspringbootserver.user.api.QueryUserProfileDetailApi;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import javax.validation.Valid;
+
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
+import com.moiza.moizaspringbootserver.user.spi.UserQueryIntroduceLinkSpi;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserWebAdapter {
 
 	private final UserSignUpApi userSignUpApi;
+	private final QueryUserProfileDetailApi queryUserProfileDetailApi;
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
@@ -35,5 +39,10 @@ public class UserWebAdapter {
 				.school(request.getSchool())
 				.build()
 		);
+	}
+
+	@GetMapping
+	public UserProfileDetailsResponse profileDetails(@PathVariable("user-id") UUID userId) {
+		return queryUserProfileDetailApi.execute(userId);
 	}
 }
