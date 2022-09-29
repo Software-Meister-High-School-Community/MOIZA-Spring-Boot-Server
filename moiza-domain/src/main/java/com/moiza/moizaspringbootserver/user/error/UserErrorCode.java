@@ -11,8 +11,6 @@ public enum UserErrorCode implements ErrorProperty {
 
 	USER_INVALID_PASSWORD(401, "invaliud pasword."),
 
-	USER_QUERY_FAILED(401, "user query failed."),
-
 	USER_NOT_FOUND(404, "user is not found"),
 
 	USER_ALREADY_EXISTS(409, "user is already exists");

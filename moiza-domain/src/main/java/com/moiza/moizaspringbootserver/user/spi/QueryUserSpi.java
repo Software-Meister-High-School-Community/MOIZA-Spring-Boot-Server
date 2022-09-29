@@ -11,5 +11,4 @@ public interface QueryUserSpi {
 	User queryUserByAccountId(String accountId);
 	User getUserByEmail(String email);
   	User queryUserById(UUID userId);
-	  User queryCurrentUser();
 }
