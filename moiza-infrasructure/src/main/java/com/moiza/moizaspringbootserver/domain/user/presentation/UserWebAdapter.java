@@ -2,6 +2,7 @@ package com.moiza.moizaspringbootserver.domain.user.presentation;
 
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebGraduateVerificationRequest;
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
+import com.moiza.moizaspringbootserver.user.api.QueryUserProfileDetailApi;
 import com.moiza.moizaspringbootserver.user.api.GraduateVerificationApi;
 import com.moiza.moizaspringbootserver.user.api.UserSearchHistoryApi;
 import com.moiza.moizaspringbootserver.user.api.SearchAllUsersApi;
@@ -12,6 +13,14 @@ import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequ
 import javax.validation.Valid;
 
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
+import com.moiza.moizaspringbootserver.user.spi.UserQueryIntroduceLinkSpi;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import java.util.UUID;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserWebAdapter {
 
 	private final UserSignUpApi userSignUpApi;
+	private final QueryUserProfileDetailApi queryUserProfileDetailApi;
 	private final SearchAllUsersApi searchAllUserApi;
 	private final UserSearchHistoryApi userSearchHistoryApi;
 	private final UserDeleteApi userDeleteApi;
@@ -45,6 +55,11 @@ public class UserWebAdapter {
 		);
 	}
 
+	@GetMapping
+	public UserProfileDetailsResponse profileDetails(@PathVariable("user-id") UUID userId) {
+		return queryUserProfileDetailApi.execute(userId);
+  }
+  
 	@GetMapping("/searching")
 	public SearchAllUsersResponse searchAllUsers(
 			@RequestParam String name,
