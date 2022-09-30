@@ -1,16 +1,18 @@
 package com.moiza.moizaspringbootserver.domain.user.presentation;
 
-
+import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebGraduateVerificationRequest;
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
+import com.moiza.moizaspringbootserver.user.api.GraduateVerificationApi;
 import com.moiza.moizaspringbootserver.user.api.SearchAllUsersApi;
 import com.moiza.moizaspringbootserver.user.api.UserDeleteApi;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
+import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerificationRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import javax.validation.Valid;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -20,6 +22,7 @@ public class UserWebAdapter {
 	private final UserSignUpApi userSignUpApi;
 	private final SearchAllUsersApi searchAllUserApi;
 	private final UserDeleteApi userDeleteApi;
+	private final GraduateVerificationApi graduateVerificationApi;
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
@@ -50,5 +53,13 @@ public class UserWebAdapter {
 	@DeleteMapping
 	public void deleteUser() {
 		userDeleteApi.execute();
+	}
+
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/graduate-verifications")
+	public void graduateVerification(@RequestBody @Valid WebGraduateVerificationRequest request) {
+		graduateVerificationApi.execute(
+				new DomainGraduateVerificationRequest(request.getVerifyingFileUrl())
+		);
 	}
 }
