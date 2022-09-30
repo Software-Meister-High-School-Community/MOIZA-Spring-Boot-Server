@@ -13,7 +13,6 @@ import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersRespo
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
