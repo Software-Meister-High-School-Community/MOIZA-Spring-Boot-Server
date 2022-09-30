@@ -4,6 +4,6 @@ import com.moiza.moizaspringbootserver.domain.user.domain.UserIntroduceLinkEntit
 import com.moiza.moizaspringbootserver.user.domain.UserIntroduceLink;
 
 public interface UserIntroduceLinkMapper {
-	UserIntroduceLink domainToEntity(UserIntroduceLinkEntity entity);
-	UserIntroduceLinkEntity entityToDomain(UserIntroduceLink domain);
+	UserIntroduceLink entityToDomain(UserIntroduceLinkEntity entity);
+	UserIntroduceLinkEntity domainToEntity(UserIntroduceLink domain);
 }
