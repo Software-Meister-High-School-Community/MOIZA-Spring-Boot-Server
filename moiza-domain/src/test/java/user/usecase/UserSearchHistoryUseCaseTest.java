@@ -1,7 +1,6 @@
 package user.usecase;
 
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
-import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
 import com.moiza.moizaspringbootserver.user.domain.SearchHistory;
 import com.moiza.moizaspringbootserver.user.spi.QuerySearchHistorySpi;
 import com.moiza.moizaspringbootserver.user.usecase.UserSearchHistoryUseCase;
