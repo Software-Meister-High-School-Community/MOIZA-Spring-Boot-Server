@@ -1,28 +1,20 @@
 package com.moiza.moizaspringbootserver.domain.user.presentation;
 
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebGraduateVerificationRequest;
+import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserEditRequest;
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
-import com.moiza.moizaspringbootserver.user.api.QueryUserProfileDetailApi;
-import com.moiza.moizaspringbootserver.user.api.GraduateVerificationApi;
-import com.moiza.moizaspringbootserver.user.api.SearchAllUsersApi;
-import com.moiza.moizaspringbootserver.user.api.UserDeleteApi;
-import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
+import com.moiza.moizaspringbootserver.user.api.*;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerificationRequest;
+import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserEditRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import javax.validation.Valid;
 
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
-import com.moiza.moizaspringbootserver.user.spi.UserQueryIntroduceLinkSpi;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
-import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -34,6 +26,7 @@ public class UserWebAdapter {
 	private final SearchAllUsersApi searchAllUserApi;
 	private final UserDeleteApi userDeleteApi;
 	private final GraduateVerificationApi graduateVerificationApi;
+	private final UserEditApi userEditApi;
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
@@ -76,6 +69,19 @@ public class UserWebAdapter {
 	public void graduateVerification(@RequestBody @Valid WebGraduateVerificationRequest request) {
 		graduateVerificationApi.execute(
 				new DomainGraduateVerificationRequest(request.getVerifyingFileUrl())
+		);
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PatchMapping
+	public void editUserInfo(@RequestBody @Valid WebUserEditRequest request) {
+		userEditApi.execute(
+				DomainUserEditRequest.builder()
+						.introduce(request.getIntroduce())
+						.introduceLinkUrl(request.getIntroduceLinkUrl())
+						.profileImageUrl(request.getProfileImageUrl())
+						.profileBackgroundColor(request.getProfileBackgroundColor())
+						.build()
 		);
 	}
 }
