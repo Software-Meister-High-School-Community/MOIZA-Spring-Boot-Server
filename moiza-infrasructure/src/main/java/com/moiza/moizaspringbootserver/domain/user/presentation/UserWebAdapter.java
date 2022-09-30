@@ -1,10 +1,13 @@
 package com.moiza.moizaspringbootserver.domain.user.presentation;
 
-
+import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebGraduateVerificationRequest;
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
+import com.moiza.moizaspringbootserver.user.api.GraduateVerificationApi;
 import com.moiza.moizaspringbootserver.user.api.UserSearchHistoryApi;
 import com.moiza.moizaspringbootserver.user.api.SearchAllUsersApi;
+import com.moiza.moizaspringbootserver.user.api.UserDeleteApi;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
+import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerificationRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import javax.validation.Valid;
 
@@ -22,6 +25,8 @@ public class UserWebAdapter {
 	private final UserSignUpApi userSignUpApi;
 	private final SearchAllUsersApi searchAllUserApi;
 	private final UserSearchHistoryApi userSearchHistoryApi;
+	private final UserDeleteApi userDeleteApi;
+	private final GraduateVerificationApi graduateVerificationApi;
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
@@ -51,5 +56,19 @@ public class UserWebAdapter {
 	@GetMapping("/searching/history")
 	public UserSearchHistoryResponse userSearchHistory() {
 		return userSearchHistoryApi.execute();
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping
+	public void deleteUser() {
+		userDeleteApi.execute();
+	}
+
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/graduate-verifications")
+	public void graduateVerification(@RequestBody @Valid WebGraduateVerificationRequest request) {
+		graduateVerificationApi.execute(
+				new DomainGraduateVerificationRequest(request.getVerifyingFileUrl())
+		);
 	}
 }

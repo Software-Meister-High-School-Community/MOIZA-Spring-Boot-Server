@@ -69,4 +69,13 @@ public class UserPersistenceAdapter implements UserSpi {
                 userMapper.userDomainToEntity(user)
         );
     }
+
+    @Override
+    public void deleteUserById(UUID uuid) {
+        userRepository.deleteById(
+                userRepository.findById(uuid)
+                        .orElseThrow(() -> UserNotFoundException.EXCEPTION)
+                        .getId()
+        );
+    }
 }
