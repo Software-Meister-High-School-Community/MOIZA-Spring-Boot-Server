@@ -6,6 +6,5 @@ import java.util.UUID;
 
 public interface CommandUserSpi {
 	void saveUser(User user);
-
 	void deleteUserById(UUID uuid);
 }
