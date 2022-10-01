@@ -4,6 +4,7 @@ import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebG
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.api.QueryUserProfileDetailApi;
 import com.moiza.moizaspringbootserver.user.api.GraduateVerificationApi;
+import com.moiza.moizaspringbootserver.user.api.UserSearchHistoryApi;
 import com.moiza.moizaspringbootserver.user.api.SearchAllUsersApi;
 import com.moiza.moizaspringbootserver.user.api.UserDeleteApi;
 import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
@@ -11,6 +12,7 @@ import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerifi
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import javax.validation.Valid;
 
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
 import com.moiza.moizaspringbootserver.user.spi.UserQueryIntroduceLinkSpi;
 import lombok.Getter;
@@ -32,6 +34,7 @@ public class UserWebAdapter {
 	private final UserSignUpApi userSignUpApi;
 	private final QueryUserProfileDetailApi queryUserProfileDetailApi;
 	private final SearchAllUsersApi searchAllUserApi;
+	private final UserSearchHistoryApi userSearchHistoryApi;
 	private final UserDeleteApi userDeleteApi;
 	private final GraduateVerificationApi graduateVerificationApi;
 
@@ -63,6 +66,11 @@ public class UserWebAdapter {
 			@RequestParam Integer page
 	) {
 		return searchAllUserApi.execute(name, page);
+	}
+
+	@GetMapping("/searching/history")
+	public UserSearchHistoryResponse userSearchHistory() {
+		return userSearchHistoryApi.execute();
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
