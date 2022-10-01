@@ -85,7 +85,7 @@ public class UserPersistenceAdapter implements UserSpi {
         UserEntity user = userRepository.findById(uuid)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        user.setIntroduce(introduce);
+        user.editIntroduce(introduce);
 
     }
 
@@ -94,7 +94,6 @@ public class UserPersistenceAdapter implements UserSpi {
         UserEntity user = userRepository.findById(uuid)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        user.setProfileImageUrl(imageUrl);
-        user.setProfileBackgroundColor(backgroundColor);
+        user.editProfileInfo(imageUrl, backgroundColor);
     }
 }

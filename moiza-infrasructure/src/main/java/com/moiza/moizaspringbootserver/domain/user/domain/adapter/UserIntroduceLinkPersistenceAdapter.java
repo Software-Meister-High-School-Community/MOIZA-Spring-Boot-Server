@@ -3,8 +3,8 @@ package com.moiza.moizaspringbootserver.domain.user.domain.adapter;
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserIntroduceLinkEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserIntroduceLinkRepository;
-import com.moiza.moizaspringbootserver.domain.user.mapper.userintroducelink.UserIntroduceLinkMapper;
-import com.moiza.moizaspringbootserver.user.domain.UserIntroduceLink;
+import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
+import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import com.moiza.moizaspringbootserver.user.spi.UserIntroduceLinkSpi;
 import lombok.RequiredArgsConstructor;
 
@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Adapter
 public class UserIntroduceLinkPersistenceAdapter implements UserIntroduceLinkSpi {
 
+    private final UserRepository userRepository;
     private final UserIntroduceLinkRepository userIntroduceLinkRepository;
-    private final UserIntroduceLinkMapper userIntroduceLinkMapper;
 
     @Override
     public List<String> getIntroduceLinkList(UUID userId) {
@@ -34,13 +34,12 @@ public class UserIntroduceLinkPersistenceAdapter implements UserIntroduceLinkSpi
     @Override
     public void updateLinksByUserId(UUID id, List<String> links) {
         List<UserIntroduceLinkEntity> linkEntities = links.stream()
-                .map(link -> UserIntroduceLink.builder()
+                .map(link -> UserIntroduceLinkEntity.builder()
                         .id(UUID.randomUUID())
-                        .userId(id)
+                        .userEntity(userRepository.findById(id).orElseThrow(() -> UserNotFoundException.EXCEPTION))
                         .linkUrl(link)
                         .build())
-                .map(userIntroduceLinkMapper::domainToEntity)
-                .toList();
+                .collect(Collectors.toList());
 
         userIntroduceLinkRepository.saveAll(linkEntities);
     }

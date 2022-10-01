@@ -40,12 +40,10 @@ public class UserEntity extends BaseUUIDEntity {
     @Length(max = 10)
     private String name;
 
-    @Setter
     @ColumnDefault(DefaultImage.USER_PROFILE_IMAGE)
     @Column(nullable = false)
     private String profileImageUrl;
 
-    @Setter
     @Length(max = 7)
     @Column(nullable = false)
     @ColumnDefault("'NNNNNNN'")
@@ -59,7 +57,6 @@ public class UserEntity extends BaseUUIDEntity {
     @Length(max = 8)
     private String birthDay;
 
-    @Setter
     @Length(max = 8)
     private String introduce;
 
@@ -70,4 +67,13 @@ public class UserEntity extends BaseUUIDEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private School school;
+
+    public void editIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public void editProfileInfo(String imageUrl, String backgroundColor) {
+        this.profileImageUrl = imageUrl;
+        this.profileBackgroundColor = backgroundColor;
+    }
 }

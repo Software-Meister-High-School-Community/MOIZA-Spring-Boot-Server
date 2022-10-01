@@ -15,7 +15,7 @@ public class UserIntroduceMapperImpl implements UserIntroduceLinkMapper {
 	private final UserRepository userRepository;
 
 	@Override
-	public UserIntroduceLink entityToDomain(UserIntroduceLinkEntity entity) {
+	public UserIntroduceLink userIntroduceLinkEntityToDomain(UserIntroduceLinkEntity entity) {
 		return UserIntroduceLink.builder()
 			.id(entity.getId())
 			.linkUrl(entity.getLinkUrl())
@@ -24,7 +24,7 @@ public class UserIntroduceMapperImpl implements UserIntroduceLinkMapper {
 	}
 
 	@Override
-	public UserIntroduceLinkEntity domainToEntity(UserIntroduceLink domain) {
+	public UserIntroduceLinkEntity userIntroduceLinkDomainToEntity(UserIntroduceLink domain) {
 		UserEntity userEntity = userRepository.findById(domain.getUserId())
 			.orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
