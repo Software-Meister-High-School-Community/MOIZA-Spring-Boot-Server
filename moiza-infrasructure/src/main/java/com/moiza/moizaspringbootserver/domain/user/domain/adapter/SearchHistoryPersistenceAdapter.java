@@ -24,13 +24,9 @@ public class SearchHistoryPersistenceAdapter implements SearchHistorySpi {
     public List<SearchHistory> querySearchHistoryAllByUserId(UUID id) {
         List<SearchHistoryEntity> searchHistories = searchHistoryRepository.findAllByUserEntityId(id);
 
-        return searchHistories.stream().map(
-                it -> SearchHistory.builder()
-                        .id(it.getId())
-                        .userId(id)
-                        .keyword(it.getKeyword())
-                        .build()
-        ).collect(Collectors.toList());
+        return searchHistories.stream()
+                .map(searchHistoryMapper::searchHistoryEntityToDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
