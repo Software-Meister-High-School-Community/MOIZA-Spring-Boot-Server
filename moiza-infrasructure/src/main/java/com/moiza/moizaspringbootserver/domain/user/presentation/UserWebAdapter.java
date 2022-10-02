@@ -9,22 +9,15 @@ import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerifi
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserEditRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 
-import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserEditRequest;
 import javax.validation.Valid;
 
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
-import com.moiza.moizaspringbootserver.user.spi.UserQueryIntroduceLinkSpi;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
-import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
