@@ -67,4 +67,13 @@ public class UserEntity extends BaseUUIDEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     private School school;
+
+    public void editIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public void editProfileInfo(String imageUrl, String backgroundColor) {
+        this.profileImageUrl = imageUrl;
+        this.profileBackgroundColor = backgroundColor;
+    }
 }

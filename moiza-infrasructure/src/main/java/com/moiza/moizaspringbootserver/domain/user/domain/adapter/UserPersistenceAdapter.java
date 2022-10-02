@@ -1,6 +1,7 @@
 package com.moiza.moizaspringbootserver.domain.user.domain.adapter;
 
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
+import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.domain.user.mapper.UserMapper;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
@@ -77,5 +78,22 @@ public class UserPersistenceAdapter implements UserSpi {
                         .orElseThrow(() -> UserNotFoundException.EXCEPTION)
                         .getId()
         );
+    }
+
+    @Override
+    public void updateUserIntroduce(UUID uuid, String introduce) {
+        UserEntity user = userRepository.findById(uuid)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+
+        user.editIntroduce(introduce);
+
+    }
+
+    @Override
+    public void updateUserProfile(UUID uuid, String imageUrl, String backgroundColor) {
+        UserEntity user = userRepository.findById(uuid)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+
+        user.editProfileInfo(imageUrl, backgroundColor);
     }
 }
