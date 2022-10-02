@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class SearchHistoryPersistenceAdapter implements SearchHistorySpi {
 
     private final SearchHistoryRepository searchHistoryRepository;
+    private final SearchHistoryMapper searchHistoryMapper;
 
     @Override
     public List<SearchHistory> querySearchHistoryAllByUserId(UUID id) {
@@ -30,5 +31,16 @@ public class SearchHistoryPersistenceAdapter implements SearchHistorySpi {
                         .keyword(it.getKeyword())
                         .build()
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public SearchHistory querySearchHistoryById(UUID historyId) {
+        return searchHistoryMapper.searchHistoryEntityToDomain(searchHistoryRepository.findById(historyId)
+                .orElseThrow(() -> SearchHistoryNotFoundException.EXCEPTION));
+    }
+
+    @Override
+    public void deleteSearchHistoryById(UUID historyId) {
+        searchHistoryRepository.deleteById(historyId);
     }
 }
