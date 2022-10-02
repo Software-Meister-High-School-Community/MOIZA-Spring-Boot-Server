@@ -37,6 +37,6 @@ public class FollowPersistenceAdapter implements FollowSpi {
 			.findByUserEntityIdAndTargetUserId(userId, targetUserId)
 			.orElseThrow(() -> FollowNotFoundException.EXCEPTION);
 
-		return null;
+		return followMapper.followEntityToDomain(followEntity);
 	}
 }
