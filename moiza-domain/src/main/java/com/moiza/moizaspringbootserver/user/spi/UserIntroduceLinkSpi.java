@@ -1,4 +1,4 @@
 package com.moiza.moizaspringbootserver.user.spi;
 
-public interface UserIntroduceLinkSpi extends UserQueryIntroduceLinkSpi{
+public interface UserIntroduceLinkSpi extends UserQueryIntroduceLinkSpi, CommandUserIntroduceLinkSpi {
 }
