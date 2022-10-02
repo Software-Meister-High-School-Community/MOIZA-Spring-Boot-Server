@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class FollowUserUseCaseTest {
+class FollowUserUseCaseTest {
 
 	@Mock
 	FollowQueryUserSpi followQueryUserSpi;
@@ -31,11 +31,6 @@ public class FollowUserUseCaseTest {
 	@Test
 	void followUser() {
 		UUID userId = UUID.randomUUID();
-		UUID currentUserId = UUID.randomUUID();
-
-		given(authSecuritySpi.getCurrentUserId())
-			.willReturn(currentUserId);
-
 		followUserUseCase.execute(userId);
 	}
 
