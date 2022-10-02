@@ -10,11 +10,12 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
-@SuperBuilder
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_follow")
-public class FollowEntity extends BaseTimeEntity {
+public class FollowEntity {
 
     @EmbeddedId
     private FollowId followId;
@@ -32,8 +33,4 @@ public class FollowEntity extends BaseTimeEntity {
     @JoinColumn(name = "target_user_id", nullable = false)
     private UserEntity targetUser;
 
-    @Builder
-    public FollowEntity(FollowId followId) {
-        this.followId = followId;
-    }
 }
