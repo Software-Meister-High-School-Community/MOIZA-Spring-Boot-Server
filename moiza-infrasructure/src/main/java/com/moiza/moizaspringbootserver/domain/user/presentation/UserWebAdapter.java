@@ -2,29 +2,19 @@ package com.moiza.moizaspringbootserver.domain.user.presentation;
 
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebGraduateVerificationRequest;
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
-import com.moiza.moizaspringbootserver.user.api.QueryUserProfileDetailApi;
-import com.moiza.moizaspringbootserver.user.api.GraduateVerificationApi;
-import com.moiza.moizaspringbootserver.user.api.UserSearchHistoryApi;
-import com.moiza.moizaspringbootserver.user.api.SearchAllUsersApi;
-import com.moiza.moizaspringbootserver.user.api.UserDeleteApi;
-import com.moiza.moizaspringbootserver.user.api.UserSignUpApi;
+import com.moiza.moizaspringbootserver.user.api.*;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerificationRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
-import javax.validation.Valid;
-
-import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.MyPageResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
-import com.moiza.moizaspringbootserver.user.spi.UserQueryIntroduceLinkSpi;
-import lombok.Getter;
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.UUID;
-import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
-import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -37,6 +27,7 @@ public class UserWebAdapter {
 	private final UserSearchHistoryApi userSearchHistoryApi;
 	private final UserDeleteApi userDeleteApi;
 	private final GraduateVerificationApi graduateVerificationApi;
+	private final QueryUserMyPageApi queryUserMyPageApi;
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
@@ -58,7 +49,7 @@ public class UserWebAdapter {
 	@GetMapping
 	public UserProfileDetailsResponse profileDetails(@PathVariable("user-id") UUID userId) {
 		return queryUserProfileDetailApi.execute(userId);
-  }
+	}
   
 	@GetMapping("/searching")
 	public SearchAllUsersResponse searchAllUsers(
@@ -85,5 +76,10 @@ public class UserWebAdapter {
 		graduateVerificationApi.execute(
 				new DomainGraduateVerificationRequest(request.getVerifyingFileUrl())
 		);
+	}
+
+	@GetMapping
+	public MyPageResponse getMyPage() {
+		return queryUserMyPageApi.execute();
 	}
 }
