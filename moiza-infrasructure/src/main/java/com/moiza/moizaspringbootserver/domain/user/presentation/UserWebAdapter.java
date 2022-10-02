@@ -5,16 +5,26 @@ import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebU
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.api.*;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerificationRequest;
+
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserEditRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
+
+import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserEditRequest;
 import javax.validation.Valid;
 
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
+import com.moiza.moizaspringbootserver.user.spi.UserQueryIntroduceLinkSpi;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -24,6 +34,7 @@ public class UserWebAdapter {
 	private final UserSignUpApi userSignUpApi;
 	private final QueryUserProfileDetailApi queryUserProfileDetailApi;
 	private final SearchAllUsersApi searchAllUserApi;
+	private final UserSearchHistoryApi userSearchHistoryApi;
 	private final UserDeleteApi userDeleteApi;
 	private final GraduateVerificationApi graduateVerificationApi;
 	private final UserEditApi userEditApi;
@@ -62,6 +73,11 @@ public class UserWebAdapter {
 	@DeleteMapping
 	public void deleteUser() {
 		userDeleteApi.execute();
+	}
+
+	@GetMapping("/searching/history")
+	public UserSearchHistoryResponse userSearchHistory() {
+		return userSearchHistoryApi.execute();
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
