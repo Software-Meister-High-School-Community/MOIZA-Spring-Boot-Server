@@ -9,5 +9,5 @@ public class FollowNotFoundException extends MoizaException {
 		super(FollowErrorCode.FOLLOW_NOT_FOUND);
 	}
 
-	public static final FollowNotFoundException EXCEPTION = new FollowNotFoundException();
+	public static final MoizaException EXCEPTION = new FollowNotFoundException();
 }

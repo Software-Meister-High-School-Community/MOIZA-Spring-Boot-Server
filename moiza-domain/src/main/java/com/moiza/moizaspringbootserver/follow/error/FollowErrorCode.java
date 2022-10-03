@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum FollowErrorCode implements ErrorProperty {
 
-	FOLLOW_NOT_FOUND(404, "follow is not found");
+	FOLLOW_NOT_FOUND(404, "Follow Is Not Found");
 
 	private final int status;
 	private final String message;
