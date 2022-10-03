@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum SearchHistoryErrorCode implements ErrorProperty {
 
-    SEARCH_HISTORY_DELETE_DENIED(403, "Permission Denied"),
+    SEARCH_HISTORY_DELETE_DENIED(403, "Can't Delete Search History"),
     SEARCH_HISTORY_NOT_FOUND(404, "Search History Not Found")
     ;
 
