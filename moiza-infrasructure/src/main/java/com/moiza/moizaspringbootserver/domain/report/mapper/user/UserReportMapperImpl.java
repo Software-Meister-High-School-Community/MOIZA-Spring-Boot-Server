@@ -20,7 +20,7 @@ public class UserReportMapperImpl implements UserReportMapper {
     private final UserRepository userRepository;
 
     @Override
-    public UserReportEntity feedReportDomainToEntity(UserReport userReport) {
+    public UserReportEntity userReportDomainToEntity(UserReport userReport) {
         return new UserReportEntity(
                 UserReportId.builder()
                         .reportEntity(findByReportId(userReport.getReportId()))
@@ -30,7 +30,7 @@ public class UserReportMapperImpl implements UserReportMapper {
     }
 
     @Override
-    public UserReport feedReportEntityToDomain(UserReportEntity userReportEntity) {
+    public UserReport userReportEntityToDomain(UserReportEntity userReportEntity) {
         return UserReport.builder()
                 .reportId(userReportEntity.getId().getReportEntity().getId())
                 .userId(userReportEntity.getId().getUserEntity().getId())
