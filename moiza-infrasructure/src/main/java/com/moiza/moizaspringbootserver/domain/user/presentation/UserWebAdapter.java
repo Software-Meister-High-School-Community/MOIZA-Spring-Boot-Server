@@ -28,6 +28,7 @@ public class UserWebAdapter {
 	private final QueryUserProfileDetailApi queryUserProfileDetailApi;
 	private final SearchAllUsersApi searchAllUserApi;
 	private final UserSearchHistoryApi userSearchHistoryApi;
+	private final UserSearchHistoryDeleteApi userSearchHistoryDeleteApi;
 	private final UserDeleteApi userDeleteApi;
 	private final GraduateVerificationApi graduateVerificationApi;
 	private final UserEditApi userEditApi;
@@ -60,6 +61,12 @@ public class UserWebAdapter {
 			@RequestParam Integer page
 	) {
 		return searchAllUserApi.execute(name, page);
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/searching/history/{history-id}")
+	public void deleteUserSearchHistory(@PathVariable("history-id") UUID historyId) {
+		userSearchHistoryDeleteApi.execute(historyId);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
