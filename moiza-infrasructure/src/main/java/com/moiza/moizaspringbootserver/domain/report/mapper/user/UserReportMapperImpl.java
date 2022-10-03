@@ -6,7 +6,7 @@ import com.moiza.moizaspringbootserver.domain.report.domain.user.UserReportEntit
 import com.moiza.moizaspringbootserver.domain.report.domain.user.UserReportId;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
-import com.moiza.moizaspringbootserver.report.user.UserReport;
+import com.moiza.moizaspringbootserver.report.user.domain.UserReport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
