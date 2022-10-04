@@ -4,10 +4,15 @@ import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.follow.domain.FollowEntity;
 import com.moiza.moizaspringbootserver.domain.follow.domain.repository.FollowRepository;
 import com.moiza.moizaspringbootserver.domain.follow.mapper.FollowMapper;
+import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
+import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.follow.Follow;
 import com.moiza.moizaspringbootserver.follow.exception.FollowNotFoundException;
 import com.moiza.moizaspringbootserver.follow.sqi.FollowSpi;
 import java.util.UUID;
+
+import com.moiza.moizaspringbootserver.user.domain.User;
+import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -16,6 +21,7 @@ public class FollowPersistenceAdapter implements FollowSpi {
 
 	private final FollowMapper followMapper;
 	private final FollowRepository followRepository;
+	private final UserRepository userRepository;
 
 	@Override
 	public void saveFollow(Follow follow) {
