@@ -13,5 +13,8 @@ import java.util.Optional;
 @Repository
 public interface FollowRepository extends CrudRepository<FollowEntity, FollowId> {
 
+    Optional<FollowEntity> findByFollowIdAndTargetUser(UserEntity user, UserEntity targetUser);
+
+    Long countAllByUserEntity(UserEntity user);
     Optional<FollowEntity> findByUserEntityIdAndTargetUserId(UUID userId, UUID targetUserId);
 }

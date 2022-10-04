@@ -6,7 +6,7 @@ import com.moiza.moizaspringbootserver.domain.report.domain.user.UserReportEntit
 import com.moiza.moizaspringbootserver.domain.report.domain.user.UserReportId;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
-import com.moiza.moizaspringbootserver.report.user.UserReport;
+import com.moiza.moizaspringbootserver.report.user.domain.UserReport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ public class UserReportMapperImpl implements UserReportMapper {
     private final UserRepository userRepository;
 
     @Override
-    public UserReportEntity feedReportDomainToEntity(UserReport userReport) {
+    public UserReportEntity userReportDomainToEntity(UserReport userReport) {
         return new UserReportEntity(
                 UserReportId.builder()
                         .reportEntity(findByReportId(userReport.getReportId()))
@@ -30,7 +30,7 @@ public class UserReportMapperImpl implements UserReportMapper {
     }
 
     @Override
-    public UserReport feedReportEntityToDomain(UserReportEntity userReportEntity) {
+    public UserReport userReportEntityToDomain(UserReportEntity userReportEntity) {
         return UserReport.builder()
                 .reportId(userReportEntity.getId().getReportEntity().getId())
                 .userId(userReportEntity.getId().getUserEntity().getId())

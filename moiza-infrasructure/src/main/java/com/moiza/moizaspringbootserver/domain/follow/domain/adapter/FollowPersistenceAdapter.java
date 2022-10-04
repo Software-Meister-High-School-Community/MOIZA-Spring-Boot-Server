@@ -39,4 +39,12 @@ public class FollowPersistenceAdapter implements FollowSpi {
 
 		return followMapper.followEntityToDomain(followEntity);
 	}
+
+    @Override
+    public Long getFollowCount(User user) {
+        UserEntity userId = userRepository.findById(user.getId())
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+
+        return followRepository.countAllByUserEntity(userId);
+    }
 }

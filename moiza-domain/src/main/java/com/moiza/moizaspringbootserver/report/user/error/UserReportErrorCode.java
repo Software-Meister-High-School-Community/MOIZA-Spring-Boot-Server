@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.user.error;
+package com.moiza.moizaspringbootserver.report.user.error;
 
 import com.moiza.moizaspringbootserver.error.ErrorProperty;
 import lombok.AccessLevel;
@@ -7,11 +7,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum SearchHistoryErrorCode implements ErrorProperty {
+public enum UserReportErrorCode implements ErrorProperty {
 
-    SEARCH_HISTORY_DELETE_DENIED(403, "Can't Delete Search History"),
-    SEARCH_HISTORY_NOT_FOUND(404, "Search History Not Found")
-    ;
+    USER_REPORT_NOT_FOUND(404, "User Report Not Found"),
+
+    FEED_REPORT_ALREADY_EXISTS(409, "Feed Report Already Exists");
 
     private final int status;
     private final String message;

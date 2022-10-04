@@ -8,6 +8,10 @@ import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerifi
 
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserEditRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
+import com.moiza.moizaspringbootserver.user.api.dto.response.MyPageResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
+import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
 
 import javax.validation.Valid;
 
@@ -16,6 +20,8 @@ import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsR
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.UUID;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 
@@ -28,8 +34,10 @@ public class UserWebAdapter {
 	private final QueryUserProfileDetailApi queryUserProfileDetailApi;
 	private final SearchAllUsersApi searchAllUserApi;
 	private final UserSearchHistoryApi userSearchHistoryApi;
+	private final UserSearchHistoryDeleteApi userSearchHistoryDeleteApi;
 	private final UserDeleteApi userDeleteApi;
 	private final GraduateVerificationApi graduateVerificationApi;
+	private final QueryUserMyPageApi queryUserMyPageApi;
 	private final UserEditApi userEditApi;
 
 	@ResponseStatus(HttpStatus.CREATED)
@@ -52,7 +60,7 @@ public class UserWebAdapter {
 	@GetMapping
 	public UserProfileDetailsResponse profileDetails(@PathVariable("user-id") UUID userId) {
 		return queryUserProfileDetailApi.execute(userId);
-  }
+	}
   
 	@GetMapping("/searching")
 	public SearchAllUsersResponse searchAllUsers(
@@ -60,6 +68,12 @@ public class UserWebAdapter {
 			@RequestParam Integer page
 	) {
 		return searchAllUserApi.execute(name, page);
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/searching/history/{history-id}")
+	public void deleteUserSearchHistory(@PathVariable("history-id") UUID historyId) {
+		userSearchHistoryDeleteApi.execute(historyId);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -81,6 +95,10 @@ public class UserWebAdapter {
 		);
 	}
 
+	@GetMapping
+	public MyPageResponse getMyPage() {
+		return queryUserMyPageApi.execute();
+  }
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PatchMapping
 	public void editUserInfo(@RequestBody @Valid WebUserEditRequest request) {
