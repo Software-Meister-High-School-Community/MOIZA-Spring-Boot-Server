@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.report.user;
+package com.moiza.moizaspringbootserver.report.user.domain;
 
 import com.moiza.moizaspringbootserver.annotation.Aggregate;
 import lombok.Builder;
