@@ -5,25 +5,18 @@ import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebU
 import com.moiza.moizaspringbootserver.domain.user.presentation.dto.request.WebUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.api.*;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainGraduateVerificationRequest;
-
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserEditRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.request.DomainUserSignUpRequest;
 import com.moiza.moizaspringbootserver.user.api.dto.response.MyPageResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
-
-import javax.validation.Valid;
-
-import com.moiza.moizaspringbootserver.user.api.dto.response.UserSearchHistoryResponse;
-import com.moiza.moizaspringbootserver.user.api.dto.response.UserProfileDetailsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.UUID;
-import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
@@ -98,7 +91,8 @@ public class UserWebAdapter {
 	@GetMapping
 	public MyPageResponse getMyPage() {
 		return queryUserMyPageApi.execute();
-  }
+  	}
+
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PatchMapping
 	public void editUserInfo(@RequestBody @Valid WebUserEditRequest request) {
