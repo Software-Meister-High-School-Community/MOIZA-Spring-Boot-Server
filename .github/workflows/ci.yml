@@ -35,7 +35,7 @@ jobs:
           files: ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
 
       - name: Upload coverage reports to Codecov
-          run: |
+          run:
             curl -Os https://uploader.codecov.io/latest/alpine/codecov
             chmod +x codecov
             ./codecov -t ${{secretsCODECOV_TOKEN}}
