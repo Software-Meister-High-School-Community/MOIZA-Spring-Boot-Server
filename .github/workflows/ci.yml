@@ -38,4 +38,4 @@ jobs:
           run: |
             curl -Os https://uploader.codecov.io/latest/alpine/codecov
             chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN}
+            ./codecov -t ${{secretsCODECOV_TOKEN}}
