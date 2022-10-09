@@ -2,10 +2,12 @@ package com.moiza.moizaspringbootserver.feed.api.dto.response;
 
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.UUID;
 
+@EqualsAndHashCode
 @Getter
 @Builder
 public class PublishedFeedResponse {

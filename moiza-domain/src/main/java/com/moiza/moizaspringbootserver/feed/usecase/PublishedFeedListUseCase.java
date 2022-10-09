@@ -20,7 +20,7 @@ public class PublishedFeedListUseCase implements PublishedFeedListApi {
 
     @Override
     public PublishedFeedListResponse execute(UUID userId, String category, String type, String order, int page) {
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd`T`hh:mm:ss");
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd`'T'`hh:mm:ss");
         PublishedFeedPage pageData = publishedFeedQuerySpi.execute(userId, category, FeedType.valueOf(type),
                 PublishedFeedQuerySpi.Orders.valueOf(order), page);
 
