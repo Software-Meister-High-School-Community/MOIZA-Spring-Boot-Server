@@ -2,7 +2,7 @@ package com.moiza.moizaspringbootserver.user.usecase;
 
 import com.moiza.moizaspringbootserver.annotation.UseCase;
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
-import com.moiza.moizaspringbootserver.feed.spi.QueryFeedSqi;
+import com.moiza.moizaspringbootserver.feed.spi.feed.QueryFeedCountSqi;
 import com.moiza.moizaspringbootserver.follow.spi.QueryFollowSpi;
 import com.moiza.moizaspringbootserver.user.api.QueryUserMyPageApi;
 import com.moiza.moizaspringbootserver.user.api.dto.response.MyPageResponse;
@@ -20,7 +20,7 @@ public class QueryUserMyPageUseCase implements QueryUserMyPageApi {
     private final AuthSecuritySpi authSecuritySpi;
     private final QueryUserSpi queryUserSpi;
     private final UserIntroduceLinkSpi userIntroduceLinkSpi;
-    private final QueryFeedSqi queryFeedSqi;
+    private final QueryFeedCountSqi queryFeedSqi;
     private final QueryFollowSpi queryFollowSpi;
 
     @Override
