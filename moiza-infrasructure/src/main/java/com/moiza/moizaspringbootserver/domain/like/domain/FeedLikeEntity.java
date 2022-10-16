@@ -2,7 +2,6 @@ package com.moiza.moizaspringbootserver.domain.like.domain;
 
 import com.moiza.moizaspringbootserver.domain.feed.domain.FeedEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
-import com.moiza.moizaspringbootserver.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import javax.persistence.*;
 @SuperBuilder
 @Entity
 @Table(name = "tbl_feed_like")
-public class FeedLikeEntity extends BaseTimeEntity {
+public class FeedLikeEntity {
 
     @EmbeddedId
     private FeedLikeId id;

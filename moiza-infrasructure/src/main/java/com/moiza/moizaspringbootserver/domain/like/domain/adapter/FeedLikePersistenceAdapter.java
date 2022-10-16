@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.like.adapter;
+package com.moiza.moizaspringbootserver.domain.like.domain.adapter;
 
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.FeedMapper;
