@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommentAttatchmentRepository extends CrudRepository<CommentAttatchmentFileEntity, UUID> {
+public interface CommentAttatchmentFileRepository extends CrudRepository<CommentAttatchmentFileEntity, UUID> {
 
 }
