@@ -7,4 +7,8 @@ import java.util.UUID;
 
 public interface QuerySearchHistorySpi {
     List<SearchHistory> querySearchHistoryAllByUserId(UUID id);
+
+    SearchHistory querySearchHistoryById(UUID historyId);
+
+    void deleteSearchHistoryById(UUID historyId);
 }

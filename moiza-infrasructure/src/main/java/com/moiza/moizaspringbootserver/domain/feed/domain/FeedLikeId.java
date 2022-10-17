@@ -1,19 +1,17 @@
 package com.moiza.moizaspringbootserver.domain.feed.domain;
 
-import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
+import lombok.*;
 
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
-public class FeedLikeId implements Serializable {
-    @ManyToOne
-    @JoinColumn
-    private FeedEntity feed;
+public class FeedCategoryId implements Serializable {
+    private Integer feed;
 
-    @ManyToOne
-    @JoinColumn
-    private UserEntity user;
+    private Integer category;
 }

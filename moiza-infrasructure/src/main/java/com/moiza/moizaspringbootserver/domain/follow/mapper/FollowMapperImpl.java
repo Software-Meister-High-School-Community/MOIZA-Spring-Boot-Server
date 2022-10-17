@@ -15,23 +15,26 @@ import org.springframework.stereotype.Component;
 public class FollowMapperImpl implements FollowMapper{
 
     private final UserRepository userRepository;
-    private final FollowRepository followRepository;
 
     @Override
     public FollowEntity followDomainToEntity(Follow follow) {
-        UserEntity userId = userRepository.findById(follow.getUserId())
+        UserEntity userEntity = userRepository.findById(follow.getUserId())
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        UserEntity targetUserEntity = userRepository.findById(follow.getTargetUserId())
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        FollowEntity followEntity = followRepository.findByFollowIdAndTargetUser(userId, userId)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
-
-        return new FollowEntity(
+        return FollowEntity.builder()
+            .followId(
                 FollowId.builder()
-                        .user(userId.getId())
-                        .createdAt(follow.getCreatedAt())
-                        .targetUser(followEntity.getTargetUser().getId())
-                        .build()
-        );
+                    .user(follow.getUserId())
+                    .createdAt(follow.getCreatedAt())
+                    .targetUser(follow.getTargetUserId())
+                    .build()
+            )
+            .userEntity(userEntity)
+            .targetUser(targetUserEntity)
+            .createdAt(follow.getCreatedAt())
+            .build();
     }
 
     @Override
