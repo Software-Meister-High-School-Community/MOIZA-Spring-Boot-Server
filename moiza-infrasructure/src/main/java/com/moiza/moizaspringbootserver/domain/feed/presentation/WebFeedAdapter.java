@@ -3,7 +3,6 @@ package com.moiza.moizaspringbootserver.domain.feed.presentation;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
-import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
