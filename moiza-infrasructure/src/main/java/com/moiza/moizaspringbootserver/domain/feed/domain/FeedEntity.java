@@ -26,4 +26,8 @@ public class FeedEntity extends BaseUUIDEntity {
     @ManyToOne
     private UserEntity user;
 
+    @ManyToOne
+    @JoinColumn
+    private CategoryEntity category;
+
 }
