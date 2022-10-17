@@ -4,7 +4,7 @@ import com.moiza.moizaspringbootserver.feed.PublicFeed;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
-import com.moiza.moizaspringbootserver.feed.spi.PublishedFeedQuerySpi;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedQuerySpi;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.CombinedFeed;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.usecase.PublishedFeedListUseCase;
@@ -27,7 +27,7 @@ import static org.mockito.BDDMockito.given;
 class PublishedFeedListUseCaseTest {
 
     @Mock
-    private PublishedFeedQuerySpi publishedFeedQuerySpi;
+    private PublicFeedQuerySpi publicFeedQuerySpi;
 
     @InjectMocks
     private PublishedFeedListUseCase publishedFeedListUseCase;
@@ -75,7 +75,7 @@ class PublishedFeedListUseCaseTest {
                 .build();
 
 
-        given(publishedFeedQuerySpi.execute(user.getId(), "테스트", combinedFeed.getType(), PublishedFeedQuerySpi.Orders.LATEST, 0))
+        given(publicFeedQuerySpi.execute(user.getId(), "테스트", combinedFeed.getType(), PublicFeedQuerySpi.Orders.LATEST, 0))
                 .willReturn(page);
 
         assertEquals(expected.getFeedList().get(0), publishedFeedListUseCase.execute(user.getId(), "테스트", combinedFeed.getType().name(), "LATEST", 0).getFeedList().get(0));

@@ -1,11 +1,11 @@
-package com.moiza.moizaspringbootserver.feed.spi;
+package com.moiza.moizaspringbootserver.feed.spi.publicfeed;
 
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 
 import java.util.UUID;
 
-public interface PublishedFeedQuerySpi {
+public interface PublicFeedQuerySpi {
     enum Orders {
         LATEST, OLDEST, VIEW_COUNT, LIKE_COUNT
     }

@@ -4,7 +4,7 @@ import com.moiza.moizaspringbootserver.domain.feed.domain.PublicFeedEntity;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.PublicFeedMapper;
 import com.moiza.moizaspringbootserver.domain.like.domain.FeedLikeEntity;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
-import com.moiza.moizaspringbootserver.feed.spi.PublishedFeedQuerySpi;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedQuerySpi;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.CombinedFeed;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.querydsl.core.types.Order;
@@ -27,7 +27,7 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
     private final PublicFeedMapper publicFeedMapper;
 
     @Override
-    public PublishedFeedPage getPublicFeed(UUID userId, String category, FeedType type, PublishedFeedQuerySpi.Orders order, int page) {
+    public PublishedFeedPage getPublicFeed(UUID userId, String category, FeedType type, PublicFeedQuerySpi.Orders order, int page) {
         List<BooleanExpression> conditions = new ArrayList<>();
         List<OrderSpecifier<Long>> orders = new ArrayList<>();
 
