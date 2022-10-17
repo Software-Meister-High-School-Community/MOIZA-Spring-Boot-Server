@@ -2,6 +2,7 @@ package com.moiza.moizaspringbootserver.domain.feed.domain.repository.custom;
 
 import com.moiza.moizaspringbootserver.domain.feed.domain.PublicFeedEntity;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.PublicFeedMapper;
+import com.moiza.moizaspringbootserver.domain.like.domain.FeedLikeEntity;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.PublishedFeedQuerySpi;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.CombinedFeed;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static com.moiza.moizaspringbootserver.domain.feed.domain.QPublicFeedEntity.*;
-import static com.moiza.moizaspringbootserver.domain.feed.domain.QFeedLikeEntity.*;
+import static com.moiza.moizaspringbootserver.domain.like.domain.QFeedLikeEntity.*;
 
 @RequiredArgsConstructor
 public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCustom {
@@ -44,7 +45,7 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
                 .where(conditions.toArray(new BooleanExpression[0]));
 
         FeedLikeEntity likeEntity = jpaQueryFactory.selectFrom(feedLikeEntity)
-                .where(feedLikeEntity.id.user.id.eq(userId))
+                .where(feedLikeEntity.id.user.eq(userId))
                 .fetchOne();
 
         List<PublicFeedEntity> entities = query
