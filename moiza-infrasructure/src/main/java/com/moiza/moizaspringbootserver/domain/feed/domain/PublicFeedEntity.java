@@ -1,5 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.feed.domain;
 
+import com.moiza.moizaspringbootserver.domain.like.domain.FeedLikeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

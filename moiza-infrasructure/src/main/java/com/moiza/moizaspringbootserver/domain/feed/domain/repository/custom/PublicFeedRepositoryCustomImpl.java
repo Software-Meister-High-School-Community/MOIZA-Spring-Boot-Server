@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.feed.domain.repository.custom;
 
-import com.moiza.moizaspringbootserver.domain.feed.domain.*;
+import com.moiza.moizaspringbootserver.domain.feed.domain.PublicFeedEntity;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.PublicFeedMapper;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.PublishedFeedQuerySpi;
