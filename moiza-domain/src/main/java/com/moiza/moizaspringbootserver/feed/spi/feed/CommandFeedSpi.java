@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public interface CommandFeedSpi {
 
-    void feedDelete(Feed feed);
+    void deleteFeed(Feed feed);
 
     Feed getFeedById(UUID feedId);
 }

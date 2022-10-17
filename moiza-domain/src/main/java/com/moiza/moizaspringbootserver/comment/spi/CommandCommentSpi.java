@@ -6,7 +6,7 @@ import com.moiza.moizaspringbootserver.feed.Feed;
 import java.util.UUID;
 
 public interface CommandCommentSpi {
-    void deleteComment(Feed feed);
+    void deleteAllComment(Feed feed);
 
     Comment getCommentById(UUID commentId);
 }

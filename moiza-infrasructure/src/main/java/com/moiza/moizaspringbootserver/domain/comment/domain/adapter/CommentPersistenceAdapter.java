@@ -21,8 +21,8 @@ public class CommentPersistenceAdapter implements CommentSpi {
     private final CommentRepository commentRepository;
 
     @Override
-    public void deleteComment(Feed feed) {
-        commentRepository.deleteByFeedEntity(
+    public void deleteAllComment(Feed feed) {
+        commentRepository.deleteAllByFeedEntity(
                 feedMapper.feedDomainToEntity(feed)
         );
     }
