@@ -1,7 +1,7 @@
-package com.moiza.moizaspringbootserver.feed.spi;
+package com.moiza.moizaspringbootserver.feed.spi.feed;
 
 import com.moiza.moizaspringbootserver.user.domain.User;
 
-public interface QueryFeedSqi {
+public interface QueryFeedCountSqi {
     Long getUserFeeCount(User user);
 }
