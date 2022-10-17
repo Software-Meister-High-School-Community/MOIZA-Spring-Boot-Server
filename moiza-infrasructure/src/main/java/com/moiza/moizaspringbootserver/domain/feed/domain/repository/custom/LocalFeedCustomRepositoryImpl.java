@@ -18,10 +18,10 @@ public class LocalFeedCustomRepositoryImpl implements LocalFeedCustomRepository 
 
     @Override
     public List<LocalFeed> getAllLocalFeedByTypeAndKeyword(User user, FeedType type, String keyword) {
-        return jpaQueryFactory.selectFrom(qLocalFeedEntity)
-                .where(qLocalFeedEntity.feed.user.id.eq(user.getId()),
-                        qLocalFeedsEntity.feed.feedType.eq(type),
-                        qLocalFeedEntity.feed.category.categoryName.eq(keyword))
+        return jpaQueryFactory.selectFrom(localFeedEntity)
+                .where(localFeedEntity.feed.user.id.eq(user.getId()),
+                        localFeedEntity.feed.feedType.eq(type),
+                        localFeedEntity.feed.category.categoryName.eq(keyword))
                 .fetchAll()
                 .stream()
                 .map(localFeedMapper::localFeedEntityToDomain)
