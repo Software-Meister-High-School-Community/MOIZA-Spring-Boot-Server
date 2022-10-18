@@ -67,13 +67,13 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
                         .commentCount(it.getFeed().getComments().size())
                         .liked(jpaQueryFactory.selectFrom(feedLikeEntity)
                                 .where(feedLikeEntity.id.user.eq(userId), feedLikeEntity.id.feed.eq(it.getId()))
-                                .exists())
+                                .fetchOne() != null)
                         .type(it.getFeed().getFeedType())
                         .feed(publicFeedMapper.publicFeedEntityToDomain(it))
                         .build()).toList();
 
         return PublishedFeedPage.builder()
-                .totalPages(query.fetch().size())
+                .totalPages((long) query.fetch().size())
                 .feeds(feeds)
                 .build();
     }

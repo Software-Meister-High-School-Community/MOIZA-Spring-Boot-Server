@@ -8,6 +8,7 @@ import com.moiza.moizaspringbootserver.feed.Feed;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedSpi;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
     }
 
     @Override
-    public PublishedFeedPage execute(UUID userId, String category, FeedType type, Orders order, int page) {
+    public PublishedFeedPage execute(UUID userId, String category, FeedType type, QueryOrders order, int page) {
         return publicFeedRepositoryCustom.getPublicFeed(userId, category, type, order, page);
     }
 }
