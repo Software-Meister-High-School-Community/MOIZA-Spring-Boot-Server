@@ -6,6 +6,7 @@ import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedQuerySpi;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedResponse;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
 import com.moiza.moizaspringbootserver.feed.usecase.PublishedFeedListUseCase;
 import com.moiza.moizaspringbootserver.user.domain.User;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,7 @@ class PublishedFeedListUseCaseTest {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd`'T'`hh:mm:ss");
         PublishedFeedPage page = PublishedFeedPage.builder()
                 .feeds(List.of(publishedFeedResponse))
-                .totalPages(1)
+                .totalPages(1L)
                 .build();
 
         PublishedFeedListResponse expected = PublishedFeedListResponse.builder()
@@ -63,18 +64,18 @@ class PublishedFeedListUseCaseTest {
                         com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedResponse.builder()
                                 .id(publishedFeedResponse.getFeed().getFeedId())
                                 .commentCount(publishedFeedResponse.getCommentCount())
-                                .isLiked(publishedFeedResponse.isLiked())
+                                .liked(publishedFeedResponse.getLiked())
                                 .createdAt(formatter.format(publishedFeedResponse.getFeed().getCreatedAt()))
                                 .likeCount(publishedFeedResponse.getFeed().getLikeCount())
                                 .viewCount(publishedFeedResponse.getFeed().getViewCount())
                                 .type(publishedFeedResponse.getType())
                                 .build()
                 ))
-                .totalPage(1)
+                .totalPage(1L)
                 .build();
 
 
-        given(publicFeedQuerySpi.execute(user.getId(), "테스트", publishedFeedResponse.getType(), PublicFeedQuerySpi.Orders.LATEST, 0))
+        given(publicFeedQuerySpi.execute(user.getId(), "테스트", publishedFeedResponse.getType(), QueryOrders.LATEST, 0))
                 .willReturn(page);
 
         assertEquals(expected.getFeedList().get(0), publishedFeedListUseCase.execute(user.getId(), "테스트", publishedFeedResponse.getType().name(), "LATEST", 0).getFeedList().get(0));
