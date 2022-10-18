@@ -8,6 +8,6 @@ import java.util.List;
 @Getter
 @Builder
 public class PublishedFeedListResponse {
-    private long totalPage;
+    private Long totalPage;
     private List<PublishedFeedResponse> feedList;
 }

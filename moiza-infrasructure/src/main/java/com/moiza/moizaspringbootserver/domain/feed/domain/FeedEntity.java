@@ -29,7 +29,7 @@ public class FeedEntity extends BaseUUIDEntity {
     private UserEntity user;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
     @OneToMany(mappedBy = "feedEntity")

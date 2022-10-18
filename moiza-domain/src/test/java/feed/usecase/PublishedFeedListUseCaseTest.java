@@ -2,10 +2,9 @@ package feed.usecase;
 
 import com.moiza.moizaspringbootserver.feed.PublicFeed;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
-import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedQuerySpi;
-import com.moiza.moizaspringbootserver.feed.spi.dto.response.CombinedFeed;
+import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedResponse;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.usecase.PublishedFeedListUseCase;
 import com.moiza.moizaspringbootserver.user.domain.User;
@@ -46,7 +45,7 @@ class PublishedFeedListUseCaseTest {
                 .updatedAt(LocalDateTime.now())
                 .build();
 
-        CombinedFeed combinedFeed = CombinedFeed.builder()
+        PublishedFeedResponse publishedFeedResponse = PublishedFeedResponse.builder()
                 .feed(publicFeed)
                 .type(FeedType.COMMON)
                 .liked(true)
@@ -55,30 +54,30 @@ class PublishedFeedListUseCaseTest {
 
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd`'T'`hh:mm:ss");
         PublishedFeedPage page = PublishedFeedPage.builder()
-                .feeds(List.of(combinedFeed))
+                .feeds(List.of(publishedFeedResponse))
                 .totalPages(1)
                 .build();
 
         PublishedFeedListResponse expected = PublishedFeedListResponse.builder()
                 .feedList(List.of(
-                        PublishedFeedResponse.builder()
-                                .id(combinedFeed.getFeed().getFeedId())
-                                .commentCount(combinedFeed.getCommentCount())
-                                .isLiked(combinedFeed.isLiked())
-                                .createdAt(formatter.format(combinedFeed.getFeed().getCreatedAt()))
-                                .likeCount(combinedFeed.getFeed().getLikeCount())
-                                .viewCount(combinedFeed.getFeed().getViewCount())
-                                .type(combinedFeed.getType())
+                        com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedResponse.builder()
+                                .id(publishedFeedResponse.getFeed().getFeedId())
+                                .commentCount(publishedFeedResponse.getCommentCount())
+                                .isLiked(publishedFeedResponse.isLiked())
+                                .createdAt(formatter.format(publishedFeedResponse.getFeed().getCreatedAt()))
+                                .likeCount(publishedFeedResponse.getFeed().getLikeCount())
+                                .viewCount(publishedFeedResponse.getFeed().getViewCount())
+                                .type(publishedFeedResponse.getType())
                                 .build()
                 ))
                 .totalPage(1)
                 .build();
 
 
-        given(publicFeedQuerySpi.execute(user.getId(), "테스트", combinedFeed.getType(), PublicFeedQuerySpi.Orders.LATEST, 0))
+        given(publicFeedQuerySpi.execute(user.getId(), "테스트", publishedFeedResponse.getType(), PublicFeedQuerySpi.Orders.LATEST, 0))
                 .willReturn(page);
 
-        assertEquals(expected.getFeedList().get(0), publishedFeedListUseCase.execute(user.getId(), "테스트", combinedFeed.getType().name(), "LATEST", 0).getFeedList().get(0));
+        assertEquals(expected.getFeedList().get(0), publishedFeedListUseCase.execute(user.getId(), "테스트", publishedFeedResponse.getType().name(), "LATEST", 0).getFeedList().get(0));
     }
 
 }

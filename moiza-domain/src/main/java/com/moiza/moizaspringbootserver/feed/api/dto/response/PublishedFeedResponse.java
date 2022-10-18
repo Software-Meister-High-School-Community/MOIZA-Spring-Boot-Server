@@ -15,8 +15,8 @@ public class PublishedFeedResponse {
     private String title;
     private FeedType type;
     private String createdAt;
-    private boolean isLiked;
-    private int viewCount;
-    private int likeCount;
-    private int commentCount;
+    private Boolean liked;
+    private Integer viewCount;
+    private Integer likeCount;
+    private Integer commentCount;
 }

@@ -2,11 +2,10 @@ package com.moiza.moizaspringbootserver.domain.feed.domain.repository.custom;
 
 import com.moiza.moizaspringbootserver.domain.feed.domain.PublicFeedEntity;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.PublicFeedMapper;
-import com.moiza.moizaspringbootserver.domain.like.domain.FeedLikeEntity;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
-import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedQuerySpi;
-import com.moiza.moizaspringbootserver.feed.spi.dto.response.CombinedFeed;
+import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedResponse;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -26,11 +25,17 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
     private final JPAQueryFactory jpaQueryFactory;
     private final PublicFeedMapper publicFeedMapper;
 
-    @Override
-    public PublishedFeedPage getPublicFeed(UUID userId, String category, FeedType type, PublicFeedQuerySpi.Orders order, int page) {
+    private List<BooleanExpression> getConditions(UUID userId, String category, FeedType feedType) {
         List<BooleanExpression> conditions = new ArrayList<>();
-        List<OrderSpecifier<Long>> orders = new ArrayList<>();
 
+        if(userId != null) conditions.add(publicFeedEntity.feed.user.id.eq(userId));
+        if(category != null) conditions.add(publicFeedEntity.feed.category.categoryName.eq(category));
+
+        return conditions;
+    }
+
+    private List<OrderSpecifier<Long>> getOrderConditions(QueryOrders order) {
+        List<OrderSpecifier<Long>> orders = new ArrayList<>();
         switch (order) {
             case LATEST -> orders.add(new OrderSpecifier<>(Order.DESC, publicFeedEntity.createdAt.castToNum(Long.class)));
             case OLDEST -> orders.add(new OrderSpecifier<>(Order.ASC, publicFeedEntity.createdAt.castToNum(Long.class)));
@@ -38,15 +43,18 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
             case VIEW_COUNT -> orders.add(new OrderSpecifier<>(Order.DESC, publicFeedEntity.viewCount.castToNum(Long.class)));
         }
 
-        if(userId != null) conditions.add(publicFeedEntity.feed.user.id.eq(userId));
-        if(category != null) conditions.add(publicFeedEntity.feed.category.categoryName.eq(category));
+
+
+        return orders;
+    }
+
+    @Override
+    public PublishedFeedPage getPublicFeed(UUID userId, String category, FeedType type, QueryOrders order, int page) {
+        List<BooleanExpression> conditions = getConditions(userId, category, type);
+        List<OrderSpecifier<Long>> orders = getOrderConditions(order);
 
         JPAQuery<PublicFeedEntity> query = jpaQueryFactory.selectFrom(publicFeedEntity)
                 .where(conditions.toArray(new BooleanExpression[0]));
-
-        FeedLikeEntity likeEntity = jpaQueryFactory.selectFrom(feedLikeEntity)
-                .where(feedLikeEntity.id.user.eq(userId))
-                .fetchOne();
 
         List<PublicFeedEntity> entities = query
                 .orderBy(orders.toArray(new OrderSpecifier[0]))
@@ -54,10 +62,12 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
                 .fetchJoin()
                 .fetch();
 
-        List<CombinedFeed> feeds = entities.stream()
-                .map(it -> CombinedFeed.builder()
+        List<PublishedFeedResponse> feeds = entities.stream()
+                .map(it -> PublishedFeedResponse.builder()
                         .commentCount(it.getFeed().getComments().size())
-                        .liked(likeEntity != null)
+                        .liked(jpaQueryFactory.selectFrom(feedLikeEntity)
+                                .where(feedLikeEntity.id.user.eq(userId), feedLikeEntity.id.feed.eq(it.getId()))
+                                .exists())
                         .type(it.getFeed().getFeedType())
                         .feed(publicFeedMapper.publicFeedEntityToDomain(it))
                         .build()).toList();

@@ -7,9 +7,9 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class CombinedFeed {
+public class PublishedFeedResponse {
     private FeedType type;
-    private boolean liked;
-    private int commentCount;
+    private Boolean liked;
+    private Integer commentCount;
     private PublicFeed feed;
 }

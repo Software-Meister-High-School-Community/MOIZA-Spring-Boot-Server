@@ -8,6 +8,6 @@ import java.util.List;
 @Getter
 @Builder
 public class PublishedFeedPage {
-    private long totalPages;
-    private List<CombinedFeed> feeds;
+    private Long totalPages;
+    private List<PublishedFeedResponse> feeds;
 }
