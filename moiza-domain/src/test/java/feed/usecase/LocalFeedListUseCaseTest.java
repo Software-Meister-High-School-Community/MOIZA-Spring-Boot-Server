@@ -2,7 +2,6 @@ package feed.usecase;
 
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
 import com.moiza.moizaspringbootserver.feed.LocalFeed;
-import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.localfeed.QueryLocalFeedSpi;
 import com.moiza.moizaspringbootserver.feed.usecase.LocalFeedListUseCase;
@@ -18,12 +17,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doThrow;
 
 @ExtendWith(MockitoExtension.class)
-public class LocalFeedListUseCaseTest {
+class LocalFeedListUseCaseTest {
 
     @Mock
     QueryUserSpi queryUserSpi;
@@ -39,7 +37,7 @@ public class LocalFeedListUseCaseTest {
 
     @Test
     void 조회_성공() {
-        /*ser user = User.builder()
+        User user = User.builder()
                 .id(UUID.randomUUID())
                 .build();
 
@@ -54,8 +52,11 @@ public class LocalFeedListUseCaseTest {
         given(authSecuritySpi.getCurrentUserId()).willReturn(user.getId());
         given(queryUserSpi.queryUserById(user.getId())).willReturn(user);
         given(queryLocalFeedSpi.getAllLocalFeedByTypeAndKeyword(
-                FeedType.COMMON, ""
-        )).willReturn();*/
+                user, FeedType.COMMON, ""
+        )).willReturn(expected);
+
+        assertEquals(expected.get(0).getFeedId().toString(),
+                localFeedListUseCase.execute(FeedType.COMMON, "").getFeedList().get(0).getId());
     }
 
 }
