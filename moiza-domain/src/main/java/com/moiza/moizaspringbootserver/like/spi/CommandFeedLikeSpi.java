@@ -5,5 +5,5 @@ import com.moiza.moizaspringbootserver.like.FeedLike;
 
 public interface CommandFeedLikeSpi {
     void deleteFeedLike(FeedLike feedLike);
-    void deleteAllLikesInFeed(Feed feed);
+    void deleteAllFeedLikeByFeedId(Feed feed);
 }
