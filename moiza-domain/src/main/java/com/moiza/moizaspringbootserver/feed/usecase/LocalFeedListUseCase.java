@@ -29,7 +29,7 @@ public class LocalFeedListUseCase implements LocalFeedListApi {
                 .map(it -> LocalFeedResponse.builder()
                         .id(it.getFeedId().toString())
                         .title(it.getTitle())
-                        .createdAt(it.getCreatedAt().toString())
+                        .createdAt(it.getCreatedAt())
                         .build())
                 .collect(Collectors.toList());
 
