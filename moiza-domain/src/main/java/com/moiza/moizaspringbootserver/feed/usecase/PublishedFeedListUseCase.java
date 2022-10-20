@@ -20,7 +20,7 @@ public class PublishedFeedListUseCase implements PublishedFeedListApi {
 
     @Override
     public PublishedFeedListResponse execute(UUID userId, String category, String type, String order, int page) {
-        PublishedFeedPage pageData = publicFeedQuerySpi.execute(userId, category, FeedType.valueOf(type),
+        PublishedFeedPage pageData = publicFeedQuerySpi.getAllPublishedFeed(userId, category, FeedType.valueOf(type),
                 QueryOrders.valueOf(order), page);
 
         return PublishedFeedListResponse.builder()

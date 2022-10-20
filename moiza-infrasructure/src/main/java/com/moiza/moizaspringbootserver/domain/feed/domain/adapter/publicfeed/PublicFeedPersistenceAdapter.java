@@ -29,7 +29,7 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
     }
 
     @Override
-    public PublishedFeedPage execute(UUID userId, String category, FeedType type, QueryOrders order, int page) {
+    public PublishedFeedPage getAllPublishedFeed(UUID userId, String category, FeedType type, QueryOrders order, int page) {
         return publicFeedRepositoryCustom.getPublicFeed(userId, category, type, order, page);
     }
 }

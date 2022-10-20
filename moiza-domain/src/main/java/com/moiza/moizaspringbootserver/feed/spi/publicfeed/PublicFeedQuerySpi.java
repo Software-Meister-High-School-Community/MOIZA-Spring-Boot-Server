@@ -7,5 +7,5 @@ import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
 import java.util.UUID;
 
 public interface PublicFeedQuerySpi {
-    PublishedFeedPage execute(UUID userId, String category, FeedType type, QueryOrders order, int page);
+    PublishedFeedPage getAllPublishedFeed(UUID userId, String category, FeedType type, QueryOrders order, int page);
 }

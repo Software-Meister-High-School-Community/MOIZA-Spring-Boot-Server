@@ -75,7 +75,7 @@ class PublishedFeedListUseCaseTest {
                 .build();
 
 
-        given(publicFeedQuerySpi.execute(user.getId(), "테스트", publishedFeedResponse.getType(), QueryOrders.LATEST, 0))
+        given(publicFeedQuerySpi.getAllPublishedFeed(user.getId(), "테스트", publishedFeedResponse.getType(), QueryOrders.LATEST, 0))
                 .willReturn(page);
 
         assertEquals(expected.getFeedList().get(0), publishedFeedListUseCase.execute(user.getId(), "테스트", publishedFeedResponse.getType().name(), "LATEST", 0).getFeedList().get(0));
