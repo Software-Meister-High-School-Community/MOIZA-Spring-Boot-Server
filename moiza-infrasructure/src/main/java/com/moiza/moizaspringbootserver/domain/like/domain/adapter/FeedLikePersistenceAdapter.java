@@ -7,6 +7,7 @@ import com.moiza.moizaspringbootserver.domain.like.domain.repository.FeedLikeRep
 import com.moiza.moizaspringbootserver.domain.like.mapper.FeedLikeMapper;
 import com.moiza.moizaspringbootserver.feed.Feed;
 import com.moiza.moizaspringbootserver.like.FeedLike;
+import com.moiza.moizaspringbootserver.like.exception.FeedLikeNotFoundException;
 import com.moiza.moizaspringbootserver.like.spi.FeedLikeSpi;
 import lombok.RequiredArgsConstructor;
 
@@ -41,11 +42,17 @@ public class FeedLikePersistenceAdapter implements FeedLikeSpi {
 
     @Override
     public boolean existsByFeedIdAndUserId(UUID feedId, UUID userId) {
-        return false;
+        try {
+            getFeedLike(feedId, userId);
+            return true;
+        } catch (FeedLikeNotFoundException exception) {
+            return false;
+        }
     }
 
     @Override
     public FeedLike getFeedLike(UUID feedId, UUID userId) {
-        return feedLikeRepository.findById(new FeedLikeId(userId, feedId, LocalDateTime.now())).isPresent();
+        return feedLikeMapper.feedLikeEntityToDomain(feedLikeRepository.findById(new FeedLikeId(userId, feedId, LocalDateTime.now()))
+                .orElseThrow(() -> FeedLikeNotFoundException.EXCEPTION));
     }
 }
