@@ -19,7 +19,6 @@ public class FeedLikePersistenceAdapter implements FeedLikeSpi {
     private final FeedMapper feedMapper;
     private final FeedLikeMapper feedLikeMapper;
     private final FeedLikeRepository feedLikeRepository;
-    private final FeedLikeMapper feedLikeMapper;
 
     @Override
     public void saveFeedLike(FeedLike feedLike) {

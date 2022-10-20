@@ -1,6 +1,5 @@
 package com.moiza.moizaspringbootserver.domain.user.domain.repository.custom;
 
-import com.moiza.moizaspringbootserver.domain.user.domain.repository.vo.QQuerySearchAllUsersVO;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.vo.QuerySearchAllUsersVO;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse;
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse.UserList;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.moiza.moizaspringbootserver.domain.user.domain.QUserEntity.userEntity;
 
 @RequiredArgsConstructor
 public class UserRepositoryCustomImpl implements UserRepositoryCustom {

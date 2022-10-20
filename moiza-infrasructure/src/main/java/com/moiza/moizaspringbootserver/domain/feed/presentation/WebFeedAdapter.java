@@ -26,7 +26,7 @@ public class WebFeedAdapter {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}/like")
-    public void addFeedLike(@PathVariable(name = "feed-id") UUID feedId) {
+    public void deleteFeedLike(@PathVariable(name = "feed-id") UUID feedId) {
         discardFeedLikeApi.execute(feedId);
     }
     
