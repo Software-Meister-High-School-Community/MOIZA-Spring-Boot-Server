@@ -15,8 +15,8 @@ public class FeedCategoryPersistenceAdapter implements FeedCategorySpi {
     private final FeedCategoryRepository feedCategoryRepository;
 
     @Override
-    public void deleteAllCategory(Feed feed) {
-        feedCategoryRepository.deleteAllByFeed(
+    public void deleteCategoryByFeedId(Feed feed) {
+        feedCategoryRepository.deleteByFeed(
                 feedMapper.feedDomainToEntity(feed)
         );
     }

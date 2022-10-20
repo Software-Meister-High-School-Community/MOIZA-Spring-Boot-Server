@@ -32,7 +32,7 @@ public class FeedPersistenceAdapter implements FeedSpi {
     }
 
     @Override
-    public void deleteFeed(Feed feed) {
+    public void deleteFeedbyFeedId(Feed feed) {
         feedRepository.delete(
                 feedMapper.feedDomainToEntity(feed)
         );

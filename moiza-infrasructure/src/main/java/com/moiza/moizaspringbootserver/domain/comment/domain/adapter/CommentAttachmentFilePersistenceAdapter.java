@@ -15,7 +15,7 @@ public class CommentAttachmentFilePersistenceAdapter implements CommentAttachmen
     private final CommentAttachmentFileRepository commentAttachmentFileRepository;
 
     @Override
-    public void deleteAllCommentAttachmentFile(Comment comment) {
+    public void deleteAllCommentAttachmentFilebyFeedId(Comment comment) {
         commentAttachmentFileRepository.deleteAllByCommentEntity(
                 commentMapper.commentDomainToEntity(comment)
         );
