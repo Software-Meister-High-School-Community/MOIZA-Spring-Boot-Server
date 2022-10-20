@@ -11,7 +11,6 @@ import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.spi.QueryUserSpi;
 import lombok.RequiredArgsConstructor;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,15 +23,13 @@ public class LocalFeedListUseCase implements LocalFeedListApi {
 
     @Override
     public LocalFeedListResponse execute(FeedType feedType, String category) {
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd`'T'`hh:mm:ss");
-
         User user = queryUserSpi.queryUserById(authSecuritySpi.getCurrentUserId());
         List<LocalFeedResponse> feeds = queryLocalFeedSpi.getAllLocalFeedByTypeAndKeyword(user, feedType, category)
                 .stream()
                 .map(it -> LocalFeedResponse.builder()
                         .id(it.getFeedId().toString())
                         .title(it.getTitle())
-                        .createdAt(formatter.format(it.getCreatedAt()))
+                        .createdAt(it.getCreatedAt().toString())
                         .build())
                 .collect(Collectors.toList());
 
