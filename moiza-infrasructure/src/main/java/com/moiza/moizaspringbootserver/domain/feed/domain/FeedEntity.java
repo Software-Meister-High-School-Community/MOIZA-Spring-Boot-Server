@@ -26,7 +26,7 @@ public class FeedEntity extends BaseUUIDEntity {
     @ManyToOne
     private UserEntity user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn
     private CategoryEntity category;
 
