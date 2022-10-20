@@ -28,7 +28,7 @@ public class FeedLikePersistenceAdapter implements FeedLikeSpi {
     }
 
     @Override
-    public void deleteAllFeedLike(Feed feed) {
+    public void deleteAllFeedLikeByFeedId(Feed feed) {
         feedLikeRepository.deleteAllByFeed(
                 feedMapper.feedDomainToEntity(feed)
         );
