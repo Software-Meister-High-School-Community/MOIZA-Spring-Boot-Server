@@ -25,7 +25,7 @@ public class WebFeedAdapter {
     }
 
     @GetMapping("/lists/temporaries")
-    public LocalFeedListResponse getAllTemporaries(String type, String category) {
-        return localFeedListApi.execute(FeedType.valueOf(type), category);
+    public LocalFeedListResponse getAllTemporaries(@RequestParam FeedType type, @RequestParam String category) {
+        return localFeedListApi.execute(type, category);
     }
 }
