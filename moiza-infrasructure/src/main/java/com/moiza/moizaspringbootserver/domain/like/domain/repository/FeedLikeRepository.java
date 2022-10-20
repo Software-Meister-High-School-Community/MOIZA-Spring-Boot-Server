@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FeedLikeRepository extends CrudRepository<FeedLikeEntity, FeedLikeId> {
-
     void deleteByFeed(FeedEntity feed);
     void findByUserAndFeed(UserEntity user, FeedEntity feed);
 }

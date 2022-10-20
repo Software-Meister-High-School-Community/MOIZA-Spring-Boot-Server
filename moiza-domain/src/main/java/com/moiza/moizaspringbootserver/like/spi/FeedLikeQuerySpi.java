@@ -1,7 +1,6 @@
 package com.moiza.moizaspringbootserver.like.spi;
 
 import com.moiza.moizaspringbootserver.like.FeedLike;
-
 import java.util.UUID;
 
 public interface FeedLikeQuerySpi {
