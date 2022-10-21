@@ -22,7 +22,7 @@ public class LocalFeedPersistenceAdapter implements LocalFeedSpi {
     private final LocalFeedCustomRepository localFeedCustomRepository;
 
     @Override
-    public void localFeedDelete(Feed feed) {
+    public void deleteLocalFeedByFeedId(Feed feed) {
         localFeedRepository.deleteByFeed(
                 feedMapper.feedDomainToEntity(feed)
         );
