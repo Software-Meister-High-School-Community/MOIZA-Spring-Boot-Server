@@ -20,4 +20,5 @@ public class FeedCategoryPersistenceAdapter implements FeedCategorySpi {
                 feedMapper.feedDomainToEntity(feed)
         );
     }
+
 }
