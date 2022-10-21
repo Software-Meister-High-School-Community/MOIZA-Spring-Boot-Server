@@ -5,9 +5,11 @@ import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersRespo
 import com.moiza.moizaspringbootserver.user.api.dto.response.SearchAllUsersResponse.UserList;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.moiza.moizaspringbootserver.domain.user.domain.QUserEntity.*;
+import com.moiza.moizaspringbootserver.domain.user.domain.repository.vo.QQuerySearchAllUsersVO;
 
 
 @RequiredArgsConstructor
