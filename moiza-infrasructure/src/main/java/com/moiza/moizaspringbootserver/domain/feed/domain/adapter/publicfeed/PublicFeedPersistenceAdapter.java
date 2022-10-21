@@ -15,7 +15,7 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
     private final PublicFeedRepository publicFeedRepository;
 
     @Override
-    public void publicFeedDelete(Feed feed) {
+    public void deletePublicFeedbyFeedId(Feed feed) {
         publicFeedRepository.deleteByFeed(
                 feedMapper.feedDomainToEntity(feed)
         );

@@ -46,14 +46,14 @@ public class DeleteFeedUseCase implements DeleteFeedApi {
             throw InvalidRoleException.EXCEPTION;
         }
 
-        publicFeedSpi.publicFeedDelete(feed);
-        localFeedSpi.localFeedDelete(feed);
-        feedSpi.feedDelete(feed);
+        publicFeedSpi.deletePublicFeedbyFeedId(feed);
+        localFeedSpi.deleteLocalFeedByFeedId(feed);
+        feedSpi.deleteFeedbyFeedId(feed);
         feedLikeSpi.deleteAllFeedLikeByFeedId(feed);
-        feedCategorySpi.deleteCategory(feed);
-        feedAttachmentFileSpi.feedAttachmentFileDelete(feed);
-        commentAttachmentFileSpi.deleteCommentAttachmentFile(comment);
-        commentSpi.deleteComment(feed);
+        feedCategorySpi.deleteCategoryByFeedId(feed);
+        feedAttachmentFileSpi.deleteAllFeedAttachmentFilebyFeedId(feed);
+        commentAttachmentFileSpi.deleteAllCommentAttachmentFilebyFeedId(comment);
+        commentSpi.deleteAllCommentbyFeedid(feed);
 
     }
 }

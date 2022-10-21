@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentAttachmentFileRepository extends CrudRepository<CommentAttatchmentFileEntity, UUID> {
 
-    void deleteByCommentEntity(CommentEntity commentEntity);
+    void deleteAllByCommentEntity(CommentEntity commentEntity);
 
 }

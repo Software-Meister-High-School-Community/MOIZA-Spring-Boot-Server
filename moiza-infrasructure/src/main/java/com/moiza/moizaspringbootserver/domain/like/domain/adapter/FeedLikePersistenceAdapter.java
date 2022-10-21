@@ -18,8 +18,8 @@ import java.util.UUID;
 @Adapter
 public class FeedLikePersistenceAdapter implements FeedLikeSpi {
     private final FeedMapper feedMapper;
-    private final FeedLikeMapper feedLikeMapper;
     private final FeedLikeRepository feedLikeRepository;
+    private final FeedLikeMapper feedLikeMapper;
 
     @Override
     public void saveFeedLike(FeedLike feedLike) {
@@ -29,13 +29,13 @@ public class FeedLikePersistenceAdapter implements FeedLikeSpi {
     }
 
     @Override
-    public void deleteFeedLike(FeedLike feedLike) {
-        feedLikeRepository.delete(feedLikeMapper.feedLikeDomainToEntity(feedLike));
+    public void deleteFeedLike(Feed feed) {
+        feedLikeRepository.delete(feedLikeMapper.feedLikeDomainToEntity(feed));
     }
 
     @Override
     public void deleteAllFeedLikeByFeedId(Feed feed) {
-        feedLikeRepository.deleteByFeed(
+        feedLikeRepository.deleteAllByFeed(
                 feedMapper.feedDomainToEntity(feed)
         );
     }
