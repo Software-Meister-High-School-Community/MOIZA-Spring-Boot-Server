@@ -49,7 +49,7 @@ public class DeleteFeedUseCase implements DeleteFeedApi {
         publicFeedSpi.deletePublicFeedbyFeedId(feed);
         localFeedSpi.deleteLocalFeedByFeedId(feed);
         feedSpi.deleteFeedbyFeedId(feed);
-        feedLikeSpi.deleteAllFeedLikeByFeedId(feed);
+        feedLikeSpi.deleteAllFeedLikeByFeed(feed);
         feedCategorySpi.deleteCategoryByFeedId(feed);
         feedAttachmentFileSpi.deleteAllFeedAttachmentFilebyFeedId(feed);
         commentAttachmentFileSpi.deleteAllCommentAttachmentFilebyFeedId(comment);
