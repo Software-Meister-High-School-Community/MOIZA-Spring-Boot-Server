@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum FeedErrorCode implements ErrorProperty {
-
+	BAD_FEED_TYPE(400, "No Such Feed Type"),
 	FEED_NOT_FOUND(404, "feed is not found");
 
 	private final int status;

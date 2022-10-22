@@ -1,6 +1,9 @@
 package com.moiza.moizaspringbootserver.domain.feed.presentation;
 
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
+import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
+import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
+import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.like.api.DiscardFeedLikeApi;
 import com.moiza.moizaspringbootserver.like.api.AddFeedLikeApi;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,7 @@ import java.util.UUID;
 public class WebFeedAdapter {
 
     private final DeleteFeedApi deleteFeedApi;
+    private final LocalFeedListApi localFeedListApi;
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
 
@@ -24,6 +28,11 @@ public class WebFeedAdapter {
         deleteFeedApi.execute(feedId);
     }
 
+    @GetMapping("/lists/temporaries")
+    public LocalFeedListResponse getAllTemporaries(@RequestParam FeedType type, @RequestParam String category) {
+        return localFeedListApi.execute(type, category);
+    }
+    
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}/like")
     public void deleteFeedLike(@PathVariable(name = "feed-id") UUID feedId) {

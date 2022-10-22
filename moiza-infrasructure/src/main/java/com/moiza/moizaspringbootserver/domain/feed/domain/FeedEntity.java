@@ -27,7 +27,6 @@ public class FeedEntity extends BaseUUIDEntity {
     @JoinColumn(name = "user_id")
     @ManyToOne
     private UserEntity user;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
