@@ -1,5 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.feed.domain;
 
+import com.moiza.moizaspringbootserver.domain.like.domain.FeedLikeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,11 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @SuperBuilder
@@ -26,4 +29,7 @@ public class PublicFeedEntity extends CommonFeedEntity {
 
     @NotNull
     private Integer viewCount = 0;
+
+    @OneToMany(mappedBy = "id.feed")
+    private List<FeedLikeEntity> likes;
 }

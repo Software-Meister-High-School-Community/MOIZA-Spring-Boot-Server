@@ -8,9 +8,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum FeedLikeErrorCode implements ErrorProperty {
+    FEED_LIKE_NOT_FOUND(404, "Feed Like Not Found"),
 
-    FEED_LIKE_ALREADY_EXISTS(409, "Feed Like Already Exists")
-    ;
+    FEED_LIKE_ALREADY_EXISTS(409, "Feed Like Already Exists");
 
     private final int status;
 
