@@ -5,7 +5,7 @@ import com.moiza.moizaspringbootserver.error.MoizaException;
 
 public class RefreshTokenNotFoundException extends MoizaException {
 
-    public static final RefreshTokenNotFoundException EXCEPTION =
+    public static final MoizaException EXCEPTION =
             new RefreshTokenNotFoundException();
 
     private RefreshTokenNotFoundException() {

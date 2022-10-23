@@ -32,6 +32,6 @@ public class ReportMapperImpl implements ReportMapper {
     }
 
     private UserEntity findReportId(UUID id) {
-        return userRepository.findById(id).orElseThrow(RuntimeException::new);
+        return userRepository.findById(id).orElseThrow(RuntimeException::new); //TODO 담당자 Exception 만들어서 추가
     }
 }

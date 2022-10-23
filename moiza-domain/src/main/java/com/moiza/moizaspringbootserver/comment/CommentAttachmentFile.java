@@ -8,9 +8,9 @@ import lombok.Getter;
 @Getter
 @Builder
 @Aggregate
-public class CommentAttatchmentFile {
+public class CommentAttachmentFile {
 
 	private final UUID id;
-	private final String attatchmentFileUrl;
+	private final String attachmentFileUrl;
 	private final UUID commentId;
 }

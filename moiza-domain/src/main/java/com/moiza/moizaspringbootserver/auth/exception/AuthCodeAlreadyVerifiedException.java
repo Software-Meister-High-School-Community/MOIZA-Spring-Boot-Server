@@ -9,5 +9,5 @@ public class AuthCodeAlreadyVerifiedException extends MoizaException {
         super(AuthErrorCode.AUTH_CODE_ALREADY_VERIFIED);
     }
 
-    public static final AuthCodeAlreadyVerifiedException EXCEPTION = new AuthCodeAlreadyVerifiedException();
+    public static final MoizaException EXCEPTION = new AuthCodeAlreadyVerifiedException();
 }

@@ -3,9 +3,9 @@ package com.moiza.moizaspringbootserver.follow.usecase;
 import com.moiza.moizaspringbootserver.annotation.UseCase;
 import com.moiza.moizaspringbootserver.follow.Follow;
 import com.moiza.moizaspringbootserver.follow.api.FollowUserApi;
-import com.moiza.moizaspringbootserver.follow.sqi.CommandFollowSpi;
-import com.moiza.moizaspringbootserver.follow.sqi.FollowAuthSecuritySpi;
-import com.moiza.moizaspringbootserver.follow.sqi.FollowQueryUserSpi;
+import com.moiza.moizaspringbootserver.follow.spi.CommandFollowSpi;
+import com.moiza.moizaspringbootserver.follow.spi.FollowAuthSecuritySpi;
+import com.moiza.moizaspringbootserver.follow.spi.FollowQueryUserSpi;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 

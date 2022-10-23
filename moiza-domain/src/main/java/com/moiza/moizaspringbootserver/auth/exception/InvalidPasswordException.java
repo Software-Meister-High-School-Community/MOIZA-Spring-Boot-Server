@@ -5,7 +5,7 @@ import com.moiza.moizaspringbootserver.error.MoizaException;
 
 public class InvalidPasswordException extends MoizaException {
 
-    public static final InvalidPasswordException EXCEPTION =
+    public static final MoizaException EXCEPTION =
             new InvalidPasswordException();
     private InvalidPasswordException() {
         super(AuthErrorCode.INVALID_PASSWORD);

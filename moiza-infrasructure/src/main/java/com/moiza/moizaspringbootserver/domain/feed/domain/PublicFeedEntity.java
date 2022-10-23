@@ -25,10 +25,10 @@ public class PublicFeedEntity extends CommonFeedEntity {
     private LocalDateTime updatedAt;
 
     @NotNull
-    private Integer likeCount = 0;
+    private Integer likeCount;
 
     @NotNull
-    private Integer viewCount = 0;
+    private Integer viewCount;
 
     @OneToMany(mappedBy = "id.feed")
     private List<FeedLikeEntity> likes;

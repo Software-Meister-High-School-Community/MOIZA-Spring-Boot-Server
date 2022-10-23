@@ -9,5 +9,5 @@ public class EmailCodeNotfoundException extends MoizaException {
 		super(AuthErrorCode.EMAIL_CODE_NOT_FOUND);
 	}
 
-	public static final EmailCodeNotfoundException EXCEPTION = new EmailCodeNotfoundException();
+	public static final MoizaException EXCEPTION = new EmailCodeNotfoundException();
 }
