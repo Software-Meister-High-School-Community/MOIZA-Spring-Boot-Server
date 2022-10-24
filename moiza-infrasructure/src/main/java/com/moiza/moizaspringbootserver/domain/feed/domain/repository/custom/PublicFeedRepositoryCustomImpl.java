@@ -30,6 +30,7 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
 
         if(userId != null) conditions.add(publicFeedEntity.feed.user.id.eq(userId));
         if(category != null) conditions.add(publicFeedEntity.feed.category.categoryName.eq(category));
+        conditions.add(publicFeedEntity.feed.feedType.eq(feedType));
 
         return conditions;
     }
