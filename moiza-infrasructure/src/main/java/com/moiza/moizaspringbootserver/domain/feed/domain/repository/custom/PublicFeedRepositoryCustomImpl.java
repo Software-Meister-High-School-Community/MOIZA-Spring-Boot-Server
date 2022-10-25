@@ -50,6 +50,18 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
         return orders;
     }
 
+    private Boolean getLiked(UUID userId, UUID feedId) {
+        return jpaQueryFactory.selectFrom(feedLikeEntity)
+                .where(feedLikeEntity.id.user.eq(userId), feedLikeEntity.id.feed.eq(feedId))
+                .fetchOne() != null;
+    }
+
+    private Integer getCommentCount(UUID feedId) {
+        return jpaQueryFactory.selectFrom(commentEntity)
+                .where(commentEntity.feedEntity.id.eq(feedId))
+                .fetch().size();
+    }
+
     @Override
     public PublishedFeedPage getPublicFeed(UUID userId, String category, FeedType type, QueryOrders order, int page) {
         List<BooleanExpression> conditions = getConditions(userId, category, type);
@@ -66,12 +78,8 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
 
         List<PublishedFeedResponse> feeds = entities.stream()
                 .map(it -> PublishedFeedResponse.builder()
-                        .commentCount(jpaQueryFactory.selectFrom(commentEntity)
-                                .where(commentEntity.feedEntity.id.eq(it.getId()))
-                                .fetch().size())
-                        .liked(jpaQueryFactory.selectFrom(feedLikeEntity)
-                                .where(feedLikeEntity.id.user.eq(userId), feedLikeEntity.id.feed.eq(it.getId()))
-                                .fetchOne() != null)
+                        .commentCount(getCommentCount(it.getId()))
+                        .liked(getLiked(userId, it.getId()))
                         .type(it.getFeed().getFeedType())
                         .feed(publicFeedMapper.publicFeedEntityToDomain(it))
                         .build()).toList();
