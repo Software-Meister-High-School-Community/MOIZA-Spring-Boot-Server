@@ -19,6 +19,7 @@ import java.util.UUID;
 
 import static com.moiza.moizaspringbootserver.domain.feed.domain.QPublicFeedEntity.*;
 import static com.moiza.moizaspringbootserver.domain.like.domain.QFeedLikeEntity.*;
+import static com.moiza.moizaspringbootserver.domain.comment.domain.QCommentEntity.*;
 
 @RequiredArgsConstructor
 public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCustom {
@@ -65,7 +66,9 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
 
         List<PublishedFeedResponse> feeds = entities.stream()
                 .map(it -> PublishedFeedResponse.builder()
-                        .commentCount(it.getFeed().getComments().size())
+                        .commentCount(jpaQueryFactory.selectFrom(commentEntity)
+                                .where(commentEntity.feedEntity.id.eq(it.getId()))
+                                .fetch().size())
                         .liked(jpaQueryFactory.selectFrom(feedLikeEntity)
                                 .where(feedLikeEntity.id.user.eq(userId), feedLikeEntity.id.feed.eq(it.getId()))
                                 .fetchOne() != null)
