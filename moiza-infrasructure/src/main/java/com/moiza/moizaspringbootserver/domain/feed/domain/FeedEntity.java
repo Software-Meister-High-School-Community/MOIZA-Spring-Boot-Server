@@ -23,10 +23,10 @@ public class FeedEntity extends BaseUUIDEntity {
     private FeedType feedType;
 
     @JoinColumn(name = "user_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private CategoryEntity category;
 }
