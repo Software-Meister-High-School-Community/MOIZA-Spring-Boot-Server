@@ -19,6 +19,7 @@ import java.util.UUID;
 
 import static com.moiza.moizaspringbootserver.domain.feed.domain.QPublicFeedEntity.*;
 import static com.moiza.moizaspringbootserver.domain.like.domain.QFeedLikeEntity.*;
+import static com.moiza.moizaspringbootserver.domain.comment.domain.QCommentEntity.*;
 
 @RequiredArgsConstructor
 public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCustom {
@@ -30,6 +31,7 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
 
         if(userId != null) conditions.add(publicFeedEntity.feed.user.id.eq(userId));
         if(category != null) conditions.add(publicFeedEntity.feed.category.categoryName.eq(category));
+        conditions.add(publicFeedEntity.feed.feedType.eq(feedType));
 
         return conditions;
     }
@@ -48,6 +50,18 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
         return orders;
     }
 
+    private Boolean getLiked(UUID userId, UUID feedId) {
+        return jpaQueryFactory.selectFrom(feedLikeEntity)
+                .where(feedLikeEntity.id.user.eq(userId), feedLikeEntity.id.feed.eq(feedId))
+                .fetchOne() != null;
+    }
+
+    private Integer getCommentCount(UUID feedId) {
+        return jpaQueryFactory.selectFrom(commentEntity)
+                .where(commentEntity.feedEntity.id.eq(feedId))
+                .fetch().size();
+    }
+
     @Override
     public PublishedFeedPage getPublicFeed(UUID userId, String category, FeedType type, QueryOrders order, int page) {
         List<BooleanExpression> conditions = getConditions(userId, category, type);
@@ -64,10 +78,8 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
 
         List<PublishedFeedResponse> feeds = entities.stream()
                 .map(it -> PublishedFeedResponse.builder()
-                        .commentCount(it.getFeed().getComments().size())
-                        .liked(jpaQueryFactory.selectFrom(feedLikeEntity)
-                                .where(feedLikeEntity.id.user.eq(userId), feedLikeEntity.id.feed.eq(it.getId()))
-                                .fetchOne() != null)
+                        .commentCount(getCommentCount(it.getId()))
+                        .liked(getLiked(userId, it.getId()))
                         .type(it.getFeed().getFeedType())
                         .feed(publicFeedMapper.publicFeedEntityToDomain(it))
                         .build()).toList();
