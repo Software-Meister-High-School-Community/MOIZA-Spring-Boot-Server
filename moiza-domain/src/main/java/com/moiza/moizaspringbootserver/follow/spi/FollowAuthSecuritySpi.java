@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.follow.sqi;
+package com.moiza.moizaspringbootserver.follow.spi;
 
 import java.util.UUID;
 

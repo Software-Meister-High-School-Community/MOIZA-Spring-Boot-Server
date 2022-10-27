@@ -16,11 +16,11 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "tbl_comment_attatchment_file")
-public class CommentAttatchmentFileEntity extends BaseUUIDEntity {
+@Table(name = "tbl_comment_attachment_file")
+public class CommentAttachmentFileEntity extends BaseUUIDEntity {
 
 	@NotNull
-	private String attatchmentFileUrl;
+	private String attachmentFileUrl;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "comment_id")

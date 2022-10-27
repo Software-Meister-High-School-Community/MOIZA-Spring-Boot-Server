@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -24,7 +21,7 @@ public class FeedAttachmentFileEntity extends BaseUUIDEntity {
     @Length(max = 256)
     private String attachmentFileUrl;
 
-    @JoinColumn(name = "feed_id")
-    @ManyToOne
+    @JoinColumn(name = "feed_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private FeedEntity feed;
 }

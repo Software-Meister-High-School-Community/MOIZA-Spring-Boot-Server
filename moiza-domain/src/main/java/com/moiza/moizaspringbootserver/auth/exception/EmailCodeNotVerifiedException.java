@@ -9,5 +9,5 @@ public class EmailCodeNotVerifiedException extends MoizaException {
         super(AuthErrorCode.EMAIL_CODE_NOT_VERIFIED);
     }
 
-    public static final EmailCodeNotVerifiedException EXCEPTION = new EmailCodeNotVerifiedException();
+    public static final MoizaException EXCEPTION = new EmailCodeNotVerifiedException();
 }

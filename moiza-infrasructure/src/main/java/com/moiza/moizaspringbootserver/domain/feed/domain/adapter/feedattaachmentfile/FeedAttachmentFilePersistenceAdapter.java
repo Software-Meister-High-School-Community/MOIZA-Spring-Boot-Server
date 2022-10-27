@@ -15,7 +15,7 @@ public class FeedAttachmentFilePersistenceAdapter implements FeedAttachmentFileS
     private final FeedAttachmentFileRepository feedAttachmentFileRepository;
 
     @Override
-    public void deleteAllFeedAttachmentFilebyFeedId(Feed feed) {
+    public void deleteAllFeedAttachmentFileByFeedId(Feed feed) {
         feedAttachmentFileRepository.deleteByFeed(
                 feedMapper.feedDomainToEntity(feed)
         );

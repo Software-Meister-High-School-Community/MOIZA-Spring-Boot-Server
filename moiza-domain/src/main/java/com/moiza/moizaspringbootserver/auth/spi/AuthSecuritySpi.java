@@ -1,6 +1,6 @@
 package com.moiza.moizaspringbootserver.auth.spi;
 
-import com.moiza.moizaspringbootserver.follow.sqi.FollowAuthSecuritySpi;
+import com.moiza.moizaspringbootserver.follow.spi.FollowAuthSecuritySpi;
 import java.util.UUID;
 
 public interface AuthSecuritySpi extends FollowAuthSecuritySpi {

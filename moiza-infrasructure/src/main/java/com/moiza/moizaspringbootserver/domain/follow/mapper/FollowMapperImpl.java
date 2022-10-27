@@ -2,7 +2,6 @@ package com.moiza.moizaspringbootserver.domain.follow.mapper;
 
 import com.moiza.moizaspringbootserver.domain.follow.domain.FollowEntity;
 import com.moiza.moizaspringbootserver.domain.follow.domain.FollowId;
-import com.moiza.moizaspringbootserver.domain.follow.domain.repository.FollowRepository;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.follow.Follow;

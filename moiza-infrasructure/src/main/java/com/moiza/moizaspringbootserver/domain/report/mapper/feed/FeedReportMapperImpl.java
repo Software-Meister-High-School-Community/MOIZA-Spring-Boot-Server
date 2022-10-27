@@ -38,10 +38,10 @@ public class FeedReportMapperImpl implements FeedReportMapper {
     }
 
     private ReportEntity findByReportId(UUID id) {
-        return reportRepository.findById(id).orElseThrow(RuntimeException::new);
+        return reportRepository.findById(id).orElseThrow(RuntimeException::new); //TODO 담당자 Exception 만들어서 추가
     }
 
     private FeedEntity findByFeedId(UUID id) {
-        return feedRepository.findById(id).orElseThrow(RuntimeException::new);
+        return feedRepository.findById(id).orElseThrow(RuntimeException::new); //TODO 담당자 Exception 만들어서 추가
     }
 }

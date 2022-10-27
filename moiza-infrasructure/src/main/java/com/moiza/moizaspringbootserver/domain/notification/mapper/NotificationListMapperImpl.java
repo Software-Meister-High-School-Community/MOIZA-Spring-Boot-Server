@@ -38,10 +38,10 @@ public class NotificationListMapperImpl implements NotificationListMapper {
     }
 
     private NotificationEntity findByNotificationId(UUID id) {
-        return notificationRepository.findById(id).orElseThrow(RuntimeException::new);
+        return notificationRepository.findById(id).orElseThrow(RuntimeException::new); //TODO 담당자 Exception 만들어서 추가
     }
 
     private UserEntity findByUserId(UUID id) {
-        return userRepository.findById(id).orElseThrow(RuntimeException::new);
+        return userRepository.findById(id).orElseThrow(RuntimeException::new); //TODO 담당자 Exception 만들어서 추가
     }
 }

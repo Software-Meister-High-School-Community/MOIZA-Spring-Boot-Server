@@ -11,5 +11,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserIntroduceLinkRepository extends CrudRepository<UserIntroduceLinkEntity, UUID> {
     List<UserIntroduceLinkEntity> findAllByUserEntityId(UUID userId);
-    void deleteAllByUserEntityId(UUID userId);
 }

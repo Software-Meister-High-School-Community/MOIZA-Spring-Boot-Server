@@ -38,10 +38,10 @@ public class CommentReportMapperImpl implements CommentReportMapper {
     }
 
     private ReportEntity findByReportId(UUID id) {
-        return reportRepository.findById(id).orElseThrow(RuntimeException::new);
+        return reportRepository.findById(id).orElseThrow(RuntimeException::new); //TODO 담당자 Exception 만들어서 추가
     }
 
     private CommentEntity findByCommentId(UUID id) {
-        return commentRepository.findById(id).orElseThrow(RuntimeException::new);
+        return commentRepository.findById(id).orElseThrow(RuntimeException::new); //TODO 담당자 Exception 만들어서 추가
     }
 }
