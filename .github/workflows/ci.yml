@@ -22,14 +22,14 @@ jobs:
           java-version: "17"
           distribution: 'zulu'
 
-      - name: Grant execute permission for gradlew
+    - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Gradle Test
-        run: ./gradlew test jacocoRootReport
+    - name: Gradle Test
+      run: ./gradlew test jacocoRootReport
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
