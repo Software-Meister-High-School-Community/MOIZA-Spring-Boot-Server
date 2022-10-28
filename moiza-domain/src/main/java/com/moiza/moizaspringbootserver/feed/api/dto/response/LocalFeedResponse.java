@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.feed.api.response;
+package com.moiza.moizaspringbootserver.feed.api.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
