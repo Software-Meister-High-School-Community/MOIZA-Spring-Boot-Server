@@ -1,6 +1,7 @@
 package com.moiza.moizaspringbootserver.domain.feed.presentation;
 
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
+import com.moiza.moizaspringbootserver.feed.api.DeleteLocalFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
@@ -24,6 +25,7 @@ public class WebFeedAdapter {
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
+    private final DeleteLocalFeedApi deleteLocalFeedApi;
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
@@ -55,5 +57,11 @@ public class WebFeedAdapter {
                                               @RequestParam("page") int page) {
         return publishedFeedListApi.execute(userId.isEmpty() ? null : UUID.fromString(userId), category,
                 type, order, page);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/temporaries/{feed-id}")
+    public void deleteLocalFeed(@PathVariable("feed-id") UUID feedId) {
+        deleteLocalFeedApi.execute(feedId);
     }
 }
