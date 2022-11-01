@@ -40,6 +40,11 @@ public class UserPersistenceAdapter implements UserSpi {
     }
 
     @Override
+    public boolean existsUserById(UUID userId) {
+        return userRepository.findById(userId).isPresent();
+    }
+
+    @Override
     public boolean existsUserByAccountId(String accountId) {
         return userRepository.findByAccountId(accountId).isPresent();
     }
