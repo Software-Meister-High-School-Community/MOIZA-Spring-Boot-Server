@@ -6,6 +6,7 @@ import com.moiza.moizaspringbootserver.user.domain.User;
 import java.util.UUID;
 
 public interface QueryUserSpi {
+	boolean existsUserById(UUID userId);
 	boolean existsUserByAccountId(String accountId);
 	boolean existsUserByEmail(String email);
 	String queryGetEmailByAccountId(String accountId);
