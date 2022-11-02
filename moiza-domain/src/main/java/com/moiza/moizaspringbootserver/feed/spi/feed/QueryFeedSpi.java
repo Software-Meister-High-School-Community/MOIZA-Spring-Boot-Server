@@ -9,5 +9,5 @@ public interface QueryFeedSpi {
     Long getUserFeeCount(User user);
 
     Feed getFeedById(UUID feedId);
-    String getCategoryName(UUID feedId);
+    String getCategoryNameByFeedId(UUID feedId);
 }

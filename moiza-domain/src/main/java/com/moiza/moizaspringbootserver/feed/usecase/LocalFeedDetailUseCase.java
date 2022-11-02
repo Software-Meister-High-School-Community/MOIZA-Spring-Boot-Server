@@ -33,7 +33,7 @@ public class LocalFeedDetailUseCase implements LocalFeedDetailApi {
                 .title(localFeed.getTitle())
                 .content(localFeed.getContent())
                 .feedType(feed.getFeedType())
-                .category(queryFeedSpi.getCategoryName(feed.getId()))
+                .category(queryFeedSpi.getCategoryNameByFeedId(feed.getId()))
                 .build();
     }
 }

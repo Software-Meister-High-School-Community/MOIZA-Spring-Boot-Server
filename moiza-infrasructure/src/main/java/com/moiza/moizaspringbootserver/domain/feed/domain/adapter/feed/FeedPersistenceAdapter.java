@@ -46,7 +46,7 @@ public class FeedPersistenceAdapter implements FeedSpi {
     }
 
     @Override
-    public String getCategoryName(UUID feedId) {
+    public String getCategoryNameByFeedId(UUID feedId) {
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> FeedNotFoundException.EXCEPTION);
 
