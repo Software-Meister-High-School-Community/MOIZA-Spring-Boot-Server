@@ -1,12 +1,12 @@
 package com.moiza.moizaspringbootserver.feed.usecase;
 
 import com.moiza.moizaspringbootserver.annotation.UseCase;
+import com.moiza.moizaspringbootserver.auth.exception.InvalidRoleException;
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
 import com.moiza.moizaspringbootserver.feed.Feed;
 import com.moiza.moizaspringbootserver.feed.LocalFeed;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedDetailApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.LocalFeedDetailResponse;
-import com.moiza.moizaspringbootserver.feed.exception.FeedAccessDeniedException;
 import com.moiza.moizaspringbootserver.feed.spi.feed.QueryFeedSpi;
 import com.moiza.moizaspringbootserver.feed.spi.localfeed.QueryLocalFeedSpi;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class LocalFeedDetailUseCase implements LocalFeedDetailApi {
         LocalFeed localFeed = queryLocalFeedSpi.getFeedById(feedId);
 
         if(feed.getUserId().equals(queryUserId))
-            throw FeedAccessDeniedException.EXCEPTION;
+            throw InvalidRoleException.EXCEPTION;
 
         return LocalFeedDetailResponse.builder()
                 .title(localFeed.getTitle())
