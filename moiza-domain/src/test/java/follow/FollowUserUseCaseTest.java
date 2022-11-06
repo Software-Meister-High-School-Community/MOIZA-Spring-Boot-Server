@@ -1,10 +1,8 @@
 package follow;
 
-import static org.mockito.BDDMockito.given;
-
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
-import com.moiza.moizaspringbootserver.follow.sqi.CommandFollowSpi;
-import com.moiza.moizaspringbootserver.follow.sqi.FollowQueryUserSpi;
+import com.moiza.moizaspringbootserver.follow.spi.CommandFollowSpi;
+import com.moiza.moizaspringbootserver.follow.spi.FollowQueryUserSpi;
 import com.moiza.moizaspringbootserver.follow.usecase.FollowUserUseCase;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,8 @@
 package com.moiza.moizaspringbootserver.follow.spi;
 
-public interface FollowSpi extends QueryFollowSpi {
+import com.moiza.moizaspringbootserver.user.domain.User;
+
+public interface FollowSpi extends CommandFollowSpi, QueryFollowSpi {
+
+    Long getFollowCount(User user);
 }

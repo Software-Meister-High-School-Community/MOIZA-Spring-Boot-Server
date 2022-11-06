@@ -1,9 +1,7 @@
 package com.moiza.moizaspringbootserver.domain.follow.domain;
 
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
-import com.moiza.moizaspringbootserver.global.entity.BaseTimeEntity;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

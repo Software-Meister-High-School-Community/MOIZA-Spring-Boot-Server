@@ -21,6 +21,13 @@ repositories {
 
 }
 
+allprojects {
+    bootJar {
+        enabled = false
+    }
+}
+
+
 subprojects {
     group 'com.moiza'
     version '1.0'
@@ -44,6 +51,13 @@ subprojects {
         testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.4'
         testImplementation 'org.assertj:assertj-core:3.22.0'
         testImplementation 'org.mockito:mockito-core:3.8.0'
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+            html.enabled false
+        }
     }
 }
 

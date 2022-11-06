@@ -1,0 +1,11 @@
+package com.moiza.moizaspringbootserver.domain.comment.mapper;
+
+import com.moiza.moizaspringbootserver.comment.CommentAttachmentFile;
+import com.moiza.moizaspringbootserver.domain.comment.domain.CommentAttachmentFileEntity;
+
+public interface CommentAttachmentFileMapper {
+
+	CommentAttachmentFileEntity commentAttachmentFileDomainToEntity(CommentAttachmentFile commentAttachmentFile);
+
+	CommentAttachmentFile commentAttachmentFileEntityToDomain(CommentAttachmentFileEntity commentAttachmentFileEntity);
+}

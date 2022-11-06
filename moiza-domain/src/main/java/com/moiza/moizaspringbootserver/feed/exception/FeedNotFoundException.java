@@ -9,5 +9,5 @@ public class FeedNotFoundException extends MoizaException {
 		super(FeedErrorCode.FEED_NOT_FOUND);
 	}
 
-	public static final FeedNotFoundException EXCEPTION = new FeedNotFoundException();
+	public static final MoizaException EXCEPTION = new FeedNotFoundException();
 }

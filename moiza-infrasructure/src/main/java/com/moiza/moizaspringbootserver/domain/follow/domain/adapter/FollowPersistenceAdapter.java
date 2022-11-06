@@ -8,7 +8,7 @@ import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.follow.Follow;
 import com.moiza.moizaspringbootserver.follow.exception.FollowNotFoundException;
-import com.moiza.moizaspringbootserver.follow.sqi.FollowSpi;
+import com.moiza.moizaspringbootserver.follow.spi.FollowSpi;
 import java.util.UUID;
 
 import com.moiza.moizaspringbootserver.user.domain.User;

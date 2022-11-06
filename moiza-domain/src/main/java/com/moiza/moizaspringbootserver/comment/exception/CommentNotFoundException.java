@@ -9,5 +9,5 @@ public class CommentNotFoundException extends MoizaException {
 		super(CommentErrorCode.COMMENT_NOT_FOUND);
 	}
 
-	public static final CommentNotFoundException EXCEPTION = new CommentNotFoundException();
+	public static final MoizaException EXCEPTION = new CommentNotFoundException();
 }
