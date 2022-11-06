@@ -6,6 +6,8 @@ import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
+import com.moiza.moizaspringbootserver.feed.spi.dto.response.FeedDetailsResponse;
+import com.moiza.moizaspringbootserver.feed.usecase.QueryFeedDetailsUseCase;
 import com.moiza.moizaspringbootserver.like.api.DiscardFeedLikeApi;
 import com.moiza.moizaspringbootserver.like.api.AddFeedLikeApi;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class WebFeedAdapter {
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
+    private final QueryFeedDetailsUseCase queryFeedDetailsUseCase;
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
@@ -55,5 +58,10 @@ public class WebFeedAdapter {
                                               @RequestParam("page") int page) {
         return publishedFeedListApi.execute(userId.isEmpty() ? null : UUID.fromString(userId), category,
                 type, order, page);
+    }
+
+    @GetMapping("/{feed-id}")
+    public FeedDetailsResponse queryFeedDetails(@PathVariable(name = "feed-id") UUID feedId) {
+        return queryFeedDetailsUseCase.execute(feedId);
     }
 }
