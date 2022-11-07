@@ -3,7 +3,9 @@ package com.moiza.moizaspringbootserver.domain.feed.presentation;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
+import com.moiza.moizaspringbootserver.feed.api.SuggestionsFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
+import com.moiza.moizaspringbootserver.feed.api.dto.response.SuggestionsFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.like.api.DiscardFeedLikeApi;
@@ -24,6 +26,7 @@ public class WebFeedAdapter {
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
+    private final SuggestionsFeedListApi suggestionsFeedListApi;
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
@@ -55,5 +58,10 @@ public class WebFeedAdapter {
                                               @RequestParam("page") int page) {
         return publishedFeedListApi.execute(userId.isEmpty() ? null : UUID.fromString(userId), category,
                 type, order, page);
+    }
+
+    @GetMapping("/lists/suggestions")
+    public SuggestionsFeedListResponse suggestionsFeeds(@RequestParam String category) {
+        return suggestionsFeedListApi.execute(category);
     }
 }
