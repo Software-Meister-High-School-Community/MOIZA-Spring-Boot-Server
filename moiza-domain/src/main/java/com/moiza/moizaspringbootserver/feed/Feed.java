@@ -15,5 +15,6 @@ public class Feed {
     private final UUID id;
     private final FeedType feedType;
     private final UUID userId;
+    private final UUID categoryId;
 
 }
