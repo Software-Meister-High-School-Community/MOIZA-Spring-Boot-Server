@@ -15,9 +15,11 @@ public class ReportAdapter implements CommandReportSpi {
     private final ReportMapper reportMapper;
 
     @Override
-    public void saveReport(Report report) {
-        reportRepository.save(
-                reportMapper.reportDomainToEntity(report)
+    public Report saveReport(Report report) {
+        return reportMapper.reportEntityToDomain(
+                reportRepository.save(
+                        reportMapper.reportDomainToEntity(report)
+                )
         );
     }
 }
