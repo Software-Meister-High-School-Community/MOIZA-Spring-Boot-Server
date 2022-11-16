@@ -3,9 +3,9 @@ package com.moiza.moizaspringbootserver.domain.feed.presentation;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
-import com.moiza.moizaspringbootserver.feed.api.SuggestionsFeedListApi;
+import com.moiza.moizaspringbootserver.feed.api.SuggestionsFeedsApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
-import com.moiza.moizaspringbootserver.feed.api.dto.response.SuggestionsFeedListResponse;
+import com.moiza.moizaspringbootserver.feed.api.dto.response.SuggestionsFeedsResponse;
 import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.like.api.DiscardFeedLikeApi;
@@ -26,7 +26,7 @@ public class WebFeedAdapter {
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
-    private final SuggestionsFeedListApi suggestionsFeedListApi;
+    private final SuggestionsFeedsApi suggestionsFeedsApi;
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
@@ -61,7 +61,7 @@ public class WebFeedAdapter {
     }
 
     @GetMapping("/lists/suggestions")
-    public SuggestionsFeedListResponse suggestionsFeeds(@RequestParam String category) {
-        return suggestionsFeedListApi.execute(category);
+    public SuggestionsFeedsResponse suggestionsFeeds(@RequestParam String category, @RequestParam Integer size) {
+        return suggestionsFeedsApi.execute(category, size);
     }
 }
