@@ -1,8 +1,11 @@
 package com.moiza.moizaspringbootserver.domain.feed.presentation;
 
+import com.moiza.moizaspringbootserver.domain.feed.presentation.dto.request.WebUpdateTemporariesRequest;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
+import com.moiza.moizaspringbootserver.feed.api.UpdateTemporariesApi;
+import com.moiza.moizaspringbootserver.feed.api.dto.request.DomainUpdateTemporariesRequest;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
@@ -24,6 +27,16 @@ public class WebFeedAdapter {
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
+    private final UpdateTemporariesApi updateTemporariesApi;
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/temporaries/{feed-id}")
+    public void updateTemporaries(@PathVariable("feed-id") UUID feedId, WebUpdateTemporariesRequest request) {
+        updateTemporariesApi.execute(feedId, DomainUpdateTemporariesRequest.builder()
+                        .content(request.getContent())
+                        .title(request.getTitle())
+                .build());
+    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
