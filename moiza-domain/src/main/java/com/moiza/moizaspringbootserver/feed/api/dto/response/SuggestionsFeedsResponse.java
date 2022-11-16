@@ -11,13 +11,13 @@ import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
-public class SuggestionsFeedListResponse {
+public class SuggestionsFeedsResponse {
 
-    private final List<SuggestionsFeed> feedList;
+    private final List<SuggestionFeed> feedList;
 
     @Getter
     @Builder
-    public static final class SuggestionsFeed {
+    public static final class SuggestionFeed {
         private final UUID id;
         private final String title;
         private final FeedType type;
