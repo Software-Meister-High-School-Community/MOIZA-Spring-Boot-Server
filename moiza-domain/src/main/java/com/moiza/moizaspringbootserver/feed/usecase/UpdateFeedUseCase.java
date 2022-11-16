@@ -52,12 +52,11 @@ public class UpdateFeedUseCase implements UpdateFeedApi {
                 .build();
         //Todo 저장
 
-        commandFeedAttachmentFileSpi.deleteAllFeedAttachmentFileByFeedId(feed)
+        commandFeedAttachmentFileSpi.deleteAllFeedAttachmentFileByFeedId(feed);
         request.getImageUrls().forEach(
                 image -> {
                     //Todo 저장
                 }
         );
-        
     }
 }
