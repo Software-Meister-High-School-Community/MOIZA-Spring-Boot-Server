@@ -4,7 +4,9 @@ import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.feed.domain.repository.PublicFeedRepository;
 import com.moiza.moizaspringbootserver.domain.feed.domain.repository.custom.PublicFeedRepositoryCustom;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.FeedMapper;
+import com.moiza.moizaspringbootserver.domain.feed.mapper.PublicFeedMapper;
 import com.moiza.moizaspringbootserver.feed.Feed;
+import com.moiza.moizaspringbootserver.feed.PublicFeed;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedSpi;
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
 
     private final FeedMapper feedMapper;
+    private final PublicFeedMapper publicFeedMapper;
     private final PublicFeedRepository publicFeedRepository;
     private final PublicFeedRepositoryCustom publicFeedRepositoryCustom;
 
@@ -31,5 +34,12 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
     @Override
     public PublishedFeedPage getAllPublishedFeed(UUID userId, String category, FeedType type, QueryOrders order, int page) {
         return publicFeedRepositoryCustom.getPublicFeed(userId, category, type, order, page);
+    }
+
+    @Override
+    public PublicFeed queryPublicFeedByFeedId(UUID feedId) {
+        return publicFeedMapper.publicFeedEntityToDomain(
+                publicFeedRepository.findByFeedId(feedId)
+        );
     }
 }
