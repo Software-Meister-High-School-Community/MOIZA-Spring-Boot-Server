@@ -1,5 +1,6 @@
 package com.moiza.moizaspringbootserver.domain.feed.presentation;
 
+import com.moiza.moizaspringbootserver.domain.feed.presentation.dto.request.WebUpdateFeedRequest;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
@@ -24,6 +25,13 @@ public class WebFeedAdapter {
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
+
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/{feed-id}")
+    public void updateFeed(@PathVariable("feed-id") UUID feedId, @RequestBody WebUpdateFeedRequest request) {
+
+    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
