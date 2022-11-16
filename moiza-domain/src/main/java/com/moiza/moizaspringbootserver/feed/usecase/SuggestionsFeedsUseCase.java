@@ -16,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 
 import java.awt.print.Pageable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -42,6 +44,8 @@ public class SuggestionsFeedsUseCase implements SuggestionsFeedsApi {
                         .authorName(getAuthorName(it))
                 .build())
                 .toList();
+
+        Collections.shuffle(suggestionFeeds);
 
         List<SuggestionFeed> destSuggestionFeeds = new ArrayList<>();
 
