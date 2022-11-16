@@ -35,15 +35,15 @@ public class SuggestionsFeedsUseCase implements SuggestionsFeedsApi {
 
     @Override
     public SuggestionsFeedsResponse execute(String category, Integer size) {
-        List<SuggestionFeed> suggestionFeeds = publicFeedQuerySpi.getPublicFeedsByCategory(category)
+        List<SuggestionFeed> suggestionFeeds = new ArrayList<>(publicFeedQuerySpi.getPublicFeedsByCategory(category)
                 .stream()
                 .map(it -> SuggestionFeed.builder()
                         .title(it.getTitle())
                         .type(queryFeedSpi.queryByFeedId(it.getFeedId()).getFeedType())
                         .createdAt(it.getCreatedAt())
                         .authorName(getAuthorName(it))
-                .build())
-                .toList();
+                        .build())
+                .toList());
 
         Collections.shuffle(suggestionFeeds);
 
