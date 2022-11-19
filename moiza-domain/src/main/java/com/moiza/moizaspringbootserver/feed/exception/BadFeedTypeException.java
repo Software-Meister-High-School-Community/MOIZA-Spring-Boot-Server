@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.domain.feed.exception;
+package com.moiza.moizaspringbootserver.feed.exception;
 
 import com.moiza.moizaspringbootserver.error.MoizaException;
 import com.moiza.moizaspringbootserver.feed.error.FeedErrorCode;
