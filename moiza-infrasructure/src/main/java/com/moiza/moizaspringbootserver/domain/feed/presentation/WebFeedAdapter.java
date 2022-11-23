@@ -1,9 +1,12 @@
 package com.moiza.moizaspringbootserver.domain.feed.presentation;
 
+import com.moiza.moizaspringbootserver.domain.feed.presentation.dto.request.WebUpdateFeedRequest;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedDetailApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
+import com.moiza.moizaspringbootserver.feed.api.UpdateFeedApi;
+import com.moiza.moizaspringbootserver.feed.api.dto.request.DomainUpdateFeedRequest;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.LocalFeedDetailResponse;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.LocalFeedListResponse;
@@ -27,6 +30,19 @@ public class WebFeedAdapter {
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
     private final LocalFeedDetailApi localFeedDetailApi;
+
+    private final UpdateFeedApi updateFeedApi;
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/{feed-id}")
+    public void updateFeed(@PathVariable("feed-id") UUID feedId, @RequestBody WebUpdateFeedRequest request) {
+        updateFeedApi.execute(feedId, DomainUpdateFeedRequest.builder()
+                        .feedType(request.getFeedType())
+                        .content(request.getContent())
+                        .title(request.getTitle())
+                        .imageUrls(request.getImageUrls())
+                .build());
+    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")

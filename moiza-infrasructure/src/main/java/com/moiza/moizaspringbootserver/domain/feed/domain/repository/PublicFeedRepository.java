@@ -11,4 +11,7 @@ import java.util.UUID;
 public interface PublicFeedRepository extends JpaRepository<PublicFeedEntity, UUID> {
 
     void deleteByFeed(FeedEntity feed);
+
+    PublicFeedEntity findByFeedId(UUID feedId);
+
 }

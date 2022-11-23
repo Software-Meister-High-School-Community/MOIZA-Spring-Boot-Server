@@ -44,8 +44,7 @@ public class FeedPersistenceAdapter implements FeedSpi {
         return feedMapper.feedEntityToDomain(feedRepository.findById(feedId)
                 .orElseThrow(() -> FeedNotFoundException.EXCEPTION));
     }
-
-    @Override
+    
     public String getCategoryNameByFeedId(UUID feedId) {
         FeedEntity feed = feedRepository.findById(feedId)
                 .orElseThrow(() -> FeedNotFoundException.EXCEPTION);
