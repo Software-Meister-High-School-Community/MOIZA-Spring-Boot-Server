@@ -1,6 +1,7 @@
 package com.moiza.moizaspringbootserver.domain.feed.domain.adapter.feed;
 
 import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
+import com.moiza.moizaspringbootserver.domain.feed.domain.FeedEntity;
 import com.moiza.moizaspringbootserver.domain.feed.domain.repository.FeedRepository;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.FeedMapper;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
@@ -51,5 +52,13 @@ public class FeedPersistenceAdapter implements FeedSpi {
                         feedMapper.feedDomainToEntity(feed)
                 )
         );
+    }
+    
+    @Override
+    public String getCategoryNameByFeedId(UUID feedId) {
+        FeedEntity feed = feedRepository.findById(feedId)
+                .orElseThrow(() -> FeedNotFoundException.EXCEPTION);
+
+        return feed.getCategory().getCategoryName();
     }
 }
