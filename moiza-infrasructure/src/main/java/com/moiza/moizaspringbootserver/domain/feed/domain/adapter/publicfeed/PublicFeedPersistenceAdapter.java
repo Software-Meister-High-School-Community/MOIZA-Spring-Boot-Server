@@ -4,7 +4,9 @@ import com.moiza.moizaspringbootserver.domain.annotation.Adapter;
 import com.moiza.moizaspringbootserver.domain.feed.domain.repository.PublicFeedRepository;
 import com.moiza.moizaspringbootserver.domain.feed.domain.repository.custom.PublicFeedRepositoryCustom;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.FeedMapper;
+import com.moiza.moizaspringbootserver.domain.feed.mapper.PublicFeedMapper;
 import com.moiza.moizaspringbootserver.feed.Feed;
+import com.moiza.moizaspringbootserver.feed.PublicFeed;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedSpi;
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
 
     private final FeedMapper feedMapper;
+    private final PublicFeedMapper publicFeedMapper;
     private final PublicFeedRepository publicFeedRepository;
     private final PublicFeedRepositoryCustom publicFeedRepositoryCustom;
 
@@ -25,6 +28,15 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
     public void deletePublicFeedByFeedId(Feed feed) {
         publicFeedRepository.deleteByFeed(
                 feedMapper.feedDomainToEntity(feed)
+        );
+    }
+
+    @Override
+    public PublicFeed savePublicFeed(PublicFeed publicFeed) {
+        return publicFeedMapper.publicFeedEntityToDomain(
+                publicFeedRepository.save(
+                        publicFeedMapper.publicFeedDomainToEntity(publicFeed)
+                )
         );
     }
 
