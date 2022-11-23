@@ -2,12 +2,14 @@ package com.moiza.moizaspringbootserver.domain.feed.presentation;
 
 import com.moiza.moizaspringbootserver.domain.feed.presentation.dto.request.WebUpdateFeedRequest;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
+import com.moiza.moizaspringbootserver.feed.api.LocalFeedDetailApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.UpdateFeedApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.request.DomainUpdateFeedRequest;
+import com.moiza.moizaspringbootserver.feed.api.dto.response.LocalFeedDetailResponse;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
-import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
+import com.moiza.moizaspringbootserver.feed.api.dto.response.LocalFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.like.api.DiscardFeedLikeApi;
 import com.moiza.moizaspringbootserver.like.api.AddFeedLikeApi;
@@ -27,6 +29,7 @@ public class WebFeedAdapter {
     private final DiscardFeedLikeApi discardFeedLikeApi;
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
+    private final LocalFeedDetailApi localFeedDetailApi;
 
     private final UpdateFeedApi updateFeedApi;
 
@@ -71,5 +74,10 @@ public class WebFeedAdapter {
                                               @RequestParam("page") int page) {
         return publishedFeedListApi.execute(userId.isEmpty() ? null : UUID.fromString(userId), category,
                 type, order, page);
+    }
+
+    @GetMapping("/temporaries/{feed-id}")
+    public LocalFeedDetailResponse getLocalFeedDetail(@PathVariable("feed-id") UUID feedId) {
+        return localFeedDetailApi.execute(feedId);
     }
 }
