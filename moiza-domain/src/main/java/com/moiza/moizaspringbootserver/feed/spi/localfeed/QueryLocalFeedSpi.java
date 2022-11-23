@@ -10,5 +10,7 @@ import java.util.UUID;
 public interface QueryLocalFeedSpi {
     List<LocalFeed> getAllLocalFeedByTypeAndKeyword(User user, FeedType type, String keyword);
 
+    LocalFeed getLocalFeedByFeedId(UUID feedId);
+
     LocalFeed getFeedById(UUID feedId);
 }

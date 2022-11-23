@@ -8,6 +8,7 @@ import com.moiza.moizaspringbootserver.domain.feed.mapper.LocalFeedMapper;
 import com.moiza.moizaspringbootserver.feed.Feed;
 import com.moiza.moizaspringbootserver.feed.LocalFeed;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
+import com.moiza.moizaspringbootserver.feed.exception.LocalFeedNotFoundException;
 import com.moiza.moizaspringbootserver.feed.exception.FeedNotFoundException;
 import com.moiza.moizaspringbootserver.feed.spi.localfeed.LocalFeedSpi;
 import com.moiza.moizaspringbootserver.user.domain.User;
@@ -37,6 +38,14 @@ public class LocalFeedPersistenceAdapter implements LocalFeedSpi {
         return localFeedCustomRepository.getAllLocalFeedByTypeAndKeyword(user, type, keyword);
     }
 
+    @Override
+    public LocalFeed getLocalFeedByFeedId(UUID feedId) {
+        return localFeedMapper.localFeedEntityToDomain(
+                localFeedRepository.findById(feedId)
+                        .orElseThrow(() -> LocalFeedNotFoundException.EXCEPTION)
+        );
+    }
+    
     @Override
     public LocalFeed getFeedById(UUID feedId) {
         return localFeedMapper.localFeedEntityToDomain(localFeedRepository.findById(feedId)
