@@ -23,6 +23,7 @@ public class FeedReportUseCase implements FeedReportApi {
 
     @Override
     public void execute(UUID feedId) {
+        //TODO 게시글 신고 머지되면 feed 있는지 검증
         UUID id = authSecuritySpi.getCurrentUserId();
 
         Report report = commandReportSpi.saveReport(Report.builder()
