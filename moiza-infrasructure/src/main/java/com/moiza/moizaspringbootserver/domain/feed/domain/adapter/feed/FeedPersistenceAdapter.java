@@ -6,12 +6,15 @@ import com.moiza.moizaspringbootserver.domain.feed.mapper.FeedMapper;
 import com.moiza.moizaspringbootserver.domain.user.domain.UserEntity;
 import com.moiza.moizaspringbootserver.domain.user.domain.repository.UserRepository;
 import com.moiza.moizaspringbootserver.feed.Feed;
+import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.exception.FeedNotFoundException;
 import com.moiza.moizaspringbootserver.feed.spi.feed.FeedSpi;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
 import com.moiza.moizaspringbootserver.user.domain.User;
 import com.moiza.moizaspringbootserver.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -42,5 +45,10 @@ public class FeedPersistenceAdapter implements FeedSpi {
     public Feed getFeedById(UUID feedId) {
         return feedMapper.feedEntityToDomain(feedRepository.findById(feedId)
                 .orElseThrow(() -> FeedNotFoundException.EXCEPTION));
+    }
+
+    @Override
+    public List<Feed> getMyFeedListByUserIdAndFeedTypeAndCategoryAndOrder(UUID userId, FeedType type, String category, QueryOrders order, int page) {
+        return null;
     }
 }

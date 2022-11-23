@@ -3,8 +3,9 @@ package com.moiza.moizaspringbootserver.domain.feed.domain.repository.custom;
 import com.moiza.moizaspringbootserver.domain.feed.domain.PublicFeedEntity;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.PublicFeedMapper;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
-import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedResponse;
+import com.moiza.moizaspringbootserver.feed.spi.dto.response.MyFeedListResponse.FeedResponse;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
+import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedResponse;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
@@ -17,9 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static com.moiza.moizaspringbootserver.domain.comment.domain.QCommentEntity.*;
 import static com.moiza.moizaspringbootserver.domain.feed.domain.QPublicFeedEntity.*;
 import static com.moiza.moizaspringbootserver.domain.like.domain.QFeedLikeEntity.*;
-import static com.moiza.moizaspringbootserver.domain.comment.domain.QCommentEntity.*;
+import static com.querydsl.core.types.Projections.constructor;
 
 @RequiredArgsConstructor
 public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCustom {
@@ -88,5 +90,16 @@ public class PublicFeedRepositoryCustomImpl implements PublicFeedRepositoryCusto
                 .totalPages((long) query.fetch().size())
                 .feeds(feeds)
                 .build();
+    }
+
+    @Override
+    public List<FeedResponse> getMyFeedList(UUID userId, String category, FeedType type, QueryOrders order, int page) {
+        return jpaQueryFactory
+                .select(
+                        constructor(
+                                FeedResponse.class
+
+                        )
+                )
     }
 }
