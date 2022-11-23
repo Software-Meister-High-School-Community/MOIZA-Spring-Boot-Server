@@ -2,12 +2,14 @@ package com.moiza.moizaspringbootserver.domain.feed.presentation;
 
 import com.moiza.moizaspringbootserver.domain.feed.presentation.dto.request.WebUpdateTemporariesRequest;
 import com.moiza.moizaspringbootserver.feed.api.DeleteFeedApi;
+import com.moiza.moizaspringbootserver.feed.api.LocalFeedDetailApi;
 import com.moiza.moizaspringbootserver.feed.api.LocalFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.PublishedFeedListApi;
 import com.moiza.moizaspringbootserver.feed.api.UpdateTemporariesApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.request.DomainUpdateTemporariesRequest;
+import com.moiza.moizaspringbootserver.feed.api.dto.response.LocalFeedDetailResponse;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.PublishedFeedListResponse;
-import com.moiza.moizaspringbootserver.feed.api.response.LocalFeedListResponse;
+import com.moiza.moizaspringbootserver.feed.api.dto.response.LocalFeedListResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.like.api.DiscardFeedLikeApi;
 import com.moiza.moizaspringbootserver.like.api.AddFeedLikeApi;
@@ -28,6 +30,7 @@ public class WebFeedAdapter {
     private final AddFeedLikeApi addFeedLikeApi;
     private final PublishedFeedListApi publishedFeedListApi;
     private final UpdateTemporariesApi updateTemporariesApi;
+    private final LocalFeedDetailApi localFeedDetailApi;
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/temporaries/{feed-id}")
@@ -36,7 +39,7 @@ public class WebFeedAdapter {
                         .content(request.getContent())
                         .title(request.getTitle())
                 .build());
-    }
+    }    
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
@@ -68,5 +71,10 @@ public class WebFeedAdapter {
                                               @RequestParam("page") int page) {
         return publishedFeedListApi.execute(userId.isEmpty() ? null : UUID.fromString(userId), category,
                 type, order, page);
+    }
+
+    @GetMapping("/temporaries/{feed-id}")
+    public LocalFeedDetailResponse getLocalFeedDetail(@PathVariable("feed-id") UUID feedId) {
+        return localFeedDetailApi.execute(feedId);
     }
 }

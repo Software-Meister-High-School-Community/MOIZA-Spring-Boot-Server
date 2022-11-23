@@ -12,4 +12,5 @@ public interface QueryLocalFeedSpi {
 
     LocalFeed getLocalFeedByFeedId(UUID feedId);
 
+    LocalFeed getFeedById(UUID feedId);
 }

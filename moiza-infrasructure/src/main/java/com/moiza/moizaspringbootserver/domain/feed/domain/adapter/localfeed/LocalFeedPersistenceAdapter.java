@@ -9,6 +9,7 @@ import com.moiza.moizaspringbootserver.feed.Feed;
 import com.moiza.moizaspringbootserver.feed.LocalFeed;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.exception.LocalFeedNotFoundException;
+import com.moiza.moizaspringbootserver.feed.exception.FeedNotFoundException;
 import com.moiza.moizaspringbootserver.feed.spi.localfeed.LocalFeedSpi;
 import com.moiza.moizaspringbootserver.user.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -43,5 +44,11 @@ public class LocalFeedPersistenceAdapter implements LocalFeedSpi {
                 localFeedRepository.findById(feedId)
                         .orElseThrow(() -> LocalFeedNotFoundException.EXCEPTION)
         );
+    }
+    
+    @Override
+    public LocalFeed getFeedById(UUID feedId) {
+        return localFeedMapper.localFeedEntityToDomain(localFeedRepository.findById(feedId)
+                .orElseThrow(() -> FeedNotFoundException.EXCEPTION));
     }
 }
