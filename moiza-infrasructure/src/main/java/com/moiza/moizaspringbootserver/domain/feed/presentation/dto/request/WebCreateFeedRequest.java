@@ -1,6 +1,5 @@
 package com.moiza.moizaspringbootserver.domain.feed.presentation.dto.request;
 
-import com.moiza.moizaspringbootserver.feed.Category;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,5 +23,6 @@ public class WebCreateFeedRequest {
     @NotBlank
     private String category;
 
+    @NotNull
     private List<String> imageUrls;
 }
