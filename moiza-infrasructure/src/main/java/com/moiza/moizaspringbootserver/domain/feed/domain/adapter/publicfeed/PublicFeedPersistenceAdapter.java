@@ -6,8 +6,8 @@ import com.moiza.moizaspringbootserver.domain.feed.domain.repository.PublicFeedR
 import com.moiza.moizaspringbootserver.domain.feed.domain.repository.custom.PublicFeedRepositoryCustom;
 import com.moiza.moizaspringbootserver.domain.feed.mapper.FeedMapper;
 import com.moiza.moizaspringbootserver.feed.Feed;
-import com.moiza.moizaspringbootserver.feed.QueryAllFeedsVO;
-import com.moiza.moizaspringbootserver.feed.QueryAllFeedsVO.Result;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.dto.response.QueryAllFeedsResponse;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.dto.response.QueryAllFeedsResponse.Result;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedSpi;
@@ -44,7 +44,7 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
     }
 
     @Override
-    public QueryAllFeedsVO queryAllFeedsByNameAndCategory(String name, String category, FeedType type, Integer page) {
+    public QueryAllFeedsResponse queryAllFeedsByNameAndCategory(String name, String category, FeedType type, Integer page) {
         long size = 10;
 
         Integer commentCount = jpaQueryFactory
@@ -63,7 +63,7 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
                 .limit(size)
                 .fetch();
 
-        return QueryAllFeedsVO.builder()
+        return QueryAllFeedsResponse.builder()
                 .totalPage(publicFeedEntities.size())
                 .feedList(publicFeedEntities.stream()
                         .map(it -> Result.builder()

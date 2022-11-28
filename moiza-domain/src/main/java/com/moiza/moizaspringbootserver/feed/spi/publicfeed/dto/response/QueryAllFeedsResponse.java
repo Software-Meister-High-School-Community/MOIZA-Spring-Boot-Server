@@ -1,4 +1,4 @@
-package com.moiza.moizaspringbootserver.feed;
+package com.moiza.moizaspringbootserver.feed.spi.publicfeed.dto.response;
 
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Getter
 @Builder
-public class QueryAllFeedsVO {
+public class QueryAllFeedsResponse {
     private final Integer totalPage;
     private final List<Result> feedList;
 

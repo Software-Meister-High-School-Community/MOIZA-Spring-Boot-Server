@@ -2,7 +2,7 @@ package com.moiza.moizaspringbootserver.feed.usecase;
 
 import com.moiza.moizaspringbootserver.annotation.UseCase;
 import com.moiza.moizaspringbootserver.auth.spi.AuthSecuritySpi;
-import com.moiza.moizaspringbootserver.feed.QueryAllFeedsVO;
+import com.moiza.moizaspringbootserver.feed.spi.publicfeed.dto.response.QueryAllFeedsResponse;
 import com.moiza.moizaspringbootserver.feed.api.SearchAllFeedsApi;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.SearchAllFeedsResponse;
 import com.moiza.moizaspringbootserver.feed.api.dto.response.SearchAllFeedsResponse.SearchResult;
@@ -26,11 +26,11 @@ public class SearchAllFeedsUseCase implements SearchAllFeedsApi {
     @Override
     public SearchAllFeedsResponse execute(String name, String category, FeedType type, QueryOrders order, Integer page) {
         UUID currentUserId = authSecuritySpi.getCurrentUserId();
-        QueryAllFeedsVO queryAllFeedsVO = publicFeedQuerySpi.queryAllFeedsByNameAndCategory(name, category, type, page);
+        QueryAllFeedsResponse queryAllFeedsResponse = publicFeedQuerySpi.queryAllFeedsByNameAndCategory(name, category, type, page);
 
-        Integer totalPage = queryAllFeedsVO.getTotalPage();
+        Integer totalPage = queryAllFeedsResponse.getTotalPage();
 
-        List<SearchResult> feedList = queryAllFeedsVO.getFeedList()
+        List<SearchResult> feedList = queryAllFeedsResponse.getFeedList()
                 .stream()
                 .map(it -> SearchResult.builder()
                         .id(it.getId())
