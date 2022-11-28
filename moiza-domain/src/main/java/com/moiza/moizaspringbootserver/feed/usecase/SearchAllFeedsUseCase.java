@@ -26,7 +26,7 @@ public class SearchAllFeedsUseCase implements SearchAllFeedsApi {
     @Override
     public SearchAllFeedsResponse execute(String name, String category, FeedType type, QueryOrders order, Integer page) {
         UUID currentUserId = authSecuritySpi.getCurrentUserId();
-        QueryAllFeedsResponse queryAllFeedsResponse = publicFeedQuerySpi.queryAllFeedsByNameAndCategory(name, category, type, page);
+        QueryAllFeedsResponse queryAllFeedsResponse = publicFeedQuerySpi.queryAllFeedsByNameAndCategory(name, category, type, order, page);
 
         Integer totalPage = queryAllFeedsResponse.getTotalPage();
 

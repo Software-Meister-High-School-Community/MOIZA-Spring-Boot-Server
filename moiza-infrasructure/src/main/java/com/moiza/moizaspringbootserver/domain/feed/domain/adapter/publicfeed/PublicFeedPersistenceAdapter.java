@@ -12,6 +12,7 @@ import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedSpi;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -44,7 +45,7 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
     }
 
     @Override
-    public QueryAllFeedsResponse queryAllFeedsByNameAndCategory(String name, String category, FeedType type, Integer page) {
+    public QueryAllFeedsResponse queryAllFeedsByNameAndCategory(String name, String category, FeedType type, QueryOrders order, Integer page) {
         long size = 10;
 
         Integer commentCount = jpaQueryFactory
@@ -53,7 +54,8 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
                 .join(commentEntity).on(publicFeedEntity.feed.id.eq(commentEntity.feedEntity.id))
                 .fetchFirst().intValue();
 
-        List<PublicFeedEntity> publicFeedEntities =  jpaQueryFactory.selectFrom(publicFeedEntity)
+
+        List<PublicFeedEntity> publicFeedEntities = jpaQueryFactory.selectFrom(publicFeedEntity)
                 .where(categoryEntity.categoryName.eq(category))
                 .where(publicFeedEntity.feed.feedType.eq(type))
                 .where(publicFeedEntity.title.contains(name))
@@ -61,6 +63,7 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
                 .join(commentEntity).on(publicFeedEntity.feed.id.eq(commentEntity.feedEntity.id))
                 .offset((long) page * size)
                 .limit(size)
+                .orderBy(getOrder(order))
                 .fetch();
 
         return QueryAllFeedsResponse.builder()
@@ -77,5 +80,14 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
                                 .build())
                         .toList())
                 .build();
+    }
+
+    private OrderSpecifier<?> getOrder(QueryOrders order) {
+        return switch (order.name()) {
+            case "LATEST" -> publicFeedEntity.createdAt.asc();
+            case "OLDEST" -> publicFeedEntity.createdAt.desc();
+            case "VIEW_COUNT" -> publicFeedEntity.viewCount.desc();
+            case "LIKE_COUNT" -> publicFeedEntity.likeCount.desc();
+        };
     }
 }

@@ -10,5 +10,5 @@ import java.util.UUID;
 public interface PublicFeedQuerySpi {
     PublishedFeedPage getAllPublishedFeed(UUID userId, String category, FeedType type, QueryOrders order, int page);
 
-    QueryAllFeedsResponse queryAllFeedsByNameAndCategory(String name, String category, FeedType type, Integer page);
+    QueryAllFeedsResponse queryAllFeedsByNameAndCategory(String name, String category, FeedType type, QueryOrders order, Integer page);
 }
