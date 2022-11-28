@@ -52,4 +52,10 @@ public class FeedPersistenceAdapter implements FeedSpi {
 
         return feed.getCategory().getCategoryName();
     }
+
+    @Override
+    public Boolean compareFeedUserId(UUID feedId, UUID userId) {
+        FeedEntity feed = feedRepository.findById(feedId).orElseThrow(() -> FeedNotFoundException.EXCEPTION);
+        return feed.getUser().getId() == userId;
+    }
 }
