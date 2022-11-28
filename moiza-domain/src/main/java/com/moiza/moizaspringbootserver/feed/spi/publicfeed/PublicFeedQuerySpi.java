@@ -1,7 +1,6 @@
 package com.moiza.moizaspringbootserver.feed.spi.publicfeed;
 
 import com.moiza.moizaspringbootserver.feed.QueryAllFeedsVO;
-import com.moiza.moizaspringbootserver.feed.api.dto.response.SearchAllFeedsResponse;
 import com.moiza.moizaspringbootserver.feed.enums.FeedType;
 import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
