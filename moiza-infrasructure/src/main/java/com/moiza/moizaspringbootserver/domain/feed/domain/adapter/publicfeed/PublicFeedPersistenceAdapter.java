@@ -13,6 +13,7 @@ import com.moiza.moizaspringbootserver.feed.spi.dto.response.PublishedFeedPage;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.PublicFeedSpi;
 import com.moiza.moizaspringbootserver.feed.spi.publicfeed.type.QueryOrders;
 import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -56,9 +57,9 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
 
 
         List<PublicFeedEntity> publicFeedEntities = jpaQueryFactory.selectFrom(publicFeedEntity)
-                .where(categoryEntity.categoryName.eq(category))
-                .where(publicFeedEntity.feed.feedType.eq(type))
-                .where(publicFeedEntity.title.contains(name))
+                .where(eqCategory(category))
+                .where(eqType(type))
+                .where(containsName(name))
                 .join(categoryEntity, publicFeedEntity.feed.category)
                 .join(commentEntity).on(publicFeedEntity.feed.id.eq(commentEntity.feedEntity.id))
                 .offset((long) page * size)
@@ -89,5 +90,26 @@ public class PublicFeedPersistenceAdapter implements PublicFeedSpi {
             case "VIEW_COUNT" -> publicFeedEntity.viewCount.desc();
             case "LIKE_COUNT" -> publicFeedEntity.likeCount.desc();
         };
+    }
+
+    private BooleanExpression eqCategory(String category) {
+        if (category.isEmpty()) {
+            return null;
+        }
+        return categoryEntity.categoryName.eq(category);
+    }
+
+    private BooleanExpression eqType(FeedType type) {
+        if (type.name().isEmpty()) {
+            return null;
+        }
+        return publicFeedEntity.feed.feedType.eq(type);
+    }
+
+    private BooleanExpression containsName(String name) {
+        if (name.isEmpty()) {
+            return null;
+        }
+        return publicFeedEntity.title.contains(name);
     }
 }
