@@ -10,4 +10,6 @@ public interface QueryFeedSpi {
 
     Feed getFeedById(UUID feedId);
     String getCategoryNameByFeedId(UUID feedId);
+
+    Boolean compareFeedUserId(UUID feedId, UUID userId);
 }
